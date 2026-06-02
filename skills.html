@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills & Certifications — Imran Rafique</title>
+    <meta property="og:title" content="Skills & Certifications — Imran Rafique">
+    <link rel="icon" href="profile.jpg" type="image/jpeg">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .skills-content, .certifications-section { padding: var(--spacing-2xl) var(--spacing-lg); }
+        .skills-categories { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: var(--spacing-2xl); }
+        .skill-category { background: var(--card-bg); padding: var(--spacing-lg); border-radius: var(--radius); border: 1px solid var(--border); }
+        .skill-list { display: flex; flex-direction: column; gap: var(--spacing-lg); }
+        .skill-item { display: flex; flex-direction: column; gap: 6px; }
+        .skill-name { font-weight: 500; }
+        .skill-bar { height: 8px; background: rgba(0,255,255,0.1); border-radius: 4px; overflow: hidden; }
+        .skill-progress { height: 100%; background: linear-gradient(90deg, var(--secondary) 0%, #00cccc 100%); border-radius: 4px; width: 0; transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1); }
+        .skill-tags { display: flex; flex-wrap: wrap; gap: var(--spacing-sm); }
+        .skill-tag { background: rgba(0,255,255,0.1); border: 1px solid var(--secondary); color: var(--secondary); padding: var(--spacing-sm) var(--spacing-lg); border-radius: 6px; font-size: 0.9rem; transition: var(--transition); }
+        .skill-tag:hover { background: rgba(0,255,255,0.2); transform: translateY(-2px); }
+        .certifications-section { background: linear-gradient(180deg, rgba(22,33,62,0.3) 0%, rgba(15,15,30,0.6) 100%); }
+        .certifications-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-lg); }
+        .cert-card { background: var(--card-bg); padding: var(--spacing-lg); border-radius: var(--radius); border: 1px solid var(--border); transition: var(--transition); }
+        .cert-card:hover { border-color: var(--secondary); box-shadow: 0 10px 30px rgba(0,255,255,0.2); }
+        .cert-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--spacing-sm); }
+        .cert-header h3 { flex: 1; margin-bottom: 0; font-size: 1rem; }
+        .cert-year { background: rgba(0,255,255,0.1); border: 1px solid var(--secondary); color: var(--secondary); padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; white-space: nowrap; margin-left: var(--spacing-sm); }
+        .cert-card p { opacity: 0.8; }
+        .cert-link { color: var(--secondary); text-decoration: none; transition: var(--transition); }
+        .cert-link:hover { opacity: 0.8; text-decoration: underline; }
+        @media (max-width: 768px) { .skills-categories { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Imran Rafique</div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="projects.html" class="nav-link">Projects & Experience</a></li>
+                <li><a href="skills.html" class="nav-link active">Skills & Certification</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Skills & Certifications</h1>
+            <p>Technical expertise and professional credentials</p>
+        </div>
+    </section>
+
+    <section class="skills-content">
+        <div class="container">
+            <h2>Technical Skills</h2>
+            <div class="skills-categories">
+                <div class="skill-category fade-in">
+                    <h3>Programming & Data</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">NumPy</span>
+                        <span class="skill-tag">Matplotlib</span>
+                        <span class="skill-tag">Seaborn</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">FastAPI</span>
+                        <span class="skill-tag">Git</span>
+                    </div>
+                </div>
+                <div class="skill-category fade-in">
+                    <h3>Machine Learning & Deep Learning</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">Scikit-learn</span>
+                        <span class="skill-tag">Regression</span>
+                        <span class="skill-tag">Classification</span>
+                        <span class="skill-tag">Clustering</span>
+                        <span class="skill-tag">CNNs</span>
+                        <span class="skill-tag">Transformers</span>
+                        <span class="skill-tag">HuggingFace</span>
+                        <span class="skill-tag">Transfer Learning</span>
+                        <span class="skill-tag">Feature Engineering</span>
+                        <span class="skill-tag">Hyperparameter Tuning</span>
+                        <span class="skill-tag">Cross-Validation</span>
+                        <span class="skill-tag">Model Evaluation</span>
+                    </div>
+                </div>
+                <div class="skill-category fade-in">
+                    <h3>Generative AI & Agentic Workflows</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">LangChain</span>
+                        <span class="skill-tag">LangGraph</span>
+                        <span class="skill-tag">LlamaIndex</span>
+                        <span class="skill-tag">CrewAI</span>
+                        <span class="skill-tag">AutoGen</span>
+                        <span class="skill-tag">RAG</span>
+                        <span class="skill-tag">Prompt Engineering</span>
+                        <span class="skill-tag">LLM Fine-Tuning</span>
+                        <span class="skill-tag">LLM Integration</span>
+                        <span class="skill-tag">Model Context Protocol (MCP)</span>
+                    </div>
+                </div>
+                <div class="skill-category fade-in">
+                    <h3>NLP & Computer Vision</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">NLP</span>
+                        <span class="skill-tag">Tokenization</span>
+                        <span class="skill-tag">Embeddings</span>
+                        <span class="skill-tag">Sentiment Analysis</span>
+                        <span class="skill-tag">Emotion Detection</span>
+                        <span class="skill-tag">OpenCV</span>
+                        <span class="skill-tag">CNN Architecture</span>
+                        <span class="skill-tag">Image Preprocessing</span>
+                    </div>
+                </div>
+                <div class="skill-category fade-in">
+                    <h3>Vector Databases & Search</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">FAISS</span>
+                        <span class="skill-tag">Pinecone</span>
+                        <span class="skill-tag">Chroma</span>
+                        <span class="skill-tag">Qdrant</span>
+                        <span class="skill-tag">Semantic Search</span>
+                        <span class="skill-tag">Hybrid Search (Semantic + BM25)</span>
+                        <span class="skill-tag">Re-ranking Techniques</span>
+                    </div>
+                </div>
+                <div class="skill-category fade-in">
+                    <h3>Cloud & Deployment</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">AWS (S3, EC2, Bedrock, Lambda, ECR)</span>
+                        <span class="skill-tag">GCP (Vertex AI, Cloud Storage)</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Kubernetes (Basic)</span>
+                        <span class="skill-tag">MLOps</span>
+                        <span class="skill-tag">MLflow</span>
+                        <span class="skill-tag">REST APIs</span>
+                        <span class="skill-tag">Scalable Data Pipelines (ETL/ELT)</span>
+                        <span class="skill-tag">CI/CD</span>
+                    </div>
+                </div>
+                <div class="skill-category fade-in">
+                    <h3>Tools & Automation</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Streamlit</span>
+                        <span class="skill-tag">Flask</span>
+                        <span class="skill-tag">n8n</span>
+                        <span class="skill-tag">Zapier</span>
+                        <span class="skill-tag">Power BI</span>
+                        <span class="skill-tag">Jupyter Notebook</span>
+                    </div>
+                </div>
+                <div class="skill-category fade-in">
+                    <h3>Soft Skills</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Decision Making</span>
+                        <span class="skill-tag">Team Leadership</span>
+                        <span class="skill-tag">Problem Solving</span>
+                        <span class="skill-tag">Teamwork</span>
+                        <span class="skill-tag">Continuous Learning</span>
+                        <span class="skill-tag">Time Management</span>
+                        <span class="skill-tag">English</span>
+                        <span class="skill-tag">Urdu</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="certifications-section">
+        <div class="container">
+            <h2>Courses & Certifications</h2>
+            <div class="certifications-grid">
+                <div class="cert-card fade-in">
+                    <div class="cert-header"><h3><a href="https://www.coursera.org/account/accomplishments/specialization/YT7523HFB8BT" target="_blank" class="cert-link">IBM AI Engineer Specialization</a></h3><span class="cert-year">Aug 2025</span></div>
+                    <p>IBM</p>
+                </div>
+                <div class="cert-card fade-in">
+                    <div class="cert-header"><h3><a href="https://www.coursera.org/account/accomplishments/specialization/63Z5MUIDCCCV" target="_blank" class="cert-link">AI Agent Developer Specialization</a></h3><span class="cert-year">Jul 2024</span></div>
+                    <p>Vanderbilt University</p>
+                </div>
+                <div class="cert-card fade-in">
+                    <div class="cert-header"><h3><a href="https://www.udacity.com/certificate/e/593f7e76-2bf4-11f1-9dc1-1b1038bce74d" target="_blank" class="cert-link">AWS AI Practitioner Challenge</a></h3><span class="cert-year">Apr 2026</span></div>
+                    <p>AWS & Udacity</p>
+                </div>
+                <div class="cert-card fade-in">
+                    <div class="cert-header"><h3><a href="https://www.credly.com/badges/ac190ddb-69ca-4c23-b900-e14bf00520d9" target="_blank" class="cert-link">AI Agents Using RAG and LangChain</a></h3><span class="cert-year">Sep 2024</span></div>
+                    <p>IBM</p>
+                </div>
+                <div class="cert-card fade-in">
+                    <div class="cert-header"><h3><a href="https://www.coursera.org/account/accomplishments/verify/4RCC2TO66ZR4" target="_blank" class="cert-link">Vector Search and Embeddings</a></h3><span class="cert-year">Aug 2024</span></div>
+                    <p>Google Cloud</p>
+                </div>
+                <div class="cert-card fade-in">
+                    <div class="cert-header"><h3><a href="https://www.coursera.org/account/accomplishments/verify/YZ481YG9GNDH" target="_blank" class="cert-link">Introduction to Model Context Protocol</a></h3><span class="cert-year">Aug 2024</span></div>
+                    <p>Anthropic</p>
+                </div>
+                <div class="cert-card fade-in">
+                    <div class="cert-header"><h3><a href="https://www.coursera.org/account/accomplishments/specialization/JDX6M1S2GUJI" target="_blank" class="cert-link">Data Engineering, Big Data & ML on GCP Specialization</a></h3><span class="cert-year">Aug–Sep 2024</span></div>
+                    <p>Google Cloud</p>
+                </div>
+                <div class="cert-card fade-in">
+                    <div class="cert-header"><h3><a href="https://www.credly.com/badges/bbc2c21c-ac02-4f89-8662-8e2f2ac5ac99" target="_blank" class="cert-link">Generative AI and LLMs: Architecture & Data Preparation</a></h3><span class="cert-year">Aug 2024</span></div>
+                    <p>IBM</p>
+                </div>
+                <div class="cert-card fade-in">
+                    <div class="cert-header"><h3><a href="https://www.credly.com/badges/37b3bd70-459f-4db9-b3db-236d42352e28" target="_blank" class="cert-link">Generative AI Advanced Fine-Tuning for LLMs</a></h3><span class="cert-year">Jul 2024</span></div>
+                    <p>IBM</p>
+                </div>
+                <div class="cert-card fade-in">
+                    <div class="cert-header"><h3><a href="https://www.coursera.org/account/accomplishments/specialization/LA7FE1PNO3DD" target="_blank" class="cert-link">AI ML with Deep Learning & Supervised Models Specialization</a></h3><span class="cert-year">Apr 2024</span></div>
+                    <p>SimpliLearn</p>
+                </div>
+                <div class="cert-card fade-in">
+                    <div class="cert-header"><h3><a href="https://www.credly.com/badges/6bb42c2e-e102-4515-bcb9-d053e6438780/public_url" target="_blank" class="cert-link">Databases and SQL for Data Science</a></h3><span class="cert-year">Apr 2024</span></div>
+                    <p>IBM, Coursera</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Imran Rafique. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/imran-rafique-data/?locale=en_US" target="_blank" class="social-link">LinkedIn</a>
+                <a href="https://github.com/ImranRafique847" target="_blank" class="social-link">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Animate skill bars when they scroll into view
+        const barObserver = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.querySelectorAll('.skill-progress').forEach(bar => {
+                        bar.style.width = bar.dataset.width + '%';
+                    });
+                    barObserver.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        document.querySelectorAll('.skill-category').forEach(el => barObserver.observe(el));
+    </script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About — Imran Rafique</title>
+    <meta property="og:title" content="About — Imran Rafique">
+    <link rel="icon" href="profile.jpg" type="image/jpeg">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .about-content { padding: var(--spacing-2xl) var(--spacing-lg); }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-xl); align-items: start; }
+        .about-text p { margin-bottom: var(--spacing-md); opacity: 0.9; line-height: 1.8; }
+        .approach-list { list-style: none; padding: var(--spacing-md) 0; }
+        .approach-list li { padding: var(--spacing-sm) 0 var(--spacing-sm) var(--spacing-lg); position: relative; opacity: 0.9; }
+        .approach-list li::before { content: '→'; position: absolute; left: 0; color: var(--secondary); }
+        .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-lg); }
+        .stat-card { background: var(--card-bg); padding: var(--spacing-xl); border-radius: var(--radius); border: 1px solid var(--border); text-align: center; transition: var(--transition); }
+        .stat-card:hover { border-color: var(--secondary); box-shadow: 0 10px 30px rgba(0,255,255,0.2); }
+        .stat-number { font-size: 2.5rem; font-weight: 700; color: var(--secondary); margin-bottom: var(--spacing-sm); }
+        .stat-label { opacity: 0.8; }
+        .timeline-section { padding: var(--spacing-2xl) var(--spacing-lg); background: linear-gradient(180deg, rgba(22,33,62,0.3) 0%, rgba(15,15,30,0.6) 100%); }
+        .timeline { max-width: 600px; margin: 0 auto; }
+        .timeline-item { display: flex; margin-bottom: var(--spacing-xl); position: relative; }
+        .timeline-item::before { content: ''; position: absolute; left: 15px; top: 50px; width: 2px; height: calc(100% + 40px); background: linear-gradient(180deg, var(--secondary) 0%, transparent 100%); }
+        .timeline-item:last-child::before { display: none; }
+        .timeline-marker { width: 30px; height: 30px; background: var(--secondary); border: 3px solid var(--background); border-radius: 50%; margin-right: var(--spacing-lg); margin-top: 5px; flex-shrink: 0; }
+        .timeline-content h3 { margin-bottom: var(--spacing-sm); }
+        .timeline-content p { opacity: 0.8; }
+        .timeline-content .timeline-date { color: var(--secondary); font-weight: 600; font-size: 0.9rem; }
+        @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; } .about-stats { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Imran Rafique</div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link active">About</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="projects.html" class="nav-link">Projects & Experience</a></li>
+                <li><a href="skills.html" class="nav-link">Skills & Certification</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>About Me</h1>
+            <p>My journey in AI and Machine Learning</p>
+        </div>
+    </section>
+
+    <section class="about-content">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text fade-in">
+                    <h2>Who I Am</h2>
+                    <p>I'm an AI/ML Engineer based in Lahore, Pakistan, passionate about solving real-world business problems through intelligent AI solutions. I build end-to-end AI systems that create measurable impact — from smart chatbots and autonomous agents to scalable cloud deployments on AWS and GCP.</p>
+                    <p>I'm also an AWS Community Builder in the AI/ML track, selected into a global program of technical professionals for demonstrating proficiency in Generative AI and Cloud Architecture. I actively contribute to the AI community by developing and sharing solutions using cloud-native AI services.</p>
+
+                    <h3>My Background</h3>
+                    <p>I hold a Bachelor's degree in Information Technology from the University of Jhang, Pakistan (2021–2025). My journey started with a deep curiosity for data and patterns, and has evolved into architecting production-grade ML systems and multi-agent AI solutions.</p>
+                    <p>I'm experienced with LangChain, LangGraph, LlamaIndex, FAISS, HuggingFace, PyTorch, and TensorFlow for developing conversational AI, multi-agent systems, and domain-specific ML solutions.</p>
+
+                    <h3>My Approach</h3>
+                    <p>I combine strong theoretical foundations in machine learning and deep learning with practical, production-ready implementation. Every project starts with understanding the problem deeply, then selecting the right tools and techniques to deliver measurable results.</p>
+                    <ul class="approach-list">
+                        <li>Data-first thinking — clean data beats complex models</li>
+                        <li>End-to-end pipeline development from data to deployment</li>
+                        <li>Production-ready, scalable code from day one</li>
+                        <li>Continuous learning and applying cutting-edge AI innovations</li>
+                        <li>Clear communication of results and trade-offs</li>
+                    </ul>
+                </div>
+                <div class="about-stats fade-in">
+                    <div class="stat-card">
+                        <div class="stat-number">10+</div>
+                        <div class="stat-label">Certifications</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">20+</div>
+                        <div class="stat-label">Projects Completed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Technologies</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">4,500+</div>
+                        <div class="stat-label">Applicants Beaten (Amal Fellowship)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="timeline-section">
+        <div class="container">
+            <h2>My Journey</h2>
+            <div class="timeline">
+                <div class="timeline-item fade-in">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>AWS Community Builder (AI/ML Track)</h3>
+                        <p class="timeline-date">March 2026 – Present</p>
+                        <p>Selected by Amazon Web Services into a global program of technical experts for demonstrating high-level proficiency in Generative AI and Cloud Architecture. Actively contributing to the AWS ecosystem by developing RAG-based applications and Agentic workflows using Amazon Bedrock.</p>
+                    </div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>AI Engineer Intern — Salaar Technologies</h3>
+                        <p class="timeline-date">November 2025 – Present</p>
+                        <p>Developed an AI chatbot combining rule-based logic and RAG for fast, context-aware responses, processing 140+ PDFs. Built FastAPI backend with scalable deployment and integrated Google Sheets API for real-time analytics.</p>
+                    </div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>Career-Prep Fellow — Amal Academy</h3>
+                        <p class="timeline-date">April 2025 – May 2025</p>
+                        <p>Selected from 4,500+ applicants for a Stanford-funded 3-month fellowship. Invested 150+ hours building skills in communication, leadership, problem-solving, and teamwork.</p>
+                    </div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>Data Science Intern — Certura</h3>
+                        <p class="timeline-date">April 2025 – May 2025</p>
+                        <p>Built a regression model on 95,845 flight records to predict passenger volume per route (R² = 0.87). Managed end-to-end ETL with EDA, data cleaning, transformation, and feature engineering.</p>
+                    </div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>Bachelor's in Information Technology</h3>
+                        <p class="timeline-date">September 2021 – September 2025</p>
+                        <p>University of Jhang, Pakistan. Built a strong foundation in software engineering, machine learning, deep learning, and cloud-based AI deployment.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Imran Rafique. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/imran-rafique-data/?locale=en_US" target="_blank" class="social-link">LinkedIn</a>
+                <a href="https://github.com/ImranRafique847" target="_blank" class="social-link">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

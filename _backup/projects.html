@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects & Experience - AI/ML Engineer Portfolio</title>
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #00ffff;
+            --accent: #8e44ad;
+            --text: #e0e0e0;
+            --text-dark: #2d2d3d;
+            --background: #0f0f1e;
+            --card-bg: #16213e;
+            --border: #2a2a3e;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --spacing-2xl: 4rem;
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --transition: all 0.3s ease;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-family); background-color: var(--background); color: var(--text); line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 var(--spacing-lg); }
+        .navbar { position: sticky; top: 0; z-index: 1000; background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(26, 26, 46, 0.85) 100%); border-bottom: 1px solid rgba(0, 255, 255, 0.1); }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 1rem var(--spacing-lg); display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: bold; background: linear-gradient(135deg, #ffffff 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .nav-menu { display: flex; list-style: none; gap: var(--spacing-lg); }
+        .nav-link { color: var(--text); text-decoration: none; font-size: 0.95rem; transition: var(--transition); position: relative; }
+        .nav-link::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--secondary); transition: var(--transition); }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        .nav-link:hover { color: var(--secondary); }
+        .page-header { padding: var(--spacing-2xl) var(--spacing-lg); background: linear-gradient(135deg, rgba(142, 68, 173, 0.1) 0%, rgba(0, 255, 255, 0.05) 100%); border-bottom: 2px solid var(--secondary); }
+        .page-header h1 { font-size: 2.5rem; background: linear-gradient(135deg, #ffffff 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: var(--spacing-sm); }
+        .page-header p { font-size: 1.1rem; color: var(--secondary); opacity: 0.9; }
+        .projects-section, .experience-section { padding: var(--spacing-2xl) var(--spacing-lg); }
+        h2 { font-size: 2.2rem; margin-bottom: var(--spacing-xl); background: linear-gradient(135deg, #ffffff 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        h3 { color: var(--secondary); margin-top: 0; }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: var(--spacing-xl); }
+        .project-card { background: var(--card-bg); border-radius: 12px; overflow: hidden; border: 1px solid var(--border); transition: var(--transition); display: flex; flex-direction: column; animation: fadeInUp 0.6s ease-out both; }
+        .project-card:hover { transform: translateY(-5px); border-color: var(--secondary); box-shadow: 0 15px 40px rgba(0, 255, 255, 0.2); }
+        .project-card:nth-child(1) { animation-delay: 0.1s; }
+        .project-card:nth-child(2) { animation-delay: 0.2s; }
+        .project-card:nth-child(3) { animation-delay: 0.3s; }
+        .project-card:nth-child(4) { animation-delay: 0.4s; }
+        .project-card:nth-child(5) { animation-delay: 0.5s; }
+        .project-card:nth-child(6) { animation-delay: 0.6s; }
+        .project-info { padding: var(--spacing-lg); flex-grow: 1; display: flex; flex-direction: column; }
+        .section-intro { color: var(--text); opacity: 0.8; margin-bottom: var(--spacing-lg); max-width: 760px; }
+        .projects-callout { background: rgba(0, 255, 255, 0.08); border: 1px solid rgba(0, 255, 255, 0.14); border-radius: 10px; padding: 1.25rem 1.5rem; margin-bottom: var(--spacing-xl); }
+        .projects-callout a { color: var(--secondary); text-decoration: none; font-weight: 700; }
+        .project-image { height: 200px; background: linear-gradient(135deg, rgba(142, 68, 173, 0.2) 0%, rgba(0, 255, 255, 0.1) 100%); display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border); }
+        .image-placeholder { color: var(--secondary); font-size: 1.2rem; opacity: 0.6; }
+        .project-info { padding: var(--spacing-lg); flex-grow: 1; display: flex; flex-direction: column; }
+        .project-info p { color: var(--text); opacity: 0.8; margin-bottom: var(--spacing-md); flex-grow: 1; }
+        .project-tech { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: var(--spacing-md); }
+        .tech-tag { background: rgba(0, 255, 255, 0.1); border: 1px solid var(--secondary); color: var(--secondary); padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; }
+        .project-metrics { display: flex; gap: var(--spacing-sm); margin-bottom: var(--spacing-md); font-size: 0.9rem; color: var(--text); opacity: 0.7; }
+        .project-link { color: var(--secondary); text-decoration: none; font-weight: 600; }
+        .experience-section { background: linear-gradient(180deg, rgba(22, 33, 62, 0.3) 0%, rgba(15, 15, 30, 0.6) 100%); }
+        .experience-timeline { max-width: 700px; margin: 0 auto; }
+        .experience-item { background: var(--card-bg); padding: var(--spacing-lg); margin-bottom: var(--spacing-lg); border-radius: 8px; border-left: 4px solid var(--secondary); transition: var(--transition); animation: fadeInUp 0.6s ease-out both; }
+        .experience-item:hover { box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2); }
+        .experience-item:nth-child(1) { animation-delay: 0.1s; }
+        .experience-item:nth-child(2) { animation-delay: 0.2s; }
+        .experience-item:nth-child(3) { animation-delay: 0.3s; }
+        .experience-item .company { color: var(--secondary); font-size: 0.9rem; margin-bottom: var(--spacing-sm); }
+        .experience-item p { opacity: 0.8; }
+        .footer { background: var(--primary); border-top: 1px solid var(--border); padding: var(--spacing-xl) var(--spacing-lg); text-align: center; }
+        .footer p { opacity: 0.7; margin-bottom: var(--spacing-lg); }
+        .social-links { display: flex; justify-content: center; gap: var(--spacing-lg); flex-wrap: wrap; }
+        .social-link { color: var(--secondary); text-decoration: none; font-weight: 600; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Portfolio</div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="projects.html" class="nav-link active">Projects & Experience</a></li>
+                <li><a href="skills.html" class="nav-link">Skills & Certification</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Projects & Experience</h1>
+            <p>Showcasing my best work in AI and ML</p>
+        </div>
+    </section>
+
+    <!-- Featured Projects -->
+    <section class="projects-section">
+        <div class="container">
+            <h2>Featured Projects</h2>
+            <p class="section-intro">Browse the AI/ML projects shown below and explore the complete code portfolio on GitHub.</p>
+            <div class="projects-callout">
+                <p>View all repositories and source code on <a href="https://github.com/ImranRafique847" target="_blank">github.com/ImranRafique847</a>.</p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card fade-in">
+                    <div class="project-image">
+                        <div class="image-placeholder">Image</div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Car Price Prediction</h3>
+                        <p>Regression model predicting car resale value using vehicle features, market data, and feature engineering.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Pandas</span>
+                            <span class="tech-tag">Scikit-learn</span>
+                            <span class="tech-tag">Regression</span>
+                        </div>
+                        <div class="project-metrics">
+                            <span>Pricing Model</span>
+                            <span>Data-driven Insights</span>
+                        </div>
+                        <a href="https://github.com/ImranRafique847/Car_Price_Prediction" target="_blank" class="project-link">View on GitHub →</a>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="project-image">
+                        <div class="image-placeholder">Image</div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Coursera Project Portfolio</h3>
+                        <p>Collection of Coursera assignments and projects demonstrating practical AI/ML workflows and learning milestones.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Data Science</span>
+                            <span class="tech-tag">Machine Learning</span>
+                            <span class="tech-tag">Coursework</span>
+                        </div>
+                        <div class="project-metrics">
+                            <span>Course Projects</span>
+                            <span>Skill Development</span>
+                        </div>
+                        <a href="https://github.com/ImranRafique847/Coursera" target="_blank" class="project-link">View on GitHub →</a>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="project-image">
+                        <div class="image-placeholder">Image</div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Iris Flower Classification</h3>
+                        <p>Classic classification model trained on the Iris dataset, showcasing feature analysis and model evaluation.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Scikit-learn</span>
+                            <span class="tech-tag">Classification</span>
+                            <span class="tech-tag">Data Analysis</span>
+                        </div>
+                        <div class="project-metrics">
+                            <span>Species Prediction</span>
+                            <span>Model Evaluation</span>
+                        </div>
+                        <a href="https://github.com/ImranRafique847/Iris-Flower-Classification" target="_blank" class="project-link">View on GitHub →</a>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="project-image">
+                        <div class="image-placeholder">Image</div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Sales Prices Prediction</h3>
+                        <p>Price prediction model using sales data and feature engineering to forecast product pricing trends.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Pandas</span>
+                            <span class="tech-tag">Regression</span>
+                            <span class="tech-tag">EDA</span>
+                        </div>
+                        <div class="project-metrics">
+                            <span>Forecasting</span>
+                            <span>Market Insights</span>
+                        </div>
+                        <a href="https://github.com/ImranRafique847/Sales_Prices_Prediction" target="_blank" class="project-link">View on GitHub →</a>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="project-image">
+                        <div class="image-placeholder">Image</div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Static Analysis</h3>
+                        <p>Static analysis toolset for code quality checks and automated inspection workflows.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Static Analysis</span>
+                            <span class="tech-tag">Scripting</span>
+                            <span class="tech-tag">Automation</span>
+                        </div>
+                        <div class="project-metrics">
+                            <span>Code Quality</span>
+                            <span>Tooling</span>
+                        </div>
+                        <a href="https://github.com/ImranRafique847/Static-Analysis" target="_blank" class="project-link">View on GitHub →</a>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="project-image">
+                        <div class="image-placeholder">Image</div>
+                    </div>
+                    <div class="project-info">
+                        <h3>submit50</h3>
+                        <p>Automated grading and submission helper for programming course assignments.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Automation</span>
+                            <span class="tech-tag">CLI</span>
+                            <span class="tech-tag">Education</span>
+                        </div>
+                        <div class="project-metrics">
+                            <span>Workflow Automation</span>
+                            <span>Course Support</span>
+                        </div>
+                        <a href="https://github.com/ImranRafique847/submit50" target="_blank" class="project-link">View on GitHub →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Timeline -->
+    <section class="experience-section">
+        <div class="container">
+            <h2>Professional Experience</h2>
+            <div class="experience-timeline">
+                <div class="experience-item fade-in">
+                    <h3>Senior ML Engineer</h3>
+                    <p class="company">Tech Solutions Inc. • 2022 - Present</p>
+                    <p>Leading ML pipeline development and model optimization for enterprise solutions. Team lead for 5 engineers.</p>
+                </div>
+                <div class="experience-item fade-in">
+                    <h3>ML Engineer</h3>
+                    <p class="company">Data Innovations Ltd. • 2021 - 2022</p>
+                    <p>Developed and deployed production ML models for clients across various industries including finance and healthcare.</p>
+                </div>
+                <div class="experience-item fade-in">
+                    <h3>Data Scientist</h3>
+                    <p class="company">Analytics Pro • 2020 - 2021</p>
+                    <p>Analyzed complex datasets and built predictive models for business intelligence and strategic planning.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 AI/ML Engineer Portfolio. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/imran-rafique-data/?locale=en_US" target="_blank" class="social-link">LinkedIn</a>
+                <a href="https://github.com/ImranRafique847" target="_blank" class="social-link">GitHub</a>
+                <a href="#" class="social-link">Twitter</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            const navLinks = document.querySelectorAll('.nav-link');
+            if (hamburger) hamburger.addEventListener('click', () => navMenu.classList.toggle('active'));
+            navLinks.forEach(link => link.addEventListener('click', () => navMenu.classList.remove('active')));
+            
+            observeElements();
+            addButtonGlow();
+        });
+
+        function observeElements() {
+            const obs = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        e.target.classList.add('animate-in');
+                        obs.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
+            
+            document.querySelectorAll('.service-card, .project-card, .step').forEach(el => obs.observe(el));
+        }
+
+        function addButtonGlow() {
+            document.querySelectorAll('.btn-primary').forEach(btn => {
+                btn.addEventListener('mousemove', e => {
+                    const rect = btn.getBoundingClientRect();
+                    btn.style.setProperty('--x', (e.clientX - rect.left) + 'px');
+                    btn.style.setProperty('--y', (e.clientY - rect.top) + 'px');
+                });
+            });
+        }
+    </script>
+    <style>
+        .btn-primary { position: relative; overflow: hidden; }
+        .btn-primary::before { content: ''; position: absolute; width: 100px; height: 100px; background: radial-gradient(circle, rgba(255,255,255,0.5) 0%, transparent 70%); top: var(--y, 50%); left: var(--x, 50%); transform: translate(-50%, -50%); opacity: 0; pointer-events: none; }
+        .btn-primary:hover::before { opacity: 1; }
+        .animate-in { animation: slideInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) !important; }
+        @keyframes slideInUp { from { opacity: 0; transform: translateY(60px); } to { opacity: 1; transform: translateY(0); } }
+        .service-card { opacity: 0; }
+        .service-card:hover { animation: cardPulse 0.6s ease-out; }
+        @keyframes cardPulse { 0% { transform: scale(1); } 50% { transform: scale(1.02); } 100% { transform: scale(1); } }
+        .service-card:hover { transform: perspective(1000px) rotateX(5deg) rotateY(-5deg); }
+        .service-icon { transition: transform 0.4s ease; }
+        .service-card:hover .service-icon { transform: translateY(-10px) scale(1.1); }
+    </style>
+
+</body>
+</html>

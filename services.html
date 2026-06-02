@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services — Imran Rafique</title>
+    <meta property="og:title" content="Services — Imran Rafique">
+    <link rel="icon" href="profile.jpg" type="image/jpeg">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .services-section, .process-section { padding: var(--spacing-2xl) var(--spacing-lg); }
+        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-lg); }
+        .service-card { background: var(--card-bg); padding: var(--spacing-xl); border-radius: var(--radius); border: 1px solid var(--border); transition: var(--transition); }
+        .service-card:hover { transform: translateY(-5px); border-color: var(--secondary); box-shadow: 0 15px 40px rgba(0,255,255,0.2); }
+        .service-icon { font-size: 2.5rem; margin-bottom: var(--spacing-md); display: block; transition: transform 0.4s ease; }
+        .service-card:hover .service-icon { transform: translateY(-8px) scale(1.1); }
+        .service-card-img { width: calc(100% + 2 * var(--spacing-xl)); height: 160px; border-radius: var(--radius) var(--radius) 0 0; object-fit: cover; margin: calc(-1 * var(--spacing-xl)) calc(-1 * var(--spacing-xl)) var(--spacing-md) calc(-1 * var(--spacing-xl)); transition: transform 0.4s ease; box-shadow: 0 4px 15px rgba(0,255,255,0.3); }
+        .service-card:hover .service-card-img { transform: scale(1.02); }
+        .service-features { list-style: none; padding: var(--spacing-md) 0 0; }
+        .service-features li { padding: var(--spacing-sm) 0 var(--spacing-sm) var(--spacing-lg); position: relative; opacity: 0.8; }
+        .service-features li::before { content: '✓'; position: absolute; left: 0; color: var(--secondary); font-weight: bold; }
+        @media (max-width: 1024px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { .services-grid { grid-template-columns: 1fr; } }
+        .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--spacing-xl); }
+        .step { text-align: center; }
+        .step-number { font-size: 2.5rem; font-weight: 700; color: var(--secondary); margin-bottom: var(--spacing-md); font-family: var(--font-heading); }
+        .step p { opacity: 0.8; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Imran Rafique</div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="services.html" class="nav-link active">Services</a></li>
+                <li><a href="projects.html" class="nav-link">Projects & Experience</a></li>
+                <li><a href="skills.html" class="nav-link">Skills & Certification</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Services</h1>
+            <p>AI and ML solutions tailored to your needs</p>
+        </div>
+    </section>
+
+    <section class="services-section">
+        <div class="container">
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <img src="images/AI Chatbot & Virtual Assistant Development.png" alt="AI Chatbot & Virtual Assistant Development" class="service-card-img">
+                    <h3>AI Chatbot & Virtual Assistant Development</h3>
+                    <p>Smart chatbots that understand your business data and provide instant, accurate responses to your customers 24/7.</p>
+                    <ul class="service-features">
+                        <li>Document-based Q&A chatbots</li>
+                        <li>Rule-based + AI hybrid systems</li>
+                        <li>Customer support automation</li>
+                        <li>Real-time analytics & monitoring</li>
+                    </ul>
+                </div>
+                <div class="service-card fade-in">
+                    <img src="images/Custom AI Agent Development.webp" alt="Custom AI Agent Development" class="service-card-img">
+                    <h3>Custom AI Agent Development</h3>
+                    <p>Autonomous AI agents that handle complex tasks, make decisions, and execute multi-step workflows without human intervention.</p>
+                    <ul class="service-features">
+                        <li>Multi-agent orchestration</li>
+                        <li>Autonomous task execution</li>
+                        <li>Business workflow automation</li>
+                        <li>LangGraph & CrewAI agents</li>
+                    </ul>
+                </div>
+                <div class="service-card fade-in">
+                    <img src="images/Generative AI & LLM Integration.jpg" alt="Generative AI & LLM Integration" class="service-card-img">
+                    <h3>Generative AI & LLM Integration</h3>
+                    <p>Integrate the power of large language models into your existing applications for content generation, summarization, and intelligent automation.</p>
+                    <ul class="service-features">
+                        <li>LLM-powered applications</li>
+                        <li>Prompt engineering & fine-tuning</li>
+                        <li>Custom AI assistants</li>
+                        <li>Cost-optimized LLM usage</li>
+                    </ul>
+                </div>
+                <div class="service-card fade-in">
+                    <img src="images/RAG-Powered Knowledge Systems.webp" alt="RAG-Powered Knowledge Systems" class="service-card-img">
+                    <h3>RAG-Powered Knowledge Systems</h3>
+                    <p>Turn your documents, PDFs, and data into searchable AI-powered knowledge bases with accurate, context-aware answers.</p>
+                    <ul class="service-features">
+                        <li>Semantic & hybrid search</li>
+                        <li>Vector database integration</li>
+                        <li>Document processing pipelines</li>
+                        <li>Enterprise knowledge bases</li>
+                    </ul>
+                </div>
+                <div class="service-card fade-in">
+                    <img src="images/AI-Powered Business Automation.webp" alt="AI-Powered Business Automation" class="service-card-img">
+                    <h3>AI-Powered Business Automation</h3>
+                    <p>Automate repetitive business processes with AI — from data entry and reporting to decision-making and workflow management.</p>
+                    <ul class="service-features">
+                        <li>Workflow automation with AI</li>
+                        <li>Intelligent data processing</li>
+                        <li>Automated reporting & insights</li>
+                        <li>End-to-end process optimization</li>
+                    </ul>
+                </div>
+                <div class="service-card fade-in">
+                    <img src="images/Machine Learning & Predictive Analytics.webp" alt="Machine Learning & Predictive Analytics" class="service-card-img">
+                    <h3>Machine Learning & Predictive Analytics</h3>
+                    <p>Data-driven predictions and insights that help you make smarter business decisions and forecast future trends.</p>
+                    <ul class="service-features">
+                        <li>Predictive modeling & forecasting</li>
+                        <li>Classification & clustering</li>
+                        <li>Feature engineering & EDA</li>
+                        <li>Model evaluation & optimization</li>
+                    </ul>
+                </div>
+                <div class="service-card fade-in">
+                    <img src="images/Computer Vision Solutions.png" alt="Computer Vision Solutions" class="service-card-img">
+                    <h3>Computer Vision Solutions</h3>
+                    <p>Image and video analysis systems that can detect, classify, and understand visual data for your business needs.</p>
+                    <ul class="service-features">
+                        <li>Image classification & detection</li>
+                        <li>Transfer learning solutions</li>
+                        <li>Real-time prediction APIs</li>
+                        <li>Custom CNN architectures</li>
+                    </ul>
+                </div>
+                <div class="service-card fade-in">
+                    <img src="images/Cloud AI Deployment & MLOps.png" alt="Cloud AI Deployment & MLOps" class="service-card-img">
+                    <h3>Cloud AI Deployment & MLOps</h3>
+                    <p>Deploy your AI models to production on AWS or GCP with scalable infrastructure, monitoring, and continuous delivery.</p>
+                    <ul class="service-features">
+                        <li>AWS & GCP deployment</li>
+                        <li>Docker containerization</li>
+                        <li>Scalable REST APIs (FastAPI)</li>
+                        <li>CI/CD & model monitoring</li>
+                    </ul>
+                </div>
+                <div class="service-card fade-in">
+                    <img src="images/AI Data Visualization & Insights.png" alt="AI Data Visualization & Insights" class="service-card-img">
+                    <h3>AI Data Visualization & Insights</h3>
+                    <p>Transform raw data into interactive dashboards and visual insights using AI-powered natural language queries.</p>
+                    <ul class="service-features">
+                        <li>Natural language to charts</li>
+                        <li>Automated dashboard generation</li>
+                        <li>Interactive data exploration</li>
+                        <li>LLM-driven analytics</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="process-section" style="background: linear-gradient(180deg, rgba(22,33,62,0.3) 0%, rgba(15,15,30,0.6) 100%);">
+        <div class="container">
+            <h2>My Process</h2>
+            <div class="process-steps">
+                <div class="step fade-in">
+                    <div class="step-number">01</div>
+                    <h3>Discovery</h3>
+                    <p>Understand your requirements, data, and business objectives</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">02</div>
+                    <h3>Planning</h3>
+                    <p>Design the approach, select algorithms, and create roadmap</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">03</div>
+                    <h3>Development</h3>
+                    <p>Build and train models with iterative refinement</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">04</div>
+                    <h3>Deployment</h3>
+                    <p>Deploy to production with monitoring and support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Imran Rafique. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/imran-rafique-data/?locale=en_US" target="_blank" class="social-link">LinkedIn</a>
+                <a href="https://github.com/ImranRafique847" target="_blank" class="social-link">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

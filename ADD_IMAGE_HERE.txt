@@ -1,0 +1,45 @@
+📋 HOW TO ADD YOUR PROFILE IMAGE
+==================================
+
+OPTION 1: Copy Image File (Easiest)
+-----------------------------------
+1. Open this folder in File Explorer:
+   d:\Portfolio\
+
+2. Go to this folder and copy your image:
+   c:\Users\iamim\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\copilot-cli-images\1779001601119-tw8yuf5e.jpg
+
+3. Paste it into d:\Portfolio\
+
+4. Rename the file to: profile.jpg
+
+5. Refresh your browser (press F5)
+
+✅ Your photo will appear in the circular frame!
+
+
+OPTION 2: Use Windows Explorer Direct Copy
+-------------------------------------------
+1. Press Windows + R
+2. Type: c:\Users\iamim\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\copilot-cli-images\
+3. Press Enter
+4. Find: 1779001601119-tw8yuf5e.jpg
+5. Right-click → Copy
+6. Navigate to: d:\Portfolio\
+7. Right-click → Paste
+8. Rename to: profile.jpg
+
+
+OPTION 3: Drag and Drop
+-----------------------
+1. Open two File Explorer windows side by side
+2. Left: c:\Users\iamim\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\copilot-cli-images\
+3. Right: d:\Portfolio\
+4. Drag 1779001601119-tw8yuf5e.jpg from left to right
+5. Rename it to: profile.jpg
+
+
+After copying, your home page will show:
+✨ Your photo in a glowing cyan circular frame
+✨ Your name: Imran Rafique
+✨ Your tagline: AI/ML Engineer | Gen AI Engineer

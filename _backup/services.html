@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - AI/ML Engineer Portfolio</title>
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #00ffff;
+            --accent: #8e44ad;
+            --text: #e0e0e0;
+            --text-dark: #2d2d3d;
+            --background: #0f0f1e;
+            --card-bg: #16213e;
+            --border: #2a2a3e;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --spacing-2xl: 4rem;
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --transition: all 0.3s ease;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-family); background-color: var(--background); color: var(--text); line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 var(--spacing-lg); }
+        .navbar { position: sticky; top: 0; z-index: 1000; background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(26, 26, 46, 0.85) 100%); border-bottom: 1px solid rgba(0, 255, 255, 0.1); }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 1rem var(--spacing-lg); display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: bold; background: linear-gradient(135deg, #ffffff 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .nav-menu { display: flex; list-style: none; gap: var(--spacing-lg); }
+        .nav-link { color: var(--text); text-decoration: none; font-size: 0.95rem; transition: var(--transition); position: relative; }
+        .nav-link::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--secondary); transition: var(--transition); }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        .nav-link:hover { color: var(--secondary); }
+        .page-header { padding: var(--spacing-2xl) var(--spacing-lg); background: linear-gradient(135deg, rgba(142, 68, 173, 0.1) 0%, rgba(0, 255, 255, 0.05) 100%); border-bottom: 2px solid var(--secondary); }
+        .page-header h1 { font-size: 2.5rem; background: linear-gradient(135deg, #ffffff 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: var(--spacing-sm); }
+        .page-header p { font-size: 1.1rem; color: var(--secondary); opacity: 0.9; }
+        .services-section, .process-section { padding: var(--spacing-2xl) var(--spacing-lg); }
+        h2 { font-size: 2.2rem; margin-bottom: var(--spacing-xl); background: linear-gradient(135deg, #ffffff 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        h3 { color: var(--secondary); margin: 0 0 var(--spacing-sm) 0; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--spacing-lg); }
+        .service-card { background: var(--card-bg); padding: var(--spacing-xl); border-radius: 12px; border: 1px solid var(--border); transition: var(--transition); animation: fadeInUp 0.6s ease-out both; }
+        .service-card:hover { transform: translateY(-5px); border-color: var(--secondary); box-shadow: 0 15px 40px rgba(0, 255, 255, 0.2); }
+        .service-card:nth-child(1) { animation-delay: 0.1s; }
+        .service-card:nth-child(2) { animation-delay: 0.2s; }
+        .service-card:nth-child(3) { animation-delay: 0.3s; }
+        .service-card:nth-child(4) { animation-delay: 0.4s; }
+        .service-card:nth-child(5) { animation-delay: 0.5s; }
+        .service-card:nth-child(6) { animation-delay: 0.6s; }
+        .service-icon { font-size: 2.5rem; margin-bottom: var(--spacing-md); }
+        .service-features { list-style: none; padding: var(--spacing-md) 0; }
+        .service-features li { padding: var(--spacing-sm) 0; padding-left: var(--spacing-lg); position: relative; opacity: 0.8; }
+        .service-features li::before { content: '✓'; position: absolute; left: 0; color: var(--secondary); font-weight: bold; }
+        .process-section { background: linear-gradient(180deg, rgba(22, 33, 62, 0.3) 0%, rgba(15, 15, 30, 0.6) 100%); }
+        .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-xl); }
+        .step { text-align: center; animation: fadeInUp 0.6s ease-out both; }
+        .step:nth-child(1) { animation-delay: 0.1s; }
+        .step:nth-child(2) { animation-delay: 0.2s; }
+        .step:nth-child(3) { animation-delay: 0.3s; }
+        .step:nth-child(4) { animation-delay: 0.4s; }
+        .step-number { font-size: 2.5rem; font-weight: 700; color: var(--secondary); margin-bottom: var(--spacing-md); }
+        .step h3 { margin-top: 0; }
+        .step p { opacity: 0.8; }
+        .footer { background: var(--primary); border-top: 1px solid var(--border); padding: var(--spacing-xl) var(--spacing-lg); text-align: center; }
+        .footer p { opacity: 0.7; margin-bottom: var(--spacing-lg); }
+        .social-links { display: flex; justify-content: center; gap: var(--spacing-lg); flex-wrap: wrap; }
+        .social-link { color: var(--secondary); text-decoration: none; font-weight: 600; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Portfolio</div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="services.html" class="nav-link active">Services</a></li>
+                <li><a href="projects.html" class="nav-link">Projects & Experience</a></li>
+                <li><a href="skills.html" class="nav-link">Skills & Certification</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Services</h1>
+            <p>AI and ML solutions tailored to your needs</p>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="services-section">
+        <div class="container">
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">🔬</div>
+                    <h3>ML Model Development</h3>
+                    <p>Custom machine learning models tailored to your business needs. From data preparation to model optimization and deployment.</p>
+                    <ul class="service-features">
+                        <li>Data analysis and preprocessing</li>
+                        <li>Algorithm selection and tuning</li>
+                        <li>Model validation and testing</li>
+                        <li>Performance optimization</li>
+                    </ul>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-icon">🧠</div>
+                    <h3>Deep Learning Solutions</h3>
+                    <p>Advanced deep learning architectures for complex problems including computer vision and natural language processing.</p>
+                    <ul class="service-features">
+                        <li>CNN for image analysis</li>
+                        <li>RNN/LSTM for sequences</li>
+                        <li>Transformers & LLMs</li>
+                        <li>Custom architectures</li>
+                    </ul>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-icon">🚀</div>
+                    <h3>AI Application Development</h3>
+                    <p>End-to-end development of AI-powered applications with production-ready infrastructure and scalability.</p>
+                    <ul class="service-features">
+                        <li>API development</li>
+                        <li>Web application integration</li>
+                        <li>Real-time processing</li>
+                        <li>Cloud deployment</li>
+                    </ul>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-icon">📊</div>
+                    <h3>Data Science & Analytics</h3>
+                    <p>Data-driven insights and predictive analytics to support strategic business decisions.</p>
+                    <ul class="service-features">
+                        <li>Exploratory data analysis</li>
+                        <li>Predictive modeling</li>
+                        <li>Statistical analysis</li>
+                        <li>Data visualization</li>
+                    </ul>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-icon">🔄</div>
+                    <h3>ML Pipeline & MLOps</h3>
+                    <p>Build robust, automated ML pipelines for continuous model training, testing, and deployment.</p>
+                    <ul class="service-features">
+                        <li>CI/CD pipelines for ML</li>
+                        <li>Model monitoring</li>
+                        <li>Automated retraining</li>
+                        <li>Infrastructure setup</li>
+                    </ul>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-icon">🎓</div>
+                    <h3>Consulting & Training</h3>
+                    <p>Expert guidance on AI/ML strategy, architecture, and best practices for your organization.</p>
+                    <ul class="service-features">
+                        <li>ML strategy consulting</li>
+                        <li>Architecture design</li>
+                        <li>Team training</li>
+                        <li>Code reviews</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process-section">
+        <div class="container">
+            <h2>My Process</h2>
+            <div class="process-steps">
+                <div class="step fade-in">
+                    <div class="step-number">01</div>
+                    <h3>Discovery</h3>
+                    <p>Understand your requirements, data, and business objectives</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">02</div>
+                    <h3>Planning</h3>
+                    <p>Design the approach, select algorithms, and create roadmap</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">03</div>
+                    <h3>Development</h3>
+                    <p>Build and train models with iterative refinement</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">04</div>
+                    <h3>Deployment</h3>
+                    <p>Deploy to production with monitoring and support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 AI/ML Engineer Portfolio. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" class="social-link">LinkedIn</a>
+                <a href="#" class="social-link">GitHub</a>
+                <a href="#" class="social-link">Twitter</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            const navLinks = document.querySelectorAll('.nav-link');
+            if (hamburger) hamburger.addEventListener('click', () => navMenu.classList.toggle('active'));
+            navLinks.forEach(link => link.addEventListener('click', () => navMenu.classList.remove('active')));
+            
+            observeElements();
+            window.addEventListener('scroll', parallaxEffect);
+            addButtonGlow();
+        });
+
+        function observeElements() {
+            const obs = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        e.target.classList.add('animate-in');
+                        obs.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
+            
+            document.querySelectorAll('.fade-in, .service-card, .stat-card').forEach(el => obs.observe(el));
+        }
+
+        function parallaxEffect() {
+            const deco = document.querySelector('.hero-decoration');
+            if (deco) deco.style.transform = `translateY(${window.pageYOffset * 0.5}px)`;
+        }
+
+        function addButtonGlow() {
+            document.querySelectorAll('.btn-primary').forEach(btn => {
+                btn.addEventListener('mousemove', e => {
+                    const rect = btn.getBoundingClientRect();
+                    btn.style.setProperty('--x', (e.clientX - rect.left) + 'px');
+                    btn.style.setProperty('--y', (e.clientY - rect.top) + 'px');
+                });
+            });
+        }
+    </script>
+    <style>
+        .animate-in { animation: slideInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) !important; }
+        @keyframes slideInUp { from { opacity: 0; transform: translateY(60px); } to { opacity: 1; transform: translateY(0); } }
+        .stat-card { opacity: 0; }
+        .stat-card:hover { animation: cardPulse 0.6s ease-out; }
+        @keyframes cardPulse { 0% { transform: scale(1); } 50% { transform: scale(1.02); } 100% { transform: scale(1); } }
+        .stat-card:hover .stat-number { transform: scale(1.1) rotate(2deg); }
+    </style>
+
+</body>
+</html>

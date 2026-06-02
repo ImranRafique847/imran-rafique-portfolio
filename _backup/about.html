@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - AI/ML Engineer Portfolio</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #00ffff;
+            --accent: #8e44ad;
+            --text: #e0e0e0;
+            --text-dark: #2d2d3d;
+            --background: #0f0f1e;
+            --card-bg: #16213e;
+            --border: #2a2a3e;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --spacing-2xl: 4rem;
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --transition: all 0.3s ease;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-family); background-color: var(--background); color: var(--text); line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 var(--spacing-lg); }
+        .navbar { position: sticky; top: 0; z-index: 1000; background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(26, 26, 46, 0.85) 100%); border-bottom: 1px solid rgba(0, 255, 255, 0.1); }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 1rem var(--spacing-lg); display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: bold; background: linear-gradient(135deg, #ffffff 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .nav-menu { display: flex; list-style: none; gap: var(--spacing-lg); }
+        .nav-link { color: var(--text); text-decoration: none; font-size: 0.95rem; transition: var(--transition); position: relative; }
+        .nav-link::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--secondary); transition: var(--transition); }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        .nav-link:hover { color: var(--secondary); }
+        .page-header { padding: var(--spacing-2xl) var(--spacing-lg); background: linear-gradient(135deg, rgba(142, 68, 173, 0.1) 0%, rgba(0, 255, 255, 0.05) 100%); border-bottom: 2px solid var(--secondary); }
+        .page-header h1 { font-size: 2.5rem; background: linear-gradient(135deg, #ffffff 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: var(--spacing-sm); }
+        .page-header p { font-size: 1.1rem; color: var(--secondary); opacity: 0.9; }
+        .about-content { padding: var(--spacing-2xl) var(--spacing-lg); }
+        h2 { font-size: 2.2rem; margin-bottom: var(--spacing-xl); background: linear-gradient(135deg, #ffffff 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        h3 { color: var(--secondary); margin: var(--spacing-lg) 0 var(--spacing-sm) 0; }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-xl); align-items: start; }
+        .about-text { line-height: 1.8; }
+        .about-text p { margin-bottom: var(--spacing-md); opacity: 0.9; }
+        .approach-list { list-style: none; padding: var(--spacing-md) 0; }
+        .approach-list li { padding: var(--spacing-sm) 0; padding-left: var(--spacing-lg); position: relative; opacity: 0.9; }
+        .approach-list li::before { content: '→'; position: absolute; left: 0; color: var(--secondary); }
+        .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-lg); }
+        .stat-card { background: var(--card-bg); padding: var(--spacing-xl); border-radius: 12px; border: 1px solid var(--border); text-align: center; transition: var(--transition); }
+        .stat-card:hover { border-color: var(--secondary); box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2); }
+        .stat-number { font-size: 2.5rem; font-weight: 700; margin-bottom: var(--spacing-sm); color: var(--secondary); }
+        .stat-label { color: var(--text); opacity: 0.8; }
+        .timeline-section { padding: var(--spacing-2xl) var(--spacing-lg); background: linear-gradient(180deg, rgba(22, 33, 62, 0.3) 0%, rgba(15, 15, 30, 0.6) 100%); }
+        .timeline { max-width: 600px; margin: 0 auto; }
+        .timeline-item { display: flex; margin-bottom: var(--spacing-xl); position: relative; animation: fadeInUp 0.6s ease-out both; }
+        .timeline-item::before { content: ''; position: absolute; left: 15px; top: 50px; width: 2px; height: calc(100% + 40px); background: linear-gradient(180deg, var(--secondary) 0%, transparent 100%); }
+        .timeline-item:last-child::before { display: none; }
+        .timeline-marker { width: 30px; height: 30px; background: var(--secondary); border: 3px solid var(--background); border-radius: 50%; margin-right: var(--spacing-lg); margin-top: 5px; flex-shrink: 0; }
+        .timeline-content h3 { color: var(--secondary); margin-bottom: var(--spacing-sm); margin-top: 0; }
+        .timeline-content p { color: var(--text); opacity: 0.8; }
+        .footer { background: var(--primary); border-top: 1px solid var(--border); padding: var(--spacing-xl) var(--spacing-lg); text-align: center; }
+        .footer p { opacity: 0.7; margin-bottom: var(--spacing-lg); }
+        .social-links { display: flex; justify-content: center; gap: var(--spacing-lg); flex-wrap: wrap; }
+        .social-link { color: var(--secondary); text-decoration: none; font-weight: 600; transition: var(--transition); }
+        .social-link:hover { opacity: 0.8; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.3s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.4s; }
+        .timeline-item:nth-child(5) { animation-delay: 0.5s; }
+        .stat-card:nth-child(1) { animation: fadeInUp 0.6s ease-out 0.1s both; }
+        .stat-card:nth-child(2) { animation: fadeInUp 0.6s ease-out 0.2s both; }
+        .stat-card:nth-child(3) { animation: fadeInUp 0.6s ease-out 0.3s both; }
+        .stat-card:nth-child(4) { animation: fadeInUp 0.6s ease-out 0.4s both; }
+        @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; } .about-stats { grid-template-columns: 1fr; } .page-header h1 { font-size: 1.8rem; } h2 { font-size: 1.6rem; } }
+    </style>
+
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Portfolio</div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link active">About</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="projects.html" class="nav-link">Projects & Experience</a></li>
+                <li><a href="skills.html" class="nav-link">Skills & Certification</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>About Me</h1>
+            <p>My journey in AI and Machine Learning</p>
+        </div>
+    </section>
+
+    <!-- About Content -->
+    <section class="about-content">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text fade-in">
+                    <h2>Who I Am</h2>
+                    <p>I'm a passionate AI and Machine Learning engineer with a keen interest in solving complex problems through intelligent systems. With expertise spanning from traditional machine learning to cutting-edge deep learning, I develop solutions that create real impact.</p>
+                    
+                    <h3>My Background</h3>
+                    <p>My journey began with a fascination for data and patterns. Over the years, I've evolved from learning fundamentals to architecting end-to-end ML systems in production environments. I believe in the power of continuous learning and staying at the forefront of AI innovations.</p>
+                    
+                    <h3>My Approach</h3>
+                    <p>I combine theoretical knowledge with practical implementation. Every project is approached with:</p>
+                    <ul class="approach-list">
+                        <li>Strong problem analysis and data understanding</li>
+                        <li>Iterative experimentation and optimization</li>
+                        <li>Clean, maintainable code practices</li>
+                        <li>Focus on production-ready solutions</li>
+                    </ul>
+                </div>
+                
+                <div class="about-stats fade-in">
+                    <div class="stat-card">
+                        <div class="stat-number cyan-accent">5+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number cyan-accent">20+</div>
+                        <div class="stat-label">Projects Completed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number cyan-accent">50+</div>
+                        <div class="stat-label">Clients Served</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number cyan-accent">15</div>
+                        <div class="stat-label">Certifications</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="timeline-section">
+        <div class="container">
+            <h2>Professional Journey</h2>
+            <div class="timeline">
+                <div class="timeline-item fade-in">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>2019 - Started Learning AI</h3>
+                        <p>Began my journey with Python and fundamental ML concepts</p>
+                    </div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>2020 - First ML Projects</h3>
+                        <p>Built classification and regression models for real-world datasets</p>
+                    </div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>2021 - Deep Learning Specialization</h3>
+                        <p>Mastered neural networks, CNN, RNN, and transformer architectures</p>
+                    </div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>2022 - Production Systems</h3>
+                        <p>Deployed scalable ML systems in production environments</p>
+                    </div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>Today - Cutting Edge AI</h3>
+                        <p>Working on advanced LLMs, generative models, and AI solutions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 AI/ML Engineer Portfolio. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" class="social-link">LinkedIn</a>
+                <a href="#" class="social-link">GitHub</a>
+                <a href="#" class="social-link">Twitter</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            const navLinks = document.querySelectorAll('.nav-link');
+            if (hamburger) hamburger.addEventListener('click', () => navMenu.classList.toggle('active'));
+            navLinks.forEach(link => link.addEventListener('click', () => navMenu.classList.remove('active')));
+            
+            observeElements();
+            window.addEventListener('scroll', parallaxEffect);
+            addButtonGlow();
+        });
+
+        function observeElements() {
+            const obs = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        e.target.classList.add('animate-in');
+                        obs.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
+            
+            document.querySelectorAll('.fade-in, .project-card, .service-card, .stat-card, .cert-card').forEach(el => obs.observe(el));
+        }
+
+        function parallaxEffect() {
+            const deco = document.querySelector('.hero-decoration');
+            if (deco) deco.style.transform = `translateY(${window.pageYOffset * 0.5}px)`;
+        }
+
+        function addButtonGlow() {
+            document.querySelectorAll('.btn-primary').forEach(btn => {
+                btn.addEventListener('mousemove', e => {
+                    const rect = btn.getBoundingClientRect();
+                    btn.style.setProperty('--x', (e.clientX - rect.left) + 'px');
+                    btn.style.setProperty('--y', (e.clientY - rect.top) + 'px');
+                });
+            });
+        }
+    </script>
+    <style>
+        .btn-primary { position: relative; overflow: hidden; }
+        .btn-primary::before { content: ''; position: absolute; width: 100px; height: 100px; background: radial-gradient(circle, rgba(255,255,255,0.5) 0%, transparent 70%); top: var(--y, 50%); left: var(--x, 50%); transform: translate(-50%, -50%); opacity: 0; pointer-events: none; }
+        .btn-primary:hover::before { opacity: 1; animation: glowPulse 0.5s ease-out; }
+        .animate-in { animation: slideInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) !important; }
+        @keyframes slideInUp { from { opacity: 0; transform: translateY(60px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes glowPulse { from { opacity: 1; } to { opacity: 0; } }
+        .project-card, .service-card, .stat-card, .cert-card { opacity: 0; }
+        .project-card:hover, .service-card:hover { animation: cardPulse 0.6s ease-out; }
+        @keyframes cardPulse { 0% { transform: scale(1); } 50% { transform: scale(1.02); } 100% { transform: scale(1); } }
+        .featured-card, .service-card { transform: perspective(1000px) rotateX(0deg) rotateY(0deg); }
+        .featured-card:hover, .service-card:hover { transform: perspective(1000px) rotateX(5deg) rotateY(-5deg); }
+        .btn-primary:hover { box-shadow: 0 6px 25px rgba(0, 255, 255, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.1); }
+        .stat-card:hover .stat-number { transform: scale(1.1) rotate(2deg); }
+        .card-icon, .service-icon { transition: transform 0.4s ease; }
+        .featured-card:hover .card-icon, .service-card:hover .service-icon { transform: translateY(-10px) scale(1.1); animation: float 0.6s ease-in-out; }
+        @keyframes float { 0%, 100% { transform: translateY(-10px) scale(1.1); } 50% { transform: translateY(-20px) scale(1.1); } }
+        .hero-title { animation: textGlow 3s ease-in-out infinite; }
+        @keyframes textGlow { 0%, 100% { text-shadow: 0 0 10px rgba(0, 255, 255, 0); } 50% { text-shadow: 0 0 20px rgba(0, 255, 255, 0.5); } }
+    </style>
+
+</body>
+</html>

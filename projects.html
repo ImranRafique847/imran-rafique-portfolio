@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects & Experience — Imran Rafique</title>
+    <meta property="og:title" content="Projects & Experience — Imran Rafique">
+    <link rel="icon" href="profile.jpg" type="image/jpeg">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .projects-section, .experience-section { padding: var(--spacing-2xl) var(--spacing-lg); }
+        .section-intro { opacity: 0.8; margin-bottom: var(--spacing-lg); max-width: 760px; }
+        .projects-callout { background: rgba(0,255,255,0.08); border: 1px solid rgba(0,255,255,0.14); border-radius: 10px; padding: 1.25rem 1.5rem; margin-bottom: var(--spacing-xl); }
+        .projects-callout a { color: var(--secondary); text-decoration: none; font-weight: 700; }
+
+        /* Filter tabs */
+        .filter-tabs { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: var(--spacing-xl); }
+        .filter-btn { background: transparent; border: 1px solid var(--border); color: var(--text); padding: 0.5rem 1.25rem; border-radius: 20px; cursor: pointer; font-family: var(--font-family); font-size: 0.9rem; transition: var(--transition); }
+        .filter-btn:hover, .filter-btn.active { background: rgba(0,255,255,0.1); border-color: var(--secondary); color: var(--secondary); }
+
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: var(--spacing-xl); }
+        .project-card { background: var(--card-bg); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); transition: var(--transition); display: flex; flex-direction: column; }
+        .project-card:hover { transform: translateY(-5px); border-color: var(--secondary); box-shadow: 0 15px 40px rgba(0,255,255,0.2); }
+        .project-card.hidden { display: none; }
+        .project-image { height: 180px; overflow: hidden; border-bottom: 1px solid var(--border); }
+        .project-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+        .project-card:hover .project-image img { transform: scale(1.05); }
+        .image-placeholder { color: var(--secondary); font-size: 1.1rem; opacity: 0.5; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(142,68,173,0.2) 0%, rgba(0,255,255,0.1) 100%); }
+        .project-info { padding: var(--spacing-lg); flex-grow: 1; display: flex; flex-direction: column; }
+        .project-info p { opacity: 0.8; margin-bottom: var(--spacing-md); flex-grow: 1; }
+        .project-tech { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: var(--spacing-md); }
+        .tech-tag { background: rgba(0,255,255,0.1); border: 1px solid var(--secondary); color: var(--secondary); padding: 3px 8px; border-radius: 4px; font-size: 0.8rem; }
+        .project-links { display: flex; gap: var(--spacing-sm); align-items: center; }
+        .project-link { color: var(--secondary); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+        .project-link:hover { opacity: 0.8; }
+        .live-link { background: linear-gradient(135deg, var(--secondary) 0%, #00cccc 100%); color: var(--text-dark); padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; text-decoration: none; transition: var(--transition); }
+        .live-link:hover { box-shadow: 0 4px 15px rgba(0,255,255,0.4); transform: translateY(-1px); }
+
+        .experience-section { background: linear-gradient(180deg, rgba(22,33,62,0.3) 0%, rgba(15,15,30,0.6) 100%); }
+        .experience-timeline { max-width: 700px; margin: 0 auto; }
+        .experience-item { background: var(--card-bg); padding: var(--spacing-lg); margin-bottom: var(--spacing-lg); border-radius: var(--radius); border-left: 4px solid var(--secondary); transition: var(--transition); }
+        .experience-item:hover { box-shadow: 0 10px 30px rgba(0,255,255,0.2); }
+        .experience-item .company { color: var(--secondary); font-size: 0.9rem; margin-bottom: var(--spacing-sm); }
+        .experience-item p { opacity: 0.8; }
+        .experience-item ul { list-style: none; padding: var(--spacing-sm) 0 0; }
+        .experience-item ul li { padding: 0.4rem 0 0.4rem 1.5rem; position: relative; opacity: 0.8; font-size: 0.95rem; }
+        .experience-item ul li::before { content: '→'; position: absolute; left: 0; color: var(--secondary); }
+
+        @media (max-width: 768px) { .projects-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Imran Rafique</div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="projects.html" class="nav-link active">Projects & Experience</a></li>
+                <li><a href="skills.html" class="nav-link">Skills & Certification</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Projects & Experience</h1>
+            <p>Showcasing my best work in AI and ML</p>
+        </div>
+    </section>
+
+    <section class="projects-section">
+        <div class="container">
+            <h2>Featured Projects</h2>
+            <p class="section-intro">Browse the AI/ML projects shown below and explore the complete code portfolio on GitHub.</p>
+            <div class="projects-callout">
+                <p>View all repositories and source code on <a href="https://github.com/ImranRafique847" target="_blank">github.com/ImranRafique847</a>.</p>
+            </div>
+
+            <div class="filter-tabs">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="ai">AI & Agents</button>
+                <button class="filter-btn" data-filter="ml">Machine Learning</button>
+                <button class="filter-btn" data-filter="nlp">NLP & Chatbots</button>
+                <button class="filter-btn" data-filter="data">Data Science</button>
+            </div>
+
+            <div class="projects-grid">
+                <!-- AI Shopping Assistant - LIVE -->
+                <div class="project-card fade-in" data-category="ai">
+                    <div class="project-image"><img src="images/AI-Based-Shopping-Assistence.webp" alt="AI Shopping Assistant"></div>
+                    <div class="project-info">
+                        <h3>AI-Based Shopping Assistant</h3>
+                        <p>Intelligent eBay fashion shopping assistant powered by Corrective RAG (CRAG) on AWS. Users search 18,992 real products using natural language — the AI rewrites queries, performs FAISS semantic search, filters by price/condition, and generates honest responses with product cards.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span><span class="tech-tag">FastAPI</span><span class="tech-tag">FAISS</span><span class="tech-tag">AWS Bedrock</span><span class="tech-tag">Titan Embeddings</span><span class="tech-tag">Nova Micro</span><span class="tech-tag">Docker</span><span class="tech-tag">Elastic Beanstalk</span><span class="tech-tag">S3</span><span class="tech-tag">ECR</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://d3uu35mv5l6o1c.cloudfront.net/" target="_blank" class="live-link">🔴 Live</a>
+                            <a href="https://github.com/ImranRafique847/AI-Based-Shopping-Assistent" target="_blank" class="project-link">GitHub →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Car Damage Detection - LIVE -->
+                <div class="project-card fade-in" data-category="ml">
+                    <div class="project-image"><img src="images/AI-Based-Car_Demed-Detection-System.jpg" alt="Car Damage Detection"></div>
+                    <div class="project-info">
+                        <h3>AI Car Damage Classification</h3>
+                        <p>End-to-end deep learning system classifying car damage severity (minor, moderate, severe, no damage) using EfficientNetB3 transfer learning with 2-phase training. Deployed live on AWS Lambda via Docker container with API Gateway.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span><span class="tech-tag">TensorFlow</span><span class="tech-tag">EfficientNetB3</span><span class="tech-tag">Transfer Learning</span><span class="tech-tag">Flask</span><span class="tech-tag">AWS Lambda</span><span class="tech-tag">Docker</span><span class="tech-tag">ECR</span><span class="tech-tag">API Gateway</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://a3m6jbr82l.execute-api.us-east-1.amazonaws.com/" target="_blank" class="live-link">🔴 Live</a>
+                            <a href="https://github.com/ImranRafique847/AI-Demaged-Car-Classifications" target="_blank" class="project-link">GitHub →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Agent for Data Visualization -->
+                <div class="project-card fade-in" data-category="ai">
+                    <div class="project-image"><img src="images/AI Agent for Data Visualization.webp" alt="AI Data Visualization Agent"></div>
+                    <div class="project-info">
+                        <h3>AI Agent for Data Visualization</h3>
+                        <p>AI-powered data analysis agent using Claude via AWS Bedrock that converts natural language queries into automated visualizations. Upload any dataset and ask questions — the agent generates charts and insights automatically.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span><span class="tech-tag">Streamlit</span><span class="tech-tag">AWS Bedrock</span><span class="tech-tag">Claude</span><span class="tech-tag">Pandas</span><span class="tech-tag">Matplotlib</span><span class="tech-tag">Seaborn</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://d2p6xnxx1nvuei.cloudfront.net/" target="_blank" class="live-link">🔴 Live</a>
+                            <a href="https://github.com/ImranRafique847/AI-Agent-for-Data-Visualization-" target="_blank" class="project-link">GitHub →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personal AI Agent -->
+                <div class="project-card fade-in" data-category="ai">
+                    <div class="project-image"><img src="images/Personal AI Agent.webp" alt="Personal AI Agent"></div>
+                    <div class="project-info">
+                        <h3>Personal AI Agent — MCP Server</h3>
+                        <p>Conversational AI assistant that controls Gmail, Google Drive, and Google Calendar through natural language. Built with Model Context Protocol (MCP), Claude Haiku via AWS Bedrock, FAISS vector memory, and multi-agent architecture.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span><span class="tech-tag">MCP</span><span class="tech-tag">AWS Bedrock</span><span class="tech-tag">Claude</span><span class="tech-tag">FastAPI</span><span class="tech-tag">FAISS</span><span class="tech-tag">Google APIs</span><span class="tech-tag">Multi-Agent</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/ImranRafique847/Personal-AI-Agent" target="_blank" class="project-link">GitHub →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Flight Booking Agent -->
+                <div class="project-card fade-in" data-category="nlp">
+                    <div class="project-image"><img src="images/Flight Booking Conversational Agent.webp" alt="Flight Booking Agent"></div>
+                    <div class="project-info">
+                        <h3>Flight Booking Conversational Agent</h3>
+                        <p>Google Cloud Dialogflow CX conversational agent for flight booking. Handles intent recognition, entity extraction (cities, dates, passenger name), confirmation flows, and conditional routing for smooth multi-turn conversations.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Dialogflow CX</span><span class="tech-tag">Google Cloud</span><span class="tech-tag">Conversational AI</span><span class="tech-tag">NLP</span><span class="tech-tag">Intent Recognition</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/ImranRafique847/Flight-Booking-Conversational-Agent-Google-Cloud-Dialogflow-CX" target="_blank" class="project-link">GitHub →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Health Chatbot -->
+                <div class="project-card fade-in" data-category="nlp">
+                    <div class="project-image"><img src="images/Health Chatbot.webp" alt="Health Chatbot"></div>
+                    <div class="project-info">
+                        <h3>Health Chatbot</h3>
+                        <p>Python-based health chatbot application providing intelligent health-related conversational responses using NLP techniques and AI-powered backend processing.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span><span class="tech-tag">NLP</span><span class="tech-tag">Chatbot</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://6c9gnud1jh.execute-api.us-east-1.amazonaws.com/" target="_blank" class="live-link">🔴 Live</a>
+                            <a href="https://github.com/ImranRafique847/Health-Chatbot" target="_blank" class="project-link">GitHub →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Research Paper Analyzer -->
+                <div class="project-card fade-in" data-category="nlp">
+                    <div class="project-image"><img src="images/Research Paper Analyzer Chatbot.webp" alt="Research Paper Analyzer"></div>
+                    <div class="project-info">
+                        <h3>Research Paper Analyzer Chatbot</h3>
+                        <p>RAG-based chatbot that analyzes research papers and provides intelligent Q&A over academic documents. Built with a RAG pipeline for document-based question answering.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span><span class="tech-tag">RAG</span><span class="tech-tag">LangChain</span><span class="tech-tag">Streamlit</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://8kwo5gwaf2.execute-api.us-east-1.amazonaws.com" target="_blank" class="live-link">🔴 Live</a>
+                            <a href="https://github.com/ImranRafique847/Research-Paper-Analyzer-Chatbot" target="_blank" class="project-link">GitHub →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sales Dashboard -->
+                <div class="project-card fade-in" data-category="data">
+                    <div class="project-image"><img src="images/Sales Dashboard.avif" alt="Sales Dashboard"></div>
+                    <div class="project-info">
+                        <h3>Sales Dashboard</h3>
+                        <p>Interactive sales analytics dashboard built with Power BI on SuperStore sales data, featuring visual reports, trend analysis, and business intelligence insights.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Power BI</span><span class="tech-tag">Data Visualization</span><span class="tech-tag">Analytics</span><span class="tech-tag">CSV</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/ImranRafique847/Sales-Dashbord" target="_blank" class="project-link">GitHub →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Car Price Prediction -->
+                <div class="project-card fade-in" data-category="ml">
+                    <div class="project-image"><img src="images/Car Price Prediction.avif" alt="Car Price Prediction"></div>
+                    <div class="project-info">
+                        <h3>Car Price Prediction</h3>
+                        <p>Machine learning regression model predicting car prices using vehicle features. Includes Jupyter Notebook for EDA and model training, plus a Streamlit web app for real-time predictions.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span><span class="tech-tag">Jupyter Notebook</span><span class="tech-tag">Scikit-learn</span><span class="tech-tag">Streamlit</span><span class="tech-tag">Regression</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/ImranRafique847/Car_Price_Prediction" target="_blank" class="project-link">GitHub →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="experience-section">
+        <div class="container">
+            <h2>Professional Experience</h2>
+            <div class="experience-timeline">
+                <div class="experience-item fade-in">
+                    <h3>AI/ML Engineer Intern</h3>
+                    <p class="company">Salaar Technologies &bull; Onsite &bull; November 2025 – Present</p>
+                    <ul>
+                        <li>Developed an AI chatbot combining rule-based logic and RAG for fast, context-aware responses, processing 140+ PDFs</li>
+                        <li>Implemented intelligent document chunking, vector similarity search, and hybrid query handling</li>
+                        <li>Built FastAPI backend with a single /chat endpoint for scalable deployment</li>
+                        <li>Integrated Google Sheets API to log user queries and chatbot responses in real-time</li>
+                        <li>Optimized LLM usage with controlled generation for faster, cost-effective answers</li>
+                    </ul>
+                </div>
+                <div class="experience-item fade-in">
+                    <h3>AWS Community Builder (AI/ML Track)</h3>
+                    <p class="company">Amazon Web Services &bull; March 2026 – Present</p>
+                    <ul>
+                        <li>Selected into a global program of technical professionals for demonstrating proficiency in Generative AI and Cloud Architecture</li>
+                        <li>Actively contributing to the AWS ecosystem by developing RAG-based applications and Agentic workflows using Amazon Bedrock</li>
+                        <li>Granted early access to pre-release AWS services and direct mentorship from AWS Product Teams</li>
+                    </ul>
+                </div>
+                <div class="experience-item fade-in">
+                    <h3>Career-Prep Fellow</h3>
+                    <p class="company">Amal Academy (Stanford-funded) &bull; April 2025 – May 2025</p>
+                    <ul>
+                        <li>Selected from 4,500+ applicants for a rigorous 3-month fellowship</li>
+                        <li>Invested 150+ hours building skills in communication, leadership, and problem-solving</li>
+                    </ul>
+                </div>
+                <div class="experience-item fade-in">
+                    <h3>Data Science Intern</h3>
+                    <p class="company">Certura &bull; April 2025 – May 2025</p>
+                    <ul>
+                        <li>Built a regression model on 95,845 flight records to predict passenger volume per route (R² = 0.87)</li>
+                        <li>Managed end-to-end ETL with EDA, data cleaning, transformation, and feature engineering</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Imran Rafique. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/imran-rafique-data/?locale=en_US" target="_blank" class="social-link">LinkedIn</a>
+                <a href="https://github.com/ImranRafique847" target="_blank" class="social-link">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const filter = this.dataset.filter;
+                document.querySelectorAll('.project-card').forEach(card => {
+                    card.classList.toggle('hidden', filter !== 'all' && card.dataset.category !== filter);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

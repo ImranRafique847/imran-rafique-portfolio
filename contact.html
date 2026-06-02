@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact — Imran Rafique</title>
+    <meta property="og:title" content="Contact — Imran Rafique">
+    <link rel="icon" href="profile.jpg" type="image/jpeg">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .contact-content, .availability-section { padding: var(--spacing-2xl) var(--spacing-lg); }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-2xl); }
+        .contact-form { display: flex; flex-direction: column; gap: var(--spacing-lg); }
+        .form-group { display: flex; flex-direction: column; }
+        .form-group label { margin-bottom: var(--spacing-sm); color: var(--secondary); font-weight: 600; font-size: 0.9rem; }
+        .form-group input, .form-group textarea {
+            background: var(--card-bg); border: 1px solid var(--border); color: var(--text);
+            padding: var(--spacing-md); border-radius: 6px; font-family: var(--font-family);
+            font-size: 1rem; transition: var(--transition);
+        }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--secondary); box-shadow: 0 0 12px rgba(0,255,255,0.2); }
+        .form-group input.error, .form-group textarea.error { border-color: #ff4466; }
+        .contact-info { display: flex; flex-direction: column; gap: var(--spacing-xl); }
+        .info-item h3 { margin-bottom: var(--spacing-sm); font-size: 1.1rem; }
+        .info-item p { opacity: 0.8; }
+        .info-item a { color: var(--secondary); text-decoration: none; }
+        .response-time { background: rgba(0,255,255,0.05); padding: var(--spacing-lg); border-radius: 8px; border-left: 4px solid var(--secondary); }
+        .cyan-accent { color: var(--secondary); }
+        .availability-section { background: linear-gradient(180deg, rgba(22,33,62,0.3) 0%, rgba(15,15,30,0.6) 100%); }
+        .availability-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--spacing-lg); }
+        .availability-card { background: var(--card-bg); padding: var(--spacing-lg); border-radius: var(--radius); border: 1px solid var(--border); transition: var(--transition); }
+        .availability-card:hover { border-color: var(--secondary); box-shadow: 0 10px 30px rgba(0,255,255,0.2); }
+        .availability-card ul { list-style: none; padding: 0; }
+        .availability-card li { padding: var(--spacing-sm) 0 var(--spacing-sm) var(--spacing-lg); opacity: 0.8; position: relative; }
+        .availability-card li::before { content: '•'; position: absolute; left: 0; color: var(--secondary); }
+        .availability-card p { opacity: 0.8; margin-bottom: var(--spacing-md); }
+        @media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Imran Rafique</div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="projects.html" class="nav-link">Projects & Experience</a></li>
+                <li><a href="skills.html" class="nav-link">Skills & Certification</a></li>
+                <li><a href="contact.html" class="nav-link active">Contact</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Get In Touch</h1>
+            <p>Let's collaborate on your next AI/ML project</p>
+        </div>
+    </section>
+
+    <section class="contact-content">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="fade-in">
+                    <h2>Send Me a Message</h2>
+                    <form class="contact-form" id="contactForm" novalidate>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" placeholder="Project inquiry" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="6" placeholder="Tell me about your project..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="submitBtn">Send Message</button>
+                    </form>
+                </div>
+
+                <div class="fade-in">
+                    <h2>Contact Information</h2>
+                    <div class="contact-info">
+                        <div class="info-item">
+                            <h3>📧 Email</h3>
+                            <p><a href="mailto:iamimranrafique@gmail.com">iamimranrafique@gmail.com</a></p>
+                        </div>
+                        <div class="info-item">
+                            <h3>📞 Phone</h3>
+                            <p><a href="tel:+923415487506">+92 341 5487506</a></p>
+                        </div>
+                        <div class="info-item">
+                            <h3>🔗 LinkedIn</h3>
+                            <p><a href="https://www.linkedin.com/in/imran-rafique-data/?locale=en_US" target="_blank">linkedin.com/in/imran-rafique-data</a></p>
+                        </div>
+                        <div class="info-item">
+                            <h3>🐙 GitHub</h3>
+                            <p><a href="https://github.com/ImranRafique847" target="_blank">github.com/ImranRafique847</a></p>
+                        </div>
+                        <div class="info-item">
+                            <h3>📍 Location</h3>
+                            <p>Lahore, Pakistan</p>
+                        </div>
+                    </div>
+                    <div class="response-time" style="margin-top: var(--spacing-xl);">
+                        <h3>Response Time</h3>
+                        <p>I typically respond within <span class="cyan-accent">24–48 hours</span>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="availability-section">
+        <div class="container">
+            <h2>Current Availability</h2>
+            <div class="availability-cards">
+                <div class="availability-card fade-in">
+                    <h3>🚀 Available For</h3>
+                    <ul>
+                        <li>Full-time projects</li>
+                        <li>Contract work</li>
+                        <li>Consulting</li>
+                        <li>Freelance projects</li>
+                        <li>Team collaboration</li>
+                    </ul>
+                </div>
+                <div class="availability-card fade-in">
+                    <h3>⏰ Timeline</h3>
+                    <p>Open to projects with flexible timelines. Typically available to start within 2–4 weeks.</p>
+                    <p>Can handle both short-term and long-term engagements.</p>
+                </div>
+                <div class="availability-card fade-in">
+                    <h3>💼 Project Types</h3>
+                    <ul>
+                        <li>AI Chatbot & Virtual Assistant Development</li>
+                        <li>Custom AI Agent Development</li>
+                        <li>Generative AI & LLM Integration</li>
+                        <li>RAG-Powered Knowledge Systems</li>
+                        <li>Machine Learning & Predictive Analytics</li>
+                        <li>Computer Vision Solutions</li>
+                        <li>Cloud AI Deployment (AWS & GCP)</li>
+                        <li>AI-Powered Business Automation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Imran Rafique. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/imran-rafique-data/?locale=en_US" target="_blank" class="social-link">LinkedIn</a>
+                <a href="https://github.com/ImranRafique847" target="_blank" class="social-link">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        emailjs.init('z37KOWE1xyov7W_Sp');
+
+        const form = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            let valid = true;
+            form.querySelectorAll('[required]').forEach(field => {
+                if (!field.value.trim()) {
+                    field.classList.add('error');
+                    valid = false;
+                } else {
+                    field.classList.remove('error');
+                }
+            });
+            if (!valid) { showToast('Please fill in all required fields.', 'error'); return; }
+
+            submitBtn.textContent = 'Sending…';
+            submitBtn.disabled = true;
+
+            emailjs.send('service_h3z1qjh', 'template_t5x2492', {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value
+            }).then(function() {
+                submitBtn.textContent = 'Send Message';
+                submitBtn.disabled = false;
+                form.reset();
+                showToast('✓ Message sent! I\'ll get back to you soon.', 'success');
+            }, function(error) {
+                submitBtn.textContent = 'Send Message';
+                submitBtn.disabled = false;
+                showToast('Failed to send message. Please try again.', 'error');
+            });
+        });
+
+        form.querySelectorAll('[required]').forEach(field => {
+            field.addEventListener('input', () => field.classList.remove('error'));
+        });
+    </script>
+</body>
+</html>

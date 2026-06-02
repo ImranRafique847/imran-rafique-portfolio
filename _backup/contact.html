@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - AI/ML Engineer Portfolio</title>
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #00ffff;
+            --accent: #8e44ad;
+            --text: #e0e0e0;
+            --text-dark: #2d2d3d;
+            --background: #0f0f1e;
+            --card-bg: #16213e;
+            --border: #2a2a3e;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --spacing-2xl: 4rem;
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --transition: all 0.3s ease;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-family); background-color: var(--background); color: var(--text); line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 var(--spacing-lg); }
+        .navbar { position: sticky; top: 0; z-index: 1000; background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(26, 26, 46, 0.85) 100%); border-bottom: 1px solid rgba(0, 255, 255, 0.1); }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 1rem var(--spacing-lg); display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: bold; background: linear-gradient(135deg, #ffffff 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .nav-menu { display: flex; list-style: none; gap: var(--spacing-lg); }
+        .nav-link { color: var(--text); text-decoration: none; font-size: 0.95rem; transition: var(--transition); position: relative; }
+        .nav-link::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--secondary); transition: var(--transition); }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        .nav-link:hover { color: var(--secondary); }
+        .page-header { padding: var(--spacing-2xl) var(--spacing-lg); background: linear-gradient(135deg, rgba(142, 68, 173, 0.1) 0%, rgba(0, 255, 255, 0.05) 100%); border-bottom: 2px solid var(--secondary); }
+        .page-header h1 { font-size: 2.5rem; background: linear-gradient(135deg, #ffffff 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: var(--spacing-sm); }
+        .page-header p { font-size: 1.1rem; color: var(--secondary); opacity: 0.9; }
+        .contact-content, .availability-section { padding: var(--spacing-2xl) var(--spacing-lg); }
+        h2 { font-size: 2.2rem; margin-bottom: var(--spacing-xl); background: linear-gradient(135deg, #ffffff 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        h3 { color: var(--secondary); margin-top: 0; }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-2xl); }
+        .contact-form-section, .contact-info-section { animation: fadeInUp 0.6s ease-out both; }
+        .contact-form { display: flex; flex-direction: column; gap: var(--spacing-lg); }
+        .form-group { display: flex; flex-direction: column; }
+        .form-group label { margin-bottom: var(--spacing-sm); color: var(--secondary); font-weight: 600; }
+        .form-group input, .form-group textarea { background: var(--card-bg); border: 1px solid var(--border); color: var(--text); padding: var(--spacing-md); border-radius: 6px; font-family: var(--font-family); transition: var(--transition); }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--secondary); box-shadow: 0 0 10px rgba(0, 255, 255, 0.2); }
+        .btn { display: inline-block; padding: var(--spacing-sm) var(--spacing-lg); border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; text-decoration: none; transition: var(--transition); background: linear-gradient(135deg, var(--secondary) 0%, #00cccc 100%); color: var(--text-dark); box-shadow: 0 4px 15px rgba(0, 255, 255, 0.3); }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 255, 255, 0.5); }
+        .contact-info { display: flex; flex-direction: column; gap: var(--spacing-xl); }
+        .info-item h3 { margin-bottom: var(--spacing-sm); font-size: 1.1rem; }
+        .info-item p { opacity: 0.8; }
+        .info-item a { color: var(--secondary); text-decoration: none; }
+        .social-contacts { display: flex; gap: var(--spacing-lg); }
+        .social-contact { display: inline-block; padding: var(--spacing-sm) var(--spacing-lg); background: rgba(0, 255, 255, 0.1); border: 1px solid var(--secondary); border-radius: 6px; color: var(--secondary); text-decoration: none; transition: var(--transition); }
+        .social-contact:hover { background: rgba(0, 255, 255, 0.2); transform: translateY(-2px); }
+        .response-time { background: rgba(0, 255, 255, 0.05); padding: var(--spacing-lg); border-radius: 8px; border-left: 4px solid var(--secondary); }
+        .cyan-accent { color: var(--secondary); }
+        .availability-section { background: linear-gradient(180deg, rgba(22, 33, 62, 0.3) 0%, rgba(15, 15, 30, 0.6) 100%); }
+        .availability-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-lg); }
+        .availability-card { background: var(--card-bg); padding: var(--spacing-lg); border-radius: 8px; border: 1px solid var(--border); transition: var(--transition); animation: fadeInUp 0.6s ease-out both; }
+        .availability-card:hover { border-color: var(--secondary); box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2); }
+        .availability-card:nth-child(1) { animation-delay: 0.1s; }
+        .availability-card:nth-child(2) { animation-delay: 0.2s; }
+        .availability-card:nth-child(3) { animation-delay: 0.3s; }
+        .availability-card ul { list-style: none; padding: 0; }
+        .availability-card li { padding: var(--spacing-sm) 0; opacity: 0.8; position: relative; padding-left: var(--spacing-lg); }
+        .availability-card li::before { content: '•'; position: absolute; left: 0; color: var(--secondary); }
+        .availability-card p { opacity: 0.8; margin-bottom: var(--spacing-md); }
+        .footer { background: var(--primary); border-top: 1px solid var(--border); padding: var(--spacing-xl) var(--spacing-lg); text-align: center; }
+        .footer p { opacity: 0.7; margin-bottom: var(--spacing-lg); }
+        .social-links { display: flex; justify-content: center; gap: var(--spacing-lg); flex-wrap: wrap; }
+        .social-link { color: var(--secondary); text-decoration: none; font-weight: 600; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; } .page-header h1 { font-size: 1.8rem; } }
+    </style>
+
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Portfolio</div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="projects.html" class="nav-link">Projects & Experience</a></li>
+                <li><a href="skills.html" class="nav-link">Skills & Certification</a></li>
+                <li><a href="contact.html" class="nav-link active">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Get In Touch</h1>
+            <p>Let's collaborate on your next AI/ML project</p>
+        </div>
+    </section>
+
+    <!-- Contact Content -->
+    <section class="contact-content">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- Contact Form -->
+                <div class="contact-form-section fade-in">
+                    <h2>Send Me a Message</h2>
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="6" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="contact-info-section fade-in">
+                    <h2>Contact Information</h2>
+                    <div class="contact-info">
+                        <div class="info-item">
+                            <h3>📧 Email</h3>
+                            <p><a href="mailto:iamimranrafique@gmail.com">iamimranrafique@gmail.com</a></p>
+                        </div>
+                        <div class="info-item">
+                            <h3>🔗 LinkedIn</h3>
+                            <p><a href="https://www.linkedin.com/in/imran-rafique-data/?locale=en_US" target="_blank">linkedin.com/in/imran-rafique-data</a></p>
+                        </div>
+                        <div class="info-item">
+                            <h3>🔗 GitHub</h3>
+                            <p><a href="https://github.com/ImranRafique847" target="_blank">github.com/ImranRafique847</a></p>
+                        </div>
+                        <div class="info-item">
+                            <h3>📍 Location</h3>
+                            <p>Your City, Country</p>
+                        </div>
+                    </div>
+
+                    <div class="response-time">
+                        <h3>Response Time</h3>
+                        <p>I typically respond to inquiries within <span class="cyan-accent">24-48 hours</span>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Availability -->
+    <section class="availability-section">
+        <div class="container">
+            <h2>Current Availability</h2>
+            <div class="availability-cards">
+                <div class="availability-card fade-in">
+                    <h3>🚀 Available For</h3>
+                    <ul>
+                        <li>Full-time projects</li>
+                        <li>Contract work</li>
+                        <li>Consulting</li>
+                        <li>Freelance projects</li>
+                        <li>Team collaboration</li>
+                    </ul>
+                </div>
+                <div class="availability-card fade-in">
+                    <h3>⏰ Timeline</h3>
+                    <p>Open to projects with flexible timelines. Typically available to start within 2-4 weeks.</p>
+                    <p>Can handle both short-term and long-term engagements.</p>
+                </div>
+                <div class="availability-card fade-in">
+                    <h3>💼 Project Types</h3>
+                    <ul>
+                        <li>ML model development</li>
+                        <li>Deep learning solutions</li>
+                        <li>Data analysis</li>
+                        <li>AI application development</li>
+                        <li>MLOps & pipeline setup</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 AI/ML Engineer Portfolio. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" class="social-link">LinkedIn</a>
+                <a href="#" class="social-link">GitHub</a>
+                <a href="#" class="social-link">Twitter</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            const navLinks = document.querySelectorAll('.nav-link');
+            if (hamburger) hamburger.addEventListener('click', () => navMenu.classList.toggle('active'));
+            navLinks.forEach(link => link.addEventListener('click', () => navMenu.classList.remove('active')));
+            
+            observeElements();
+            addButtonGlow();
+            
+            const form = document.getElementById('contactForm');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const submitBtn = form.querySelector('button');
+                    const originalText = submitBtn.textContent;
+                    submitBtn.textContent = '✓ Sent!';
+                    submitBtn.style.opacity = '0.7';
+                    setTimeout(() => {
+                        submitBtn.textContent = originalText;
+                        submitBtn.style.opacity = '1';
+                        alert('Thank you for your message! I\'ll get back to you soon.');
+                        form.reset();
+                    }, 2000);
+                });
+            }
+        });
+
+        function observeElements() {
+            const obs = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        e.target.classList.add('animate-in');
+                        obs.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
+            
+            document.querySelectorAll('.availability-card').forEach(el => obs.observe(el));
+        }
+
+        function addButtonGlow() {
+            document.querySelectorAll('.btn-primary').forEach(btn => {
+                btn.addEventListener('mousemove', e => {
+                    const rect = btn.getBoundingClientRect();
+                    btn.style.setProperty('--x', (e.clientX - rect.left) + 'px');
+                    btn.style.setProperty('--y', (e.clientY - rect.top) + 'px');
+                });
+            });
+        }
+    </script>
+    <style>
+        .btn-primary { position: relative; overflow: hidden; }
+        .btn-primary::before { content: ''; position: absolute; width: 100px; height: 100px; background: radial-gradient(circle, rgba(255,255,255,0.5) 0%, transparent 70%); top: var(--y, 50%); left: var(--x, 50%); transform: translate(-50%, -50%); opacity: 0; pointer-events: none; }
+        .btn-primary:hover::before { opacity: 1; }
+        .animate-in { animation: slideInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) !important; }
+        @keyframes slideInUp { from { opacity: 0; transform: translateY(60px); } to { opacity: 1; transform: translateY(0); } }
+        .availability-card { opacity: 0; }
+        .availability-card:hover { animation: cardPulse 0.4s ease-out; }
+        @keyframes cardPulse { 0% { transform: scale(1); } 50% { transform: scale(1.01); } 100% { transform: scale(1); } }
+        .form-group input:focus, .form-group textarea:focus { animation: inputGlow 0.6s ease-out; }
+        @keyframes inputGlow { from { box-shadow: 0 0 5px rgba(0, 255, 255, 0.2); } to { box-shadow: 0 0 15px rgba(0, 255, 255, 0.4); } }
+    </style>
+
+</body>
+</html>
