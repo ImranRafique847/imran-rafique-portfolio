@@ -3,10 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About — Imran Rafique</title>
+    <title>About — Imran Rafique | AI/ML Engineer</title>
+    <meta name="description" content="Learn about Imran Rafique — AI/ML Engineer based in Lahore, Pakistan. AWS Community Builder, specializing in Generative AI, RAG pipelines, and agentic workflows.">
+    <meta name="keywords" content="Imran Rafique, About, AI Engineer, AWS Community Builder, Lahore Pakistan, Machine Learning Engineer">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://imran-rafique.dev/about">
     <meta property="og:title" content="About — Imran Rafique">
-    <link rel="icon" href="profile.jpg" type="image/jpeg">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="/profile.jpg" type="image/jpeg">
+    <link rel="stylesheet" href="/css/style.css">
     <style>
         .about-content { padding: var(--spacing-2xl) var(--spacing-lg); }
         .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-xl); align-items: start; }
@@ -30,18 +34,26 @@
         .timeline-content .timeline-date { color: var(--secondary); font-weight: 600; font-size: 0.9rem; }
         @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; } .about-stats { grid-template-columns: 1fr; } }
     </style>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GC3K8NGKQ8"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-GC3K8NGKQ8');
+    </script>
 </head>
 <body>
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">Imran Rafique</div>
             <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="about.html" class="nav-link active">About</a></li>
-                <li><a href="services.html" class="nav-link">Services</a></li>
-                <li><a href="projects.html" class="nav-link">Projects & Experience</a></li>
-                <li><a href="skills.html" class="nav-link">Skills & Certification</a></li>
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="/" class="nav-link">Home</a></li>
+                <li><a href="/about" class="nav-link active">About</a></li>
+                <li><a href="/services" class="nav-link">Services</a></li>
+                <li><a href="/projects" class="nav-link">Projects & Experience</a></li>
+                <li><a href="/skills" class="nav-link">Skills & Certification</a></li>
+                <li><a href="/blog" class="nav-link">Blog</a></li><li><a href="/contact" class="nav-link">Contact</a></li>
             </ul>
             <div class="hamburger"><span></span><span></span><span></span></div>
         </div>
@@ -156,6 +168,6 @@
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
+    <script src="/js/main.js"></script>
 </body>
 </html>

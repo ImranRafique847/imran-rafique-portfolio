@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How I Built an AI Shopping Assistant with CRAG on AWS — Imran Rafique</title>
+    <meta name="description" content="A deep dive into building a Corrective RAG pipeline over 18,992 eBay products — from query rewriting to FAISS semantic search and deployment on AWS Elastic Beanstalk.">
+    <meta name="keywords" content="AI Shopping Assistant, CRAG, Corrective RAG, AWS Bedrock, FAISS, Semantic Search, FastAPI, Docker, Elastic Beanstalk, Imran Rafique">
+    <meta name="author" content="Imran Rafique">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://imran-rafique.dev/blog/building-ai-shopping-assistant-crag-aws">
+    <meta property="og:title" content="How I Built an AI Shopping Assistant with CRAG on AWS">
+    <meta property="og:description" content="A deep dive into building a Corrective RAG pipeline over 18,992 eBay products on AWS.">
+    <meta property="og:type" content="article">
+    <link rel="icon" href="/profile.jpg" type="image/jpeg">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .blog-post { padding: var(--spacing-2xl) var(--spacing-lg); max-width: 800px; margin: 0 auto; }
+        .blog-post h1 { font-size: 2.2rem; margin-bottom: var(--spacing-sm); background: linear-gradient(135deg, #fff 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .blog-post-meta { color: var(--secondary); opacity: 0.8; margin-bottom: var(--spacing-xl); font-size: 0.9rem; }
+        .blog-post h2 { font-size: 1.5rem; margin-top: var(--spacing-xl); margin-bottom: var(--spacing-md); }
+        .blog-post h3 { font-size: 1.2rem; margin-top: var(--spacing-lg); margin-bottom: var(--spacing-sm); }
+        .blog-post p { opacity: 0.9; line-height: 1.9; margin-bottom: var(--spacing-md); }
+        .blog-post ul, .blog-post ol { padding-left: var(--spacing-lg); margin-bottom: var(--spacing-md); }
+        .blog-post li { opacity: 0.9; line-height: 1.8; margin-bottom: var(--spacing-sm); }
+        .blog-post code { background: rgba(0,255,255,0.1); color: var(--secondary); padding: 2px 6px; border-radius: 4px; font-size: 0.9rem; }
+        .blog-post pre { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: var(--spacing-lg); overflow-x: auto; margin-bottom: var(--spacing-md); }
+        .blog-post pre code { background: none; padding: 0; }
+        .blog-post-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: var(--spacing-xl); }
+        .blog-post-tag { background: rgba(0,255,255,0.1); border: 1px solid var(--secondary); color: var(--secondary); padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; }
+        .blog-nav { display: flex; justify-content: space-between; margin-top: var(--spacing-2xl); padding-top: var(--spacing-xl); border-top: 1px solid var(--border); }
+        .blog-nav a { color: var(--secondary); text-decoration: none; font-weight: 600; }
+        .author-box { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: var(--spacing-xl); margin-top: var(--spacing-xl); }
+        .author-box h3 { margin-bottom: var(--spacing-sm); }
+        .author-box p { opacity: 0.85; margin-bottom: var(--spacing-sm); }
+        .author-box a { color: var(--secondary); text-decoration: none; font-weight: 600; }
+    </style>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GC3K8NGKQ8"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-GC3K8NGKQ8');
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Imran Rafique</div>
+            <ul class="nav-menu">
+                <li><a href="/" class="nav-link">Home</a></li>
+                <li><a href="/about" class="nav-link">About</a></li>
+                <li><a href="/services" class="nav-link">Services</a></li>
+                <li><a href="/projects" class="nav-link">Projects & Experience</a></li>
+                <li><a href="/skills" class="nav-link">Skills & Certification</a></li>
+                <li><a href="/blog" class="nav-link active">Blog</a></li>
+                <li><a href="/contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <article class="blog-post">
+        <h1>How I Built an AI Shopping Assistant with CRAG on AWS</h1>
+        <p class="blog-post-meta">June 2026 · 8 min read · By Imran Rafique</p>
+        <div class="blog-post-tags">
+            <span class="blog-post-tag">RAG</span>
+            <span class="blog-post-tag">AWS Bedrock</span>
+            <span class="blog-post-tag">FAISS</span>
+            <span class="blog-post-tag">FastAPI</span>
+            <span class="blog-post-tag">Docker</span>
+        </div>
+
+        <h2>The Problem That Started It All</h2>
+
+        <p>Imagine you're shopping online and type "show me cheap women's dresses under $50 in good condition." What happens? Most search engines return garbage — they match keywords, not intent. They don't understand that "cheap" means a price filter, "women's" means a category, and "good condition" means filtering by item state.</p>
+
+        <p>I wanted to fix this. Not with a simple chatbot that hallucinates product details, but with a genuinely intelligent system that searches real products, understands context, and never makes up prices or descriptions.</p>
+
+        <p>So I built an AI Shopping Assistant powered by <strong>Corrective RAG (CRAG)</strong> — and deployed it live on AWS for under $11/month.</p>
+
+        <h2>Why Corrective RAG? Because Regular RAG Isn't Enough</h2>
+
+        <p>If you've worked with RAG (Retrieval-Augmented Generation), you know the dirty secret: retrieval quality makes or breaks the system. If your vector search returns irrelevant documents, your LLM generates confident but wrong answers.</p>
+
+        <p>CRAG fixes this by adding a <strong>correction layer</strong> between retrieval and generation. Before the LLM sees the results, the system evaluates: "Are these results actually relevant to what the user asked?" If not, it rewrites the query and tries again.</p>
+
+        <p>Here's my 4-step pipeline:</p>
+
+        <ol>
+            <li><strong>Intent Detection</strong> — Is the user saying hello, or searching for a product? This simple check saves unnecessary API calls and costs.</li>
+            <li><strong>Query Rewriting</strong> — The LLM corrects typos ("womens drss" → "women casual dress"), expands abbreviations, and extracts structured attributes like gender, color, size, and price range.</li>
+            <li><strong>Vector Search + Filters</strong> — FAISS performs cosine similarity search across 18,992 products, then post-retrieval filters narrow results by price, condition, and category.</li>
+            <li><strong>Honest Generation</strong> — The LLM generates a response using ONLY the retrieved products. It never hallucinates prices or invents product details.</li>
+        </ol>
+
+        <h2>18,992 Real Products — The Data Pipeline</h2>
+
+        <p>I didn't use fake data. I scraped 18,992 real eBay USA fashion products across 40 categories using Playwright — a headless browser automation tool that handles JavaScript-rendered pages.</p>
+
+        <p>Each product record includes: name, price, condition (new/used), seller info, product images, eBay URL, and item specifics. This is real inventory you can actually buy.</p>
+
+        <p>The embedding pipeline runs on an EC2 c7i-flex.large instance:</p>
+
+        <pre><code>Product Text → Amazon Titan Embeddings V2 → 1024-dim Vector → FAISS IndexFlatIP</code></pre>
+
+        <p>The resulting index and metadata JSON are uploaded to S3. Total processing time: about 2 hours for all 18,992 products. One-time cost: ~$0.50.</p>
+
+        <h2>The Secret Sauce: Smart Post-Retrieval Filters</h2>
+
+        <p>Here's what most RAG tutorials miss — semantic search alone isn't enough for e-commerce. A user who says "red shoes under $30" needs three things: semantic relevance (shoes), attribute matching (red), and numeric filtering (under $30).</p>
+
+        <p>After FAISS returns the top-K semantically similar products, I apply:</p>
+
+        <ul>
+            <li><strong>Category filter</strong> — match shoes, bags, dresses, trousers based on extracted intent</li>
+            <li><strong>Price filter</strong> — numeric comparison ("under $50", "between $20-$40")</li>
+            <li><strong>Condition filter</strong> — new only, used only, or both</li>
+            <li><strong>Deduplication</strong> — remove duplicate listings by URL and product name</li>
+        </ul>
+
+        <p>This hybrid approach (semantic search + structured filters) gives users exactly what they asked for.</p>
+
+        <h2>6-Turn Conversation Memory</h2>
+
+        <p>Shopping isn't a single query — it's a conversation. A user might say "show me women's dresses" and then follow up with "anything cheaper?" or "do you have that in blue?"</p>
+
+        <p>The assistant maintains 6 turns of conversation history. The query rewriter uses this context to understand follow-up questions. "Anything cheaper?" gets rewritten to "women casual dress under [previous price]" — no information is lost.</p>
+
+        <h2>Deploying on AWS — The Full Stack</h2>
+
+        <p>The entire application is containerized and deployed on AWS:</p>
+
+        <ul>
+            <li><strong>FastAPI</strong> — serves the chat API and static frontend</li>
+            <li><strong>Docker</strong> — containerizes the entire application</li>
+            <li><strong>Amazon ECR</strong> — stores the Docker image</li>
+            <li><strong>Elastic Beanstalk</strong> — manages EC2, load balancer, and health checks</li>
+            <li><strong>Amazon S3</strong> — stores FAISS index, metadata, and product data</li>
+            <li><strong>AWS Bedrock</strong> — provides Titan Embeddings and Nova Micro LLM</li>
+            <li><strong>IAM Roles</strong> — no hardcoded credentials, everything uses role-based auth</li>
+        </ul>
+
+        <p>Deployment is a single command pipeline: <code>docker build → docker push to ECR → deploy on Elastic Beanstalk</code>.</p>
+
+        <h2>What It Costs to Run</h2>
+
+        <p>Everyone asks this. Here's the honest breakdown:</p>
+
+        <ul>
+            <li>Elastic Beanstalk (t3.micro): ~$8/month</li>
+            <li>S3 storage (100MB): ~$0.01/month</li>
+            <li>ECR storage: ~$0.01/month</li>
+            <li>Bedrock (10,000 queries): ~$3/month</li>
+            <li><strong>Total: ~$11/month</strong> for a production AI application</li>
+        </ul>
+
+        <p>That's less than a Netflix subscription for a fully deployed AI shopping assistant.</p>
+
+        <h2>What I Learned</h2>
+
+        <ol>
+            <li><strong>CRAG beats vanilla RAG every time</strong> — the query rewriting step alone improved relevant retrievals by 40%+</li>
+            <li><strong>You don't always need a managed vector database</strong> — FAISS with flat index works perfectly for under 100K documents. No Pinecone fees needed.</li>
+            <li><strong>Post-retrieval filters are non-negotiable for e-commerce</strong> — semantic similarity doesn't understand "$30 means thirty dollars"</li>
+            <li><strong>AWS Bedrock simplifies everything</strong> — no API keys, no rate limit headaches, just IAM roles and SDK calls</li>
+            <li><strong>Honest generation builds trust</strong> — instructing the LLM to never hallucinate prices keeps users coming back</li>
+        </ol>
+
+        <p>Try the live demo: <a href="https://d3uu35mv5l6o1c.cloudfront.net/" target="_blank" style="color: var(--secondary);">AI Shopping Assistant</a> | View source: <a href="https://github.com/ImranRafique847/AI-Based-Shopping-Assistent" target="_blank" style="color: var(--secondary);">GitHub</a></p>
+
+        <div class="author-box">
+            <h3>About the Author</h3>
+            <p>I'm <strong>Imran Rafique</strong>, an AI/ML Engineer based in Lahore, Pakistan. I build end-to-end AI systems that solve real-world business problems — from intelligent chatbots and autonomous agents to scalable cloud deployments.</p>
+            <p>I'm also an AWS Community Builder (AI/ML Track), actively contributing RAG-based applications and agentic workflows using Amazon Bedrock.</p>
+            <p><strong>Services I offer:</strong></p>
+            <ul style="padding-left: 1.5rem; margin-bottom: 1rem;">
+                <li>AI Chatbot & Virtual Assistant Development</li>
+                <li>Custom AI Agent Development</li>
+                <li>Generative AI & LLM Integration</li>
+                <li>RAG-Powered Knowledge Systems</li>
+                <li>AI-Powered Business Automation</li>
+                <li>Machine Learning & Predictive Analytics</li>
+                <li>Computer Vision Solutions</li>
+                <li>Cloud AI Deployment & MLOps (AWS & GCP)</li>
+            </ul>
+            <p>Have a project in mind? <a href="/contact">Let's talk →</a></p>
+        </div>
+
+        <div class="blog-nav">
+            <a href="/blog">← Back to Blog</a>
+        </div>
+    </article>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Imran Rafique. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/imran-rafique-data/?locale=en_US" target="_blank" class="social-link">LinkedIn</a>
+                <a href="https://github.com/ImranRafique847" target="_blank" class="social-link">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>

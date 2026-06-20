@@ -3,10 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skills & Certifications — Imran Rafique</title>
+    <title>Skills & Certifications — Imran Rafique | AI/ML Engineer</title>
+    <meta name="description" content="Technical skills and certifications of Imran Rafique — Python, TensorFlow, PyTorch, LangChain, RAG, AWS, GCP, Docker. IBM, Google Cloud, and Vanderbilt University certified.">
+    <meta name="keywords" content="AI Skills, ML Certifications, Python, TensorFlow, PyTorch, LangChain, AWS, IBM Certified, Google Cloud Certified, Imran Rafique">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://imran-rafique.dev/skills">
     <meta property="og:title" content="Skills & Certifications — Imran Rafique">
-    <link rel="icon" href="profile.jpg" type="image/jpeg">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="/profile.jpg" type="image/jpeg">
+    <link rel="stylesheet" href="/css/style.css">
     <style>
         .skills-content, .certifications-section { padding: var(--spacing-2xl) var(--spacing-lg); }
         .skills-categories { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: var(--spacing-2xl); }
@@ -31,18 +35,26 @@
         .cert-link:hover { opacity: 0.8; text-decoration: underline; }
         @media (max-width: 768px) { .skills-categories { grid-template-columns: 1fr; } }
     </style>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GC3K8NGKQ8"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-GC3K8NGKQ8');
+    </script>
 </head>
 <body>
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">Imran Rafique</div>
             <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="about.html" class="nav-link">About</a></li>
-                <li><a href="services.html" class="nav-link">Services</a></li>
-                <li><a href="projects.html" class="nav-link">Projects & Experience</a></li>
-                <li><a href="skills.html" class="nav-link active">Skills & Certification</a></li>
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="/" class="nav-link">Home</a></li>
+                <li><a href="/about" class="nav-link">About</a></li>
+                <li><a href="/services" class="nav-link">Services</a></li>
+                <li><a href="/projects" class="nav-link">Projects & Experience</a></li>
+                <li><a href="/skills" class="nav-link active">Skills & Certification</a></li>
+                <li><a href="/blog" class="nav-link">Blog</a></li><li><a href="/contact" class="nav-link">Contact</a></li>
             </ul>
             <div class="hamburger"><span></span><span></span><span></span></div>
         </div>
@@ -236,7 +248,7 @@
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
+    <script src="/js/main.js"></script>
     <script>
         // Animate skill bars when they scroll into view
         const barObserver = new IntersectionObserver(entries => {

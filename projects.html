@@ -3,10 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects & Experience — Imran Rafique</title>
-    <meta property="og:title" content="Projects & Experience — Imran Rafique">
-    <link rel="icon" href="profile.jpg" type="image/jpeg">
-    <link rel="stylesheet" href="css/style.css">
+    <title>Projects — Imran Rafique | AI Shopping Assistant, Car Damage Detection</title>
+    <meta name="description" content="AI/ML projects by Imran Rafique — Live deployed AI Shopping Assistant, Car Damage Detection, Personal AI Agent, RAG Chatbots, and more on AWS.">
+    <meta name="keywords" content="AI Projects, AI Shopping Assistant, Car Damage Detection, Personal AI Agent, RAG Chatbot, AWS Lambda, FAISS, Imran Rafique">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://imran-rafique.dev/projects">
+    <meta property="og:title" content="Projects — Imran Rafique">
+    <link rel="icon" href="/profile.jpg" type="image/jpeg">
+    <link rel="stylesheet" href="/css/style.css">
     <style>
         .projects-section, .experience-section { padding: var(--spacing-2xl) var(--spacing-lg); }
         .section-intro { opacity: 0.8; margin-bottom: var(--spacing-lg); max-width: 760px; }
@@ -48,18 +52,26 @@
 
         @media (max-width: 768px) { .projects-grid { grid-template-columns: 1fr; } }
     </style>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GC3K8NGKQ8"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-GC3K8NGKQ8');
+    </script>
 </head>
 <body>
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">Imran Rafique</div>
             <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="about.html" class="nav-link">About</a></li>
-                <li><a href="services.html" class="nav-link">Services</a></li>
-                <li><a href="projects.html" class="nav-link active">Projects & Experience</a></li>
-                <li><a href="skills.html" class="nav-link">Skills & Certification</a></li>
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="/" class="nav-link">Home</a></li>
+                <li><a href="/about" class="nav-link">About</a></li>
+                <li><a href="/services" class="nav-link">Services</a></li>
+                <li><a href="/projects" class="nav-link active">Projects & Experience</a></li>
+                <li><a href="/skills" class="nav-link">Skills & Certification</a></li>
+                <li><a href="/blog" class="nav-link">Blog</a></li><li><a href="/contact" class="nav-link">Contact</a></li>
             </ul>
             <div class="hamburger"><span></span><span></span><span></span></div>
         </div>
@@ -91,7 +103,7 @@
             <div class="projects-grid">
                 <!-- AI Shopping Assistant - LIVE -->
                 <div class="project-card fade-in" data-category="ai">
-                    <div class="project-image"><img src="images/AI-Based-Shopping-Assistence.webp" alt="AI Shopping Assistant"></div>
+                    <div class="project-image"><img loading="lazy" src="/images/AI-Based-Shopping-Assistence.webp" alt="AI Shopping Assistant"></div>
                     <div class="project-info">
                         <h3>AI-Based Shopping Assistant</h3>
                         <p>Intelligent eBay fashion shopping assistant powered by Corrective RAG (CRAG) on AWS. Users search 18,992 real products using natural language — the AI rewrites queries, performs FAISS semantic search, filters by price/condition, and generates honest responses with product cards.</p>
@@ -107,7 +119,7 @@
 
                 <!-- Car Damage Detection - LIVE -->
                 <div class="project-card fade-in" data-category="ml">
-                    <div class="project-image"><img src="images/AI-Based-Car_Demed-Detection-System.jpg" alt="Car Damage Detection"></div>
+                    <div class="project-image"><img loading="lazy" src="/images/AI-Based-Car_Demed-Detection-System.jpg" alt="Car Damage Detection"></div>
                     <div class="project-info">
                         <h3>AI Car Damage Classification</h3>
                         <p>End-to-end deep learning system classifying car damage severity (minor, moderate, severe, no damage) using EfficientNetB3 transfer learning with 2-phase training. Deployed live on AWS Lambda via Docker container with API Gateway.</p>
@@ -123,7 +135,7 @@
 
                 <!-- AI Agent for Data Visualization -->
                 <div class="project-card fade-in" data-category="ai">
-                    <div class="project-image"><img src="images/AI Agent for Data Visualization.webp" alt="AI Data Visualization Agent"></div>
+                    <div class="project-image"><img loading="lazy" src="/images/AI Agent for Data Visualization.webp" alt="AI Data Visualization Agent"></div>
                     <div class="project-info">
                         <h3>AI Agent for Data Visualization</h3>
                         <p>AI-powered data analysis agent using Claude via AWS Bedrock that converts natural language queries into automated visualizations. Upload any dataset and ask questions — the agent generates charts and insights automatically.</p>
@@ -139,7 +151,7 @@
 
                 <!-- Personal AI Agent -->
                 <div class="project-card fade-in" data-category="ai">
-                    <div class="project-image"><img src="images/Personal AI Agent.webp" alt="Personal AI Agent"></div>
+                    <div class="project-image"><img loading="lazy" src="/images/Personal AI Agent.webp" alt="Personal AI Agent"></div>
                     <div class="project-info">
                         <h3>Personal AI Agent — MCP Server</h3>
                         <p>Conversational AI assistant that controls Gmail, Google Drive, and Google Calendar through natural language. Built with Model Context Protocol (MCP), Claude Haiku via AWS Bedrock, FAISS vector memory, and multi-agent architecture.</p>
@@ -154,7 +166,7 @@
 
                 <!-- Flight Booking Agent -->
                 <div class="project-card fade-in" data-category="nlp">
-                    <div class="project-image"><img src="images/Flight Booking Conversational Agent.webp" alt="Flight Booking Agent"></div>
+                    <div class="project-image"><img loading="lazy" src="/images/Flight Booking Conversational Agent.webp" alt="Flight Booking Agent"></div>
                     <div class="project-info">
                         <h3>Flight Booking Conversational Agent</h3>
                         <p>Google Cloud Dialogflow CX conversational agent for flight booking. Handles intent recognition, entity extraction (cities, dates, passenger name), confirmation flows, and conditional routing for smooth multi-turn conversations.</p>
@@ -169,7 +181,7 @@
 
                 <!-- Health Chatbot -->
                 <div class="project-card fade-in" data-category="nlp">
-                    <div class="project-image"><img src="images/Health Chatbot.webp" alt="Health Chatbot"></div>
+                    <div class="project-image"><img loading="lazy" src="/images/Health Chatbot.webp" alt="Health Chatbot"></div>
                     <div class="project-info">
                         <h3>Health Chatbot</h3>
                         <p>Python-based health chatbot application providing intelligent health-related conversational responses using NLP techniques and AI-powered backend processing.</p>
@@ -185,7 +197,7 @@
 
                 <!-- Research Paper Analyzer -->
                 <div class="project-card fade-in" data-category="nlp">
-                    <div class="project-image"><img src="images/Research Paper Analyzer Chatbot.webp" alt="Research Paper Analyzer"></div>
+                    <div class="project-image"><img loading="lazy" src="/images/Research Paper Analyzer Chatbot.webp" alt="Research Paper Analyzer"></div>
                     <div class="project-info">
                         <h3>Research Paper Analyzer Chatbot</h3>
                         <p>RAG-based chatbot that analyzes research papers and provides intelligent Q&A over academic documents. Built with a RAG pipeline for document-based question answering.</p>
@@ -201,7 +213,7 @@
 
                 <!-- Sales Dashboard -->
                 <div class="project-card fade-in" data-category="data">
-                    <div class="project-image"><img src="images/Sales Dashboard.avif" alt="Sales Dashboard"></div>
+                    <div class="project-image"><img loading="lazy" src="/images/Sales Dashboard.avif" alt="Sales Dashboard"></div>
                     <div class="project-info">
                         <h3>Sales Dashboard</h3>
                         <p>Interactive sales analytics dashboard built with Power BI on SuperStore sales data, featuring visual reports, trend analysis, and business intelligence insights.</p>
@@ -216,7 +228,7 @@
 
                 <!-- Car Price Prediction -->
                 <div class="project-card fade-in" data-category="ml">
-                    <div class="project-image"><img src="images/Car Price Prediction.avif" alt="Car Price Prediction"></div>
+                    <div class="project-image"><img loading="lazy" src="/images/Car Price Prediction.avif" alt="Car Price Prediction"></div>
                     <div class="project-info">
                         <h3>Car Price Prediction</h3>
                         <p>Machine learning regression model predicting car prices using vehicle features. Includes Jupyter Notebook for EDA and model training, plus a Streamlit web app for real-time predictions.</p>
@@ -286,7 +298,7 @@
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
+    <script src="/js/main.js"></script>
     <script>
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', function () {

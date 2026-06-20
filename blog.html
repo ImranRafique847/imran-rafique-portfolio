@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog — Imran Rafique | AI/ML Insights & Tutorials</title>
+    <meta name="description" content="AI/ML blog by Imran Rafique — tutorials, insights, and guides on Generative AI, RAG, LangChain, Agentic Workflows, AWS Deployment, and more.">
+    <meta name="keywords" content="AI Blog, ML Blog, Generative AI Tutorial, RAG Guide, LangChain, AWS Bedrock, Imran Rafique Blog">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://imran-rafique.dev/blog">
+    <meta property="og:title" content="Blog — Imran Rafique">
+    <link rel="icon" href="/profile.jpg" type="image/jpeg">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .blog-section { padding: var(--spacing-2xl) var(--spacing-lg); }
+        .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: var(--spacing-xl); }
+        .blog-card { background: var(--card-bg); border-radius: var(--radius); border: 1px solid var(--border); overflow: hidden; transition: var(--transition); display: flex; flex-direction: column; }
+        .blog-card:hover { transform: translateY(-5px); border-color: var(--secondary); box-shadow: 0 15px 40px rgba(0,255,255,0.2); }
+        .blog-card-img { width: 100%; height: 180px; object-fit: cover; border-bottom: 1px solid var(--border); }
+        .blog-card-content { padding: var(--spacing-lg); flex-grow: 1; display: flex; flex-direction: column; }
+        .blog-card-content h3 { margin-bottom: var(--spacing-sm); }
+        .blog-card-content h3 a { color: var(--secondary); text-decoration: none; transition: var(--transition); }
+        .blog-card-content h3 a:hover { opacity: 0.8; }
+        .blog-card-content p { opacity: 0.8; margin-bottom: var(--spacing-md); flex-grow: 1; }
+        .blog-meta { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; opacity: 0.6; }
+        .blog-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: var(--spacing-md); }
+        .blog-tag { background: rgba(0,255,255,0.1); border: 1px solid var(--secondary); color: var(--secondary); padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; }
+        .blog-cta { text-align: center; padding: var(--spacing-2xl) var(--spacing-lg); background: linear-gradient(135deg, rgba(142,68,173,0.1) 0%, rgba(0,255,255,0.1) 100%); border: 1px solid rgba(0,255,255,0.2); border-radius: var(--radius); margin: var(--spacing-xl) auto; max-width: 600px; }
+        .blog-cta p { opacity: 0.8; margin-bottom: var(--spacing-lg); }
+        @media (max-width: 768px) { .blog-grid { grid-template-columns: 1fr; } }
+    </style>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GC3K8NGKQ8"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-GC3K8NGKQ8');
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Imran Rafique</div>
+            <ul class="nav-menu">
+                <li><a href="/" class="nav-link">Home</a></li>
+                <li><a href="/about" class="nav-link">About</a></li>
+                <li><a href="/services" class="nav-link">Services</a></li>
+                <li><a href="/projects" class="nav-link">Projects & Experience</a></li>
+                <li><a href="/skills" class="nav-link">Skills & Certification</a></li>
+                <li><a href="/blog" class="nav-link active">Blog</a></li>
+                <li><a href="/contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Blog</h1>
+            <p>AI/ML insights, tutorials, and lessons from real projects</p>
+        </div>
+    </section>
+
+    <section class="blog-section">
+        <div class="container">
+            <div class="blog-grid">
+                <div class="blog-card fade-in">
+                    <div style="height: 180px; background: linear-gradient(135deg, rgba(142,68,173,0.3) 0%, rgba(0,255,255,0.15) 100%); display: flex; align-items: center; justify-content: center; font-size: 3rem;">🛒</div>
+                    <div class="blog-card-content">
+                        <h3><a href="/blog/building-ai-shopping-assistant-crag-aws">How I Built an AI Shopping Assistant with CRAG on AWS</a></h3>
+                        <div class="blog-tags">
+                            <span class="blog-tag">RAG</span>
+                            <span class="blog-tag">AWS Bedrock</span>
+                            <span class="blog-tag">FAISS</span>
+                        </div>
+                        <p>A deep dive into building a Corrective RAG pipeline over 18,992 eBay products — from query rewriting to FAISS semantic search and deployment on Elastic Beanstalk.</p>
+                        <div class="blog-meta">
+                            <span>June 2026</span>
+                            <span>8 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blog-card fade-in">
+                    <div style="height: 180px; background: linear-gradient(135deg, rgba(0,255,255,0.15) 0%, rgba(142,68,173,0.3) 100%); display: flex; align-items: center; justify-content: center; font-size: 3rem;">🤖</div>
+                    <div class="blog-card-content">
+                        <h3><a href="/blog/personal-ai-agent-mcp-gmail-drive">Building a Personal AI Agent with MCP — Gmail, Drive & Calendar</a></h3>
+                        <div class="blog-tags">
+                            <span class="blog-tag">MCP</span>
+                            <span class="blog-tag">Claude</span>
+                            <span class="blog-tag">Multi-Agent</span>
+                        </div>
+                        <p>How I built a conversational AI that controls my entire Google Workspace through natural language using Model Context Protocol and AWS Bedrock.</p>
+                        <div class="blog-meta">
+                            <span>May 2026</span>
+                            <span>10 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blog-card fade-in">
+                    <div style="height: 180px; background: linear-gradient(135deg, rgba(142,68,173,0.2) 0%, rgba(0,255,255,0.2) 100%); display: flex; align-items: center; justify-content: center; font-size: 3rem;">🚗</div>
+                    <div class="blog-card-content">
+                        <h3><a href="/blog/car-damage-detection-efficientnet-aws-lambda">Car Damage Detection with EfficientNet — From Training to AWS Lambda</a></h3>
+                        <div class="blog-tags">
+                            <span class="blog-tag">Computer Vision</span>
+                            <span class="blog-tag">Transfer Learning</span>
+                            <span class="blog-tag">AWS Lambda</span>
+                        </div>
+                        <p>End-to-end guide on building a car damage severity classifier using EfficientNetB3, Docker containerization, and serverless deployment on AWS.</p>
+                        <div class="blog-meta">
+                            <span>May 2026</span>
+                            <span>12 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blog-card fade-in">
+                    <div style="height: 180px; background: linear-gradient(135deg, rgba(0,255,255,0.2) 0%, rgba(142,68,173,0.2) 100%); display: flex; align-items: center; justify-content: center; font-size: 3rem;">📄</div>
+                    <div class="blog-card-content">
+                        <h3><a href="/blog/rag-chatbot-document-qa-faiss-langchain">Building a RAG Chatbot for Document Q&A with FAISS & LangChain</a></h3>
+                        <div class="blog-tags">
+                            <span class="blog-tag">RAG</span>
+                            <span class="blog-tag">LangChain</span>
+                            <span class="blog-tag">FAISS</span>
+                        </div>
+                        <p>Step-by-step tutorial on creating a Retrieval-Augmented Generation chatbot that processes 140+ PDFs and provides context-aware answers.</p>
+                        <div class="blog-meta">
+                            <span>April 2026</span>
+                            <span>7 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blog-card fade-in">
+                    <div style="height: 180px; background: linear-gradient(135deg, rgba(142,68,173,0.25) 0%, rgba(0,255,255,0.1) 100%); display: flex; align-items: center; justify-content: center; font-size: 3rem;">☁️</div>
+                    <div class="blog-card-content">
+                        <h3><a href="/blog/deploy-ml-model-aws-lambda-docker-ecr">How to Deploy Any ML Model on AWS Lambda with Docker & ECR</a></h3>
+                        <div class="blog-tags">
+                            <span class="blog-tag">AWS Lambda</span>
+                            <span class="blog-tag">Docker</span>
+                            <span class="blog-tag">MLOps</span>
+                        </div>
+                        <p>A practical guide to containerizing ML models and deploying them as serverless APIs using AWS Lambda, ECR, and API Gateway.</p>
+                        <div class="blog-meta">
+                            <span>April 2026</span>
+                            <span>9 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blog-card fade-in">
+                    <div style="height: 180px; background: linear-gradient(135deg, rgba(0,255,255,0.15) 0%, rgba(142,68,173,0.25) 100%); display: flex; align-items: center; justify-content: center; font-size: 3rem;">🔍</div>
+                    <div class="blog-card-content">
+                        <h3><a href="/blog/semantic-search-vs-keyword-search-faiss-bm25">Semantic Search vs Keyword Search — When to Use FAISS vs BM25</a></h3>
+                        <div class="blog-tags">
+                            <span class="blog-tag">Semantic Search</span>
+                            <span class="blog-tag">FAISS</span>
+                            <span class="blog-tag">BM25</span>
+                        </div>
+                        <p>Understanding the differences between vector similarity search and traditional keyword search, and how to combine them for hybrid retrieval.</p>
+                        <div class="blog-meta">
+                            <span>March 2026</span>
+                            <span>6 min read</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="blog-cta">
+        <div class="container">
+            <h2>Want to work together?</h2>
+            <p>If you found my articles helpful, let's discuss how I can help with your AI/ML project.</p>
+            <a href="/contact" class="btn btn-primary">Get In Touch</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Imran Rafique. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/imran-rafique-data/?locale=en_US" target="_blank" class="social-link">LinkedIn</a>
+                <a href="https://github.com/ImranRafique847" target="_blank" class="social-link">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>
