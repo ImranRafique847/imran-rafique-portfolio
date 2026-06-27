@@ -9,6 +9,16 @@
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://imran-rafique.dev/blog">
     <meta property="og:title" content="Blog — Imran Rafique">
+    <meta property="og:description" content="AI/ML blog by Imran Rafique — tutorials, insights, and guides on Generative AI, RAG, LangChain, Agentic Workflows, AWS Deployment, and more.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://imran-rafique.dev/blog">
+    <meta property="og:image" content="https://imran-rafique.dev/images/ai-based-shopping-new.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Blog — Imran Rafique | AI/ML Insights & Tutorials">
+    <meta name="twitter:description" content="AI/ML blog by Imran Rafique — tutorials, insights, and guides on Generative AI, RAG, LangChain, Agentic Workflows, AWS Deployment, and more.">
+    <meta name="twitter:image" content="https://imran-rafique.dev/images/ai-based-shopping-new.png">
     <link rel="icon" href="/profile.jpg" type="image/jpeg">
     <link rel="stylesheet" href="/css/style.css">
     <style>
@@ -17,12 +27,15 @@
         .blog-card { background: var(--card-bg); border-radius: var(--radius); border: 1px solid var(--border); overflow: hidden; transition: var(--transition); display: flex; flex-direction: column; }
         .blog-card:hover { transform: translateY(-5px); border-color: var(--secondary); box-shadow: 0 15px 40px rgba(0,255,255,0.2); }
         .blog-card-img { width: 100%; height: 180px; object-fit: cover; border-bottom: 1px solid var(--border); }
+        .blog-card-img { width: 100%; height: 180px; object-fit: cover; border-bottom: 1px solid var(--border); }
         .blog-card-content { padding: var(--spacing-lg); flex-grow: 1; display: flex; flex-direction: column; }
         .blog-card-content h3 { margin-bottom: var(--spacing-sm); }
         .blog-card-content h3 a { color: var(--secondary); text-decoration: none; transition: var(--transition); }
         .blog-card-content h3 a:hover { opacity: 0.8; }
         .blog-card-content p { opacity: 0.8; margin-bottom: var(--spacing-md); flex-grow: 1; }
-        .blog-meta { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; opacity: 0.6; }
+        .blog-meta { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; opacity: 0.6; margin-bottom: var(--spacing-md); }
+        .blog-read-more { color: var(--secondary); text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: var(--transition); }
+        .blog-read-more:hover { opacity: 0.8; letter-spacing: 0.5px; }
         .blog-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: var(--spacing-md); }
         .blog-tag { background: rgba(0,255,255,0.1); border: 1px solid var(--secondary); color: var(--secondary); padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; }
         .blog-cta { text-align: center; padding: var(--spacing-2xl) var(--spacing-lg); background: linear-gradient(135deg, rgba(142,68,173,0.1) 0%, rgba(0,255,255,0.1) 100%); border: 1px solid rgba(0,255,255,0.2); border-radius: var(--radius); margin: var(--spacing-xl) auto; max-width: 600px; }
@@ -66,7 +79,7 @@
         <div class="container">
             <div class="blog-grid">
                 <div class="blog-card fade-in">
-                    <div style="height: 180px; background: linear-gradient(135deg, rgba(142,68,173,0.3) 0%, rgba(0,255,255,0.15) 100%); display: flex; align-items: center; justify-content: center; font-size: 3rem;">🛒</div>
+                    <img src="/images/ai-based-shopping-new.png" alt="AI Shopping Assistant" class="blog-card-img" loading="lazy">
                     <div class="blog-card-content">
                         <h3><a href="/blog/building-ai-shopping-assistant-crag-aws">How I Built an AI Shopping Assistant with CRAG on AWS</a></h3>
                         <div class="blog-tags">
@@ -77,13 +90,14 @@
                         <p>A deep dive into building a Corrective RAG pipeline over 18,992 eBay products — from query rewriting to FAISS semantic search and deployment on Elastic Beanstalk.</p>
                         <div class="blog-meta">
                             <span>June 2026</span>
-                            <span>8 min read</span>
+                            <span>12 min read</span>
                         </div>
+                        <a href="/blog/building-ai-shopping-assistant-crag-aws" class="blog-read-more">Read Full Article →</a>
                     </div>
                 </div>
 
                 <div class="blog-card fade-in">
-                    <div style="height: 180px; background: linear-gradient(135deg, rgba(0,255,255,0.15) 0%, rgba(142,68,173,0.3) 100%); display: flex; align-items: center; justify-content: center; font-size: 3rem;">🤖</div>
+                    <img src="/images/personal-ai-agent.webp" alt="Personal AI Agent" class="blog-card-img" loading="lazy">
                     <div class="blog-card-content">
                         <h3><a href="/blog/personal-ai-agent-mcp-gmail-drive">Building a Personal AI Agent with MCP — Gmail, Drive & Calendar</a></h3>
                         <div class="blog-tags">
@@ -96,11 +110,12 @@
                             <span>May 2026</span>
                             <span>10 min read</span>
                         </div>
+                        <a href="/blog/personal-ai-agent-mcp-gmail-drive" class="blog-read-more">Read Full Article →</a>
                     </div>
                 </div>
 
                 <div class="blog-card fade-in">
-                    <div style="height: 180px; background: linear-gradient(135deg, rgba(142,68,173,0.2) 0%, rgba(0,255,255,0.2) 100%); display: flex; align-items: center; justify-content: center; font-size: 3rem;">🚗</div>
+                    <img src="/images/ai-based-car-damage-detection-system.jpg" alt="Car Damage Detection" class="blog-card-img" loading="lazy">
                     <div class="blog-card-content">
                         <h3><a href="/blog/car-damage-detection-efficientnet-aws-lambda">Car Damage Detection with EfficientNet — From Training to AWS Lambda</a></h3>
                         <div class="blog-tags">
@@ -113,11 +128,12 @@
                             <span>May 2026</span>
                             <span>12 min read</span>
                         </div>
+                        <a href="/blog/car-damage-detection-efficientnet-aws-lambda" class="blog-read-more">Read Full Article →</a>
                     </div>
                 </div>
 
                 <div class="blog-card fade-in">
-                    <div style="height: 180px; background: linear-gradient(135deg, rgba(0,255,255,0.2) 0%, rgba(142,68,173,0.2) 100%); display: flex; align-items: center; justify-content: center; font-size: 3rem;">📄</div>
+                    <img src="/images/rag-based-chatbot.jpg" alt="RAG Chatbot" class="blog-card-img" loading="lazy">
                     <div class="blog-card-content">
                         <h3><a href="/blog/rag-chatbot-document-qa-faiss-langchain">Building a RAG Chatbot for Document Q&A with FAISS & LangChain</a></h3>
                         <div class="blog-tags">
@@ -130,11 +146,12 @@
                             <span>April 2026</span>
                             <span>7 min read</span>
                         </div>
+                        <a href="/blog/rag-chatbot-document-qa-faiss-langchain" class="blog-read-more">Read Full Article →</a>
                     </div>
                 </div>
 
                 <div class="blog-card fade-in">
-                    <div style="height: 180px; background: linear-gradient(135deg, rgba(142,68,173,0.25) 0%, rgba(0,255,255,0.1) 100%); display: flex; align-items: center; justify-content: center; font-size: 3rem;">☁️</div>
+                    <img src="/images/deployment.png" alt="ML Model Deployment" class="blog-card-img" loading="lazy">
                     <div class="blog-card-content">
                         <h3><a href="/blog/deploy-ml-model-aws-lambda-docker-ecr">How to Deploy Any ML Model on AWS Lambda with Docker & ECR</a></h3>
                         <div class="blog-tags">
@@ -147,11 +164,12 @@
                             <span>April 2026</span>
                             <span>9 min read</span>
                         </div>
+                        <a href="/blog/deploy-ml-model-aws-lambda-docker-ecr" class="blog-read-more">Read Full Article →</a>
                     </div>
                 </div>
 
                 <div class="blog-card fade-in">
-                    <div style="height: 180px; background: linear-gradient(135deg, rgba(0,255,255,0.15) 0%, rgba(142,68,173,0.25) 100%); display: flex; align-items: center; justify-content: center; font-size: 3rem;">🔍</div>
+                    <img src="/images/rag-powered-knowledge-systems.webp" alt="Semantic Search vs Keyword Search" class="blog-card-img" loading="lazy">
                     <div class="blog-card-content">
                         <h3><a href="/blog/semantic-search-vs-keyword-search-faiss-bm25">Semantic Search vs Keyword Search — When to Use FAISS vs BM25</a></h3>
                         <div class="blog-tags">
@@ -164,6 +182,7 @@
                             <span>March 2026</span>
                             <span>6 min read</span>
                         </div>
+                        <a href="/blog/semantic-search-vs-keyword-search-faiss-bm25" class="blog-read-more">Read Full Article →</a>
                     </div>
                 </div>
             </div>

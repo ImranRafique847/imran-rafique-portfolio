@@ -3,38 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>How I Built an AI Shopping Assistant with CRAG on AWS — Imran Rafique</title>
-    <meta name="description" content="A deep dive into building a Corrective RAG pipeline over 18,992 eBay products — from query rewriting to FAISS semantic search and deployment on AWS Elastic Beanstalk.">
-    <meta name="keywords" content="AI Shopping Assistant, CRAG, Corrective RAG, AWS Bedrock, FAISS, Semantic Search, FastAPI, Docker, Elastic Beanstalk, Imran Rafique">
+    <title>How I Built an AI Shopping Assistant with Corrective RAG on AWS — Imran Rafique</title>
+    <meta name="description" content="From a 19,000-product eBay dataset to a deployed, talk-or-type shopping assistant that never makes up a price. A deep dive into Corrective RAG, FAISS, AWS Bedrock, and cloud deployment.">
+    <meta name="keywords" content="AI Shopping Assistant, CRAG, Corrective RAG, AWS Bedrock, FAISS, Semantic Search, FastAPI, Docker, Elastic Beanstalk, Imran Rafique, RAG Tutorial">
     <meta name="author" content="Imran Rafique">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://imran-rafique.dev/blog/building-ai-shopping-assistant-crag-aws">
-    <meta property="og:title" content="How I Built an AI Shopping Assistant with CRAG on AWS">
-    <meta property="og:description" content="A deep dive into building a Corrective RAG pipeline over 18,992 eBay products on AWS.">
+    <meta property="og:title" content="How I Built an AI Shopping Assistant with Corrective RAG on AWS">
+    <meta property="og:description" content="From a 19,000-product eBay dataset to a deployed shopping assistant powered by Corrective RAG on AWS.">
     <meta property="og:type" content="article">
+    <meta property="og:image" content="https://imran-rafique.dev/images/ai-based-shopping-new.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How I Built an AI Shopping Assistant with Corrective RAG on AWS">
+    <meta name="twitter:description" content="From a 19,000-product eBay dataset to a deployed shopping assistant powered by Corrective RAG on AWS.">
+    <meta name="twitter:image" content="https://imran-rafique.dev/images/ai-based-shopping-new.png">
     <link rel="icon" href="/profile.jpg" type="image/jpeg">
     <link rel="stylesheet" href="/css/style.css">
-    <style>
-        .blog-post { padding: var(--spacing-2xl) var(--spacing-lg); max-width: 800px; margin: 0 auto; }
-        .blog-post h1 { font-size: 2.2rem; margin-bottom: var(--spacing-sm); background: linear-gradient(135deg, #fff 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .blog-post-meta { color: var(--secondary); opacity: 0.8; margin-bottom: var(--spacing-xl); font-size: 0.9rem; }
-        .blog-post h2 { font-size: 1.5rem; margin-top: var(--spacing-xl); margin-bottom: var(--spacing-md); }
-        .blog-post h3 { font-size: 1.2rem; margin-top: var(--spacing-lg); margin-bottom: var(--spacing-sm); }
-        .blog-post p { opacity: 0.9; line-height: 1.9; margin-bottom: var(--spacing-md); }
-        .blog-post ul, .blog-post ol { padding-left: var(--spacing-lg); margin-bottom: var(--spacing-md); }
-        .blog-post li { opacity: 0.9; line-height: 1.8; margin-bottom: var(--spacing-sm); }
-        .blog-post code { background: rgba(0,255,255,0.1); color: var(--secondary); padding: 2px 6px; border-radius: 4px; font-size: 0.9rem; }
-        .blog-post pre { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: var(--spacing-lg); overflow-x: auto; margin-bottom: var(--spacing-md); }
-        .blog-post pre code { background: none; padding: 0; }
-        .blog-post-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: var(--spacing-xl); }
-        .blog-post-tag { background: rgba(0,255,255,0.1); border: 1px solid var(--secondary); color: var(--secondary); padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; }
-        .blog-nav { display: flex; justify-content: space-between; margin-top: var(--spacing-2xl); padding-top: var(--spacing-xl); border-top: 1px solid var(--border); }
-        .blog-nav a { color: var(--secondary); text-decoration: none; font-weight: 600; }
-        .author-box { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: var(--spacing-xl); margin-top: var(--spacing-xl); }
-        .author-box h3 { margin-bottom: var(--spacing-sm); }
-        .author-box p { opacity: 0.85; margin-bottom: var(--spacing-sm); }
-        .author-box a { color: var(--secondary); text-decoration: none; font-weight: 600; }
-    </style>
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GC3K8NGKQ8"></script>
     <script>
@@ -43,6 +29,34 @@
       gtag('js', new Date());
       gtag('config', 'G-GC3K8NGKQ8');
     </script>
+    <style>
+        .blog-post { padding: var(--spacing-2xl) var(--spacing-lg); max-width: 820px; margin: 0 auto; }
+        .blog-post h1 { font-size: 2.2rem; margin-bottom: var(--spacing-sm); background: linear-gradient(135deg, #fff 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .blog-post-meta { color: var(--secondary); opacity: 0.8; margin-bottom: var(--spacing-md); font-size: 0.9rem; }
+        .blog-post-subtitle { font-size: 1.1rem; color: var(--text); opacity: 0.75; margin-bottom: var(--spacing-xl); line-height: 1.7; font-style: italic; }
+        .blog-post h2 { font-size: 1.5rem; margin-top: var(--spacing-xl); margin-bottom: var(--spacing-md); }
+        .blog-post h3 { font-size: 1.2rem; margin-top: var(--spacing-lg); margin-bottom: var(--spacing-sm); }
+        .blog-post p { opacity: 0.9; line-height: 1.9; margin-bottom: var(--spacing-md); }
+        .blog-post ul, .blog-post ol { padding-left: var(--spacing-lg); margin-bottom: var(--spacing-md); }
+        .blog-post li { opacity: 0.9; line-height: 1.8; margin-bottom: var(--spacing-sm); }
+        .blog-post code { background: rgba(0,255,255,0.1); color: var(--secondary); padding: 2px 6px; border-radius: 4px; font-size: 0.9rem; }
+        .blog-post pre { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: var(--spacing-lg); overflow-x: auto; margin-bottom: var(--spacing-md); font-size: 0.85rem; line-height: 1.6; }
+        .blog-post pre code { background: none; padding: 0; }
+        .blog-post-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: var(--spacing-xl); }
+        .blog-post-tag { background: rgba(0,255,255,0.1); border: 1px solid var(--secondary); color: var(--secondary); padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; }
+        .blog-hero-img { width: 100%; border-radius: var(--radius); margin-bottom: var(--spacing-xl); border: 1px solid var(--border); }
+        .blog-table { width: 100%; border-collapse: collapse; margin-bottom: var(--spacing-lg); font-size: 0.9rem; }
+        .blog-table th, .blog-table td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border); }
+        .blog-table th { color: var(--secondary); font-weight: 600; }
+        .blog-table td { opacity: 0.85; }
+        .blog-nav { display: flex; justify-content: space-between; margin-top: var(--spacing-2xl); padding-top: var(--spacing-xl); border-top: 1px solid var(--border); }
+        .blog-nav a { color: var(--secondary); text-decoration: none; font-weight: 600; }
+        .author-box { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: var(--spacing-xl); margin-top: var(--spacing-2xl); }
+        .author-box h3 { margin-bottom: var(--spacing-sm); }
+        .author-box p { opacity: 0.85; margin-bottom: var(--spacing-sm); }
+        .author-box a { color: var(--secondary); text-decoration: none; font-weight: 600; }
+        .blog-note { background: rgba(0,255,255,0.05); border-left: 3px solid var(--secondary); padding: var(--spacing-md) var(--spacing-lg); border-radius: 0 var(--radius) var(--radius) 0; margin-bottom: var(--spacing-lg); font-size: 0.9rem; opacity: 0.85; }
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -62,117 +76,176 @@
     </nav>
 
     <article class="blog-post">
-        <h1>How I Built an AI Shopping Assistant with CRAG on AWS</h1>
-        <p class="blog-post-meta">June 2026 · 8 min read · By Imran Rafique</p>
+        <h1>How I Built an AI Shopping Assistant with Corrective RAG on AWS</h1>
+        <p class="blog-post-subtitle">From a 19,000-product eBay dataset to a deployed, talk-or-type shopping assistant that never makes up a price</p>
+        <p class="blog-post-meta">By Imran Rafique · June 2026 · 12 min read</p>
         <div class="blog-post-tags">
             <span class="blog-post-tag">RAG</span>
+            <span class="blog-post-tag">CRAG</span>
             <span class="blog-post-tag">AWS Bedrock</span>
             <span class="blog-post-tag">FAISS</span>
             <span class="blog-post-tag">FastAPI</span>
             <span class="blog-post-tag">Docker</span>
+            <span class="blog-post-tag">Elastic Beanstalk</span>
         </div>
 
-        <h2>The Problem That Started It All</h2>
+        <img src="/images/ai-based-shopping-new.png" alt="AI Shopping Assistant Interface" class="blog-hero-img" loading="lazy">
 
-        <p>Imagine you're shopping online and type "show me cheap women's dresses under $50 in good condition." What happens? Most search engines return garbage — they match keywords, not intent. They don't understand that "cheap" means a price filter, "women's" means a category, and "good condition" means filtering by item state.</p>
+        <p>Most online shopping search bars are dumb in a very specific way: type "cheap red dress" and you get either zero results or five hundred, sorted by something that has nothing to do with what you actually meant. I wanted to fix that — not with a bigger search bar, but with an AI layer that actually understands what you're asking for, remembers what you said two messages ago, and never lies to you about a price.</p>
 
-        <p>I wanted to fix this. Not with a simple chatbot that hallucinates product details, but with a genuinely intelligent system that searches real products, understands context, and never makes up prices or descriptions.</p>
+        <p>So I built an AI Shopping Assistant on top of a real dataset of 18,992 eBay fashion listings. You can type to it or talk to it. You can say "show me women's dresses under $50 in good condition" and it filters by real price and real condition, not just keywords. You can follow up with "anything cheaper?" and it remembers the conversation. And critically — it is built on Corrective RAG (CRAG), which means it double-checks its own retrieval before it ever lets the language model open its mouth.</p>
 
-        <p>So I built an AI Shopping Assistant powered by <strong>Corrective RAG (CRAG)</strong> — and deployed it live on AWS for under $11/month.</p>
+        <p>This post walks through exactly how it works, why I chose Corrective RAG over plain RAG, the full AWS architecture behind it, and what it cost to run.</p>
 
-        <h2>Why Corrective RAG? Because Regular RAG Isn't Enough</h2>
+        <div class="blog-note">
+            <strong>Note:</strong> This project uses publicly available eBay-style product listings purely as a learning and practice exercise in building production-grade RAG systems. It is not built to compete with, replace, or imitate eBay or any other marketplace — it's a personal engineering project to demonstrate applied AI and cloud deployment skills.
+        </div>
 
-        <p>If you've worked with RAG (Retrieval-Augmented Generation), you know the dirty secret: retrieval quality makes or breaks the system. If your vector search returns irrelevant documents, your LLM generates confident but wrong answers.</p>
+        <h2>What the Assistant Can Actually Do</h2>
 
-        <p>CRAG fixes this by adding a <strong>correction layer</strong> between retrieval and generation. Before the LLM sees the results, the system evaluates: "Are these results actually relevant to what the user asked?" If not, it rewrites the query and tries again.</p>
-
-        <p>Here's my 4-step pipeline:</p>
-
-        <ol>
-            <li><strong>Intent Detection</strong> — Is the user saying hello, or searching for a product? This simple check saves unnecessary API calls and costs.</li>
-            <li><strong>Query Rewriting</strong> — The LLM corrects typos ("womens drss" → "women casual dress"), expands abbreviations, and extracts structured attributes like gender, color, size, and price range.</li>
-            <li><strong>Vector Search + Filters</strong> — FAISS performs cosine similarity search across 18,992 products, then post-retrieval filters narrow results by price, condition, and category.</li>
-            <li><strong>Honest Generation</strong> — The LLM generates a response using ONLY the retrieved products. It never hallucinates prices or invents product details.</li>
-        </ol>
-
-        <h2>18,992 Real Products — The Data Pipeline</h2>
-
-        <p>I didn't use fake data. I scraped 18,992 real eBay USA fashion products across 40 categories using Playwright — a headless browser automation tool that handles JavaScript-rendered pages.</p>
-
-        <p>Each product record includes: name, price, condition (new/used), seller info, product images, eBay URL, and item specifics. This is real inventory you can actually buy.</p>
-
-        <p>The embedding pipeline runs on an EC2 c7i-flex.large instance:</p>
-
-        <pre><code>Product Text → Amazon Titan Embeddings V2 → 1024-dim Vector → FAISS IndexFlatIP</code></pre>
-
-        <p>The resulting index and metadata JSON are uploaded to S3. Total processing time: about 2 hours for all 18,992 products. One-time cost: ~$0.50.</p>
-
-        <h2>The Secret Sauce: Smart Post-Retrieval Filters</h2>
-
-        <p>Here's what most RAG tutorials miss — semantic search alone isn't enough for e-commerce. A user who says "red shoes under $30" needs three things: semantic relevance (shoes), attribute matching (red), and numeric filtering (under $30).</p>
-
-        <p>After FAISS returns the top-K semantically similar products, I apply:</p>
-
-        <ul>
-            <li><strong>Category filter</strong> — match shoes, bags, dresses, trousers based on extracted intent</li>
-            <li><strong>Price filter</strong> — numeric comparison ("under $50", "between $20-$40")</li>
-            <li><strong>Condition filter</strong> — new only, used only, or both</li>
-            <li><strong>Deduplication</strong> — remove duplicate listings by URL and product name</li>
-        </ul>
-
-        <p>This hybrid approach (semantic search + structured filters) gives users exactly what they asked for.</p>
-
-        <h2>6-Turn Conversation Memory</h2>
-
-        <p>Shopping isn't a single query — it's a conversation. A user might say "show me women's dresses" and then follow up with "anything cheaper?" or "do you have that in blue?"</p>
-
-        <p>The assistant maintains 6 turns of conversation history. The query rewriter uses this context to understand follow-up questions. "Anything cheaper?" gets rewritten to "women casual dress under [previous price]" — no information is lost.</p>
-
-        <h2>Deploying on AWS — The Full Stack</h2>
-
-        <p>The entire application is containerized and deployed on AWS:</p>
-
-        <ul>
-            <li><strong>FastAPI</strong> — serves the chat API and static frontend</li>
-            <li><strong>Docker</strong> — containerizes the entire application</li>
-            <li><strong>Amazon ECR</strong> — stores the Docker image</li>
-            <li><strong>Elastic Beanstalk</strong> — manages EC2, load balancer, and health checks</li>
-            <li><strong>Amazon S3</strong> — stores FAISS index, metadata, and product data</li>
-            <li><strong>AWS Bedrock</strong> — provides Titan Embeddings and Nova Micro LLM</li>
-            <li><strong>IAM Roles</strong> — no hardcoded credentials, everything uses role-based auth</li>
-        </ul>
-
-        <p>Deployment is a single command pipeline: <code>docker build → docker push to ECR → deploy on Elastic Beanstalk</code>.</p>
-
-        <h2>What It Costs to Run</h2>
-
-        <p>Everyone asks this. Here's the honest breakdown:</p>
-
-        <ul>
-            <li>Elastic Beanstalk (t3.micro): ~$8/month</li>
-            <li>S3 storage (100MB): ~$0.01/month</li>
-            <li>ECR storage: ~$0.01/month</li>
-            <li>Bedrock (10,000 queries): ~$3/month</li>
-            <li><strong>Total: ~$11/month</strong> for a production AI application</li>
-        </ul>
-
-        <p>That's less than a Netflix subscription for a fully deployed AI shopping assistant.</p>
-
-        <h2>What I Learned</h2>
+        <p>Before getting into the architecture, here's the experience from the user's side — because that's the part that actually matters first.</p>
 
         <ol>
-            <li><strong>CRAG beats vanilla RAG every time</strong> — the query rewriting step alone improved relevant retrievals by 40%+</li>
-            <li><strong>You don't always need a managed vector database</strong> — FAISS with flat index works perfectly for under 100K documents. No Pinecone fees needed.</li>
-            <li><strong>Post-retrieval filters are non-negotiable for e-commerce</strong> — semantic similarity doesn't understand "$30 means thirty dollars"</li>
-            <li><strong>AWS Bedrock simplifies everything</strong> — no API keys, no rate limit headaches, just IAM roles and SDK calls</li>
-            <li><strong>Honest generation builds trust</strong> — instructing the LLM to never hallucinate prices keeps users coming back</li>
+            <li><strong>Type or talk</strong> — there's a microphone button right in the chat box. Tap it, speak naturally, and your voice is transcribed and sent just like a typed message, using the browser's built-in speech recognition.</li>
+            <li><strong>Budget-aware search</strong> — "under $30," "between $20 and $40," "good condition only" — these aren't just keywords floating in a query, they get extracted and applied as real filters against actual product prices and conditions.</li>
+            <li><strong>Conversation memory</strong> — the assistant keeps the last few turns of context, so "do you have that in blue?" or "anything cheaper?" works the way it would with a human shop assistant.</li>
+            <li><strong>Honest answers, always</strong> — the model is only allowed to talk about products that were actually retrieved from the dataset. No invented prices, no invented items, no confidently wrong answers.</li>
+            <li><strong>A clean, familiar interface</strong> — a ChatGPT-style chat feed with product cards, responsive on both desktop and mobile.</li>
         </ol>
 
-        <p>Try the live demo: <a href="https://d3uu35mv5l6o1c.cloudfront.net/" target="_blank" style="color: var(--secondary);">AI Shopping Assistant</a> | View source: <a href="https://github.com/ImranRafique847/AI-Based-Shopping-Assistent" target="_blank" style="color: var(--secondary);">GitHub</a></p>
+        <p>That last bullet point — "honest answers, always" — is the whole reason this project exists. Let me explain why that's harder than it sounds.</p>
+
+        <h2>Why Corrective RAG Instead of Plain RAG</h2>
+
+        <p>Standard Retrieval-Augmented Generation (RAG) has a quiet flaw that doesn't show up until you actually use it under real conditions: it retrieves some documents, hands them to the language model, and trusts that the retrieval was good. If the retrieval was actually bad — wrong category, stale results, an embedding mismatch — the language model usually doesn't notice. It just generates a fluent, confident answer based on garbage. That's not a hallucination in the classic sense; it's worse, because it sounds grounded.</p>
+
+        <p>Corrective RAG (CRAG) inserts a checkpoint exactly where that failure happens. Before the language model is allowed to generate a final answer, the system asks a very direct question: are these retrieved results actually relevant to what the user asked? If the answer is no, the query gets rewritten and the search runs again — the model never gets the chance to confidently narrate a bad retrieval as fact.</p>
+
+        <p>For a shopping assistant specifically, this matters a lot. If someone asks for "men's running shoes under $40" and the vector search pulls back a women's handbag because the embedding space got a little confused, a plain RAG system might still describe that handbag as a great match. CRAG catches that before it reaches the user.</p>
+
+        <h2>The Workflow: From Query to Grounded Answer</h2>
+
+        <p>Here is the exact five-step pipeline that runs every time someone sends a message, whether it came in by voice or by text:</p>
+
+        <h3>1. Intent Detection</h3>
+
+        <p>The very first thing that happens is a cheap, fast classification: is this message a greeting or small talk, or is it an actual product search? There's no point running a full vector search pipeline on "hi there" — that gets a conversational reply immediately, while anything that looks like a real query moves forward.</p>
+
+        <h3>2. Query Rewriting</h3>
+
+        <p>This step runs the user's raw message through Amazon Nova Micro to clean it up before it ever touches the search index. Typos get fixed, abbreviations get expanded, and key attributes — gender, color, size, price ceiling, condition — get explicitly pulled out. If there's conversation history, follow-up questions like "anything cheaper?" get resolved against the previous turn. A query like "show me cheap womens dress" effectively becomes a structured, searchable version of itself: women's casual dress, budget-friendly.</p>
+
+        <h3>3. FAISS Vector Search</h3>
+
+        <p>The rewritten query is converted into a 1024-dimensional embedding using Amazon Titan Embeddings V2, and that vector is compared by cosine similarity against the embeddings of all 18,992 products in the dataset, using FAISS (Facebook AI Similarity Search) as the index. FAISS was the right call here specifically because the dataset is under 100,000 documents — a flat, in-memory FAISS index is simpler to deploy and reason about than spinning up a managed vector database for a dataset this size.</p>
+
+        <h3>4. Post-Retrieval Filters</h3>
+
+        <p>Semantic similarity alone isn't enough for shopping — a customer who says "under $50" means it, literally. So after the vector search returns its top candidates, hard filters are applied on top: category (shoes, bags, dresses, trousers, etc.), price ceiling or range, condition (new vs. used), and deduplication so the same listing doesn't show up twice under slightly different titles.</p>
+
+        <h3>5. The Relevance Check, and Honest Generation</h3>
+
+        <p>This is the actual "corrective" part of CRAG. The filtered results are evaluated for relevance before generation happens. If they don't hold up, the pipeline loops back to query rewriting and tries again with a refined version of the query. Once results pass that check, Amazon Nova Micro generates a short, honest response — two to three sentences — that only references what was actually retrieved, with real prices pulled straight from the dataset. No filling in gaps with plausible-sounding fiction.</p>
+
+        <img src="/images/ai-based-shopping-assistance-blog-1.png" alt="Corrective RAG Pipeline Diagram" class="blog-hero-img" loading="lazy">
+
+        <h2>The Full AWS Architecture</h2>
+
+        <p>Here's where the project moves from "an interesting RAG pipeline" to "a deployed application someone can actually use." I split the build into five phases: scraping and collecting the data, generating embeddings, building the application itself, containerizing and deploying it, and finally the live user flow with logging and permissions wired in.</p>
+
+        <h3>Phase 1 — Data Collection</h3>
+
+        <p>The dataset wasn't synthetic — I built a Playwright-based scraper that crawled real eBay fashion listings across 40 categories spanning men's, women's, and kids' clothing, shoes, and bags, capturing product name, price, condition, seller, images, URL, and item specifics. The raw output (18,992 products as JSON) was uploaded to an S3 bucket as the single source of truth for everything downstream.</p>
+
+        <h3>Phase 2 — Embedding Generation (a one-time batch job)</h3>
+
+        <p>Turning 18,992 products into searchable vectors is a burst of compute you don't want running permanently, so this step lives on a temporary EC2 c7i-flex.large instance that spins up, downloads the raw JSON from S3, calls Amazon Titan Embeddings V2 to embed every product description into a 1024-dimensional vector, builds the FAISS index plus its metadata file, uploads both back to S3, and then terminates. One-time cost: roughly $0.50.</p>
+
+        <h3>Phase 3 — The Application Itself</h3>
+
+        <p>The actual FastAPI application is where the CRAG pipeline lives. On startup, it loads the FAISS index and metadata straight from S3 into memory. A lightweight HTML/CSS/JS frontend (no framework, intentionally) sends user input — typed or voice-transcribed — to a <code>/chat</code> endpoint, which runs the full intent detection → query rewriting → FAISS search → filtering → generation pipeline and returns a JSON response with text and matching product cards.</p>
+
+        <h3>Phase 4 — Containerization and Deployment</h3>
+
+        <p>The whole FastAPI app is packaged into a Docker container defined by a single Dockerfile. From there, it's a standard container deployment pipeline: build the image, push it to Amazon ECR (Elastic Container Registry), and deploy it through AWS Elastic Beanstalk using a Dockerrun.aws.json config, which provisions and manages the underlying EC2 instance, load balancer, and health checks automatically. This is the part of the build that turns "code on my laptop" into "a URL anyone can open."</p>
+
+        <h3>Phase 5 — User Flow and Cross-Cutting Concerns</h3>
+
+        <p>On the live system, a user's browser talks to a public Beanstalk endpoint, which routes into the running container. The container assumes an IAM role scoped specifically to S3 and Bedrock access — no hardcoded AWS keys anywhere in the codebase. Logs and metrics flow into CloudWatch, which is what you'd actually want if you were running this for real users rather than just a portfolio demo.</p>
+
+        <img src="/images/ai-based-shopping-assistance-blog-2.png" alt="Full AWS Architecture Diagram" class="blog-hero-img" loading="lazy">
+
+        <h2>AWS Services at a Glance</h2>
+
+        <table class="blog-table">
+            <thead>
+                <tr><th>Service</th><th>Role in the Project</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Elastic Beanstalk</td><td>Hosts the Docker container; manages EC2, load balancing, and health checks</td></tr>
+                <tr><td>EC2 (t3.micro)</td><td>Runs the container inside Elastic Beanstalk</td></tr>
+                <tr><td>Amazon S3</td><td>Stores the FAISS index, metadata, raw eBay data, and Docker build artifacts</td></tr>
+                <tr><td>Amazon ECR</td><td>Docker container image registry</td></tr>
+                <tr><td>Bedrock – Titan Embeddings V2</td><td>Converts product text and queries into 1024-dim vectors</td></tr>
+                <tr><td>Bedrock – Amazon Nova Micro</td><td>Handles query rewriting, intent detection, and response generation</td></tr>
+                <tr><td>EC2 (c7i-flex.large)</td><td>One-time job that generates the FAISS embeddings, then terminates</td></tr>
+                <tr><td>IAM</td><td>Scoped roles and permissions for every service — no hardcoded credentials</td></tr>
+                <tr><td>CloudWatch</td><td>Logs and monitoring for the running application</td></tr>
+            </tbody>
+        </table>
+
+        <h2>Tech Stack Summary</h2>
+
+        <table class="blog-table">
+            <thead>
+                <tr><th>Layer</th><th>Technology</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Backend</td><td>Python, FastAPI, Uvicorn</td></tr>
+                <tr><td>Vector Search</td><td>FAISS (Facebook AI Similarity Search)</td></tr>
+                <tr><td>Embeddings</td><td>Amazon Titan Embeddings V2 (1024 dimensions)</td></tr>
+                <tr><td>LLM</td><td>Amazon Nova Micro, via AWS Bedrock</td></tr>
+                <tr><td>Frontend</td><td>Vanilla HTML, CSS, JavaScript with native browser speech recognition</td></tr>
+                <tr><td>Containerization</td><td>Docker</td></tr>
+                <tr><td>Cloud / Deployment</td><td>AWS — Elastic Beanstalk, S3, ECR, Bedrock, EC2</td></tr>
+            </tbody>
+        </table>
+
+        <h2>What It Actually Costs to Run</h2>
+
+        <p>One of the things I wanted to prove to myself with this project was that you don't need a five-figure cloud bill to run a real AI application with a real vector index and a real LLM in the loop. Here's the actual monthly cost breakdown:</p>
+
+        <table class="blog-table">
+            <thead>
+                <tr><th>Usage</th><th>Monthly Cost</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Elastic Beanstalk (t3.micro)</td><td>~$8</td></tr>
+                <tr><td>S3 storage (~100MB)</td><td>~$0.01</td></tr>
+                <tr><td>ECR storage</td><td>~$0.01</td></tr>
+                <tr><td>Bedrock (10,000 queries)</td><td>~$3</td></tr>
+                <tr><td><strong>Total</strong></td><td><strong>~$11 / month</strong></td></tr>
+            </tbody>
+        </table>
+
+        <h2>What I Learned Building This</h2>
+
+        <ol>
+            <li><strong>Query rewriting carries more weight than the vector search itself.</strong> Adding the rewriting step before retrieval was the single change that improved relevant results the most — raw user queries are messier than you'd expect, and cleaning them up before embedding matters more than tuning the search index.</li>
+            <li><strong>You don't always need a managed vector database.</strong> For a dataset under roughly 100,000 documents, a flat, in-memory FAISS index loaded from S3 on startup is simpler, cheaper, and fast enough — no need to reach for a hosted vector DB by default.</li>
+            <li><strong>Correctness has to be designed in, not bolted on.</strong> The relevance check in CRAG isn't an afterthought — it's the entire reason the assistant can be trusted to talk about real prices instead of inventing them.</li>
+            <li><strong>Small, focused models can carry a surprising amount of the pipeline.</strong> Amazon Nova Micro handles intent detection, query rewriting, and final response generation — three distinct jobs — at a fraction of the cost of a larger model, because none of those jobs actually require heavyweight reasoning.</li>
+        </ol>
+
+        <h2>Try It Yourself</h2>
+
+        <p>The live demo, the full architecture diagram, the complete source code, and step-by-step deployment instructions are all on my GitHub — every tool, technique, and configuration step used in this project is documented there, end to end.</p>
+
+        <p><a href="https://d3uu35mv5l6o1c.cloudfront.net/" target="_blank" style="color: var(--secondary); font-weight: 600;">🔴 Try the Live Demo</a> &nbsp;|&nbsp; <a href="https://github.com/ImranRafique847/AI-Based-Shopping-Assistent" target="_blank" style="color: var(--secondary); font-weight: 600;">View Source on GitHub</a></p>
 
         <div class="author-box">
             <h3>About the Author</h3>
-            <p>I'm <strong>Imran Rafique</strong>, an AI/ML Engineer based in Lahore, Pakistan. I build end-to-end AI systems that solve real-world business problems — from intelligent chatbots and autonomous agents to scalable cloud deployments.</p>
+            <p>I'm <strong>Imran Rafique</strong>, an AI/ML Engineer based in Lahore, Pakistan. I build end-to-end AI systems that solve real-world business problems — from intelligent chatbots and autonomous agents to scalable cloud deployments on AWS and GCP.</p>
             <p>I'm also an AWS Community Builder (AI/ML Track), actively contributing RAG-based applications and agentic workflows using Amazon Bedrock.</p>
             <p><strong>Services I offer:</strong></p>
             <ul style="padding-left: 1.5rem; margin-bottom: 1rem;">
