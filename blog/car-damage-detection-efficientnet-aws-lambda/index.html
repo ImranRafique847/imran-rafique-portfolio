@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why My Car Damage Detection Model Only Hits 72% Accuracy — Imran Rafique</title>
+    <meta name="description" content="What the confusion matrix taught me that the accuracy score didn't. A deep dive into EfficientNet transfer learning, overfitting, class imbalance, and deploying an image classifier on AWS Lambda.">
+    <meta name="keywords" content="Car Damage Detection, EfficientNet, Transfer Learning, PyTorch, Confusion Matrix, AWS Lambda, Computer Vision, Image Classification, Imran Rafique">
+    <meta name="author" content="Imran Rafique">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://imran-rafique.dev/blog/car-damage-detection-efficientnet-aws-lambda">
+    <meta property="og:title" content="Why My Car Damage Detection Model Only Hits 72% Accuracy">
+    <meta property="og:description" content="What the confusion matrix taught me that the accuracy score didn't.">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="https://imran-rafique.dev/images/ai-based-car-damage-detection-system.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Why My Car Damage Detection Model Only Hits 72% Accuracy">
+    <meta name="twitter:description" content="What the confusion matrix taught me that the accuracy score didn't.">
+    <meta name="twitter:image" content="https://imran-rafique.dev/images/ai-based-car-damage-detection-system.jpg">
+    <meta name="msvalidate.01" content="1087FD9E704001B718C346110AB7E219">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "Why My Car Damage Detection Model Only Hits 72% Accuracy",
+      "url": "https://imran-rafique.dev/blog/car-damage-detection-efficientnet-aws-lambda",
+      "image": "https://imran-rafique.dev/images/ai-based-car-damage-detection-system.jpg",
+      "description": "A deep dive into EfficientNet transfer learning, confusion matrices, overfitting, and deploying image classification on AWS Lambda.",
+      "author": {
+        "@type": "Person",
+        "name": "Imran Rafique",
+        "url": "https://imran-rafique.dev"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Imran Rafique",
+        "url": "https://imran-rafique.dev"
+      },
+      "datePublished": "2026-06-27"
+    }
+    </script>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GC3K8NGKQ8"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-GC3K8NGKQ8');
+    </script>
+    <style>
+        .blog-post { padding: var(--spacing-2xl) var(--spacing-lg); max-width: 820px; margin: 0 auto; }
+        .blog-post h1 { font-size: 2.2rem; margin-bottom: var(--spacing-sm); background: linear-gradient(135deg, #fff 0%, var(--secondary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.2; }
+        .blog-post-meta { color: var(--secondary); opacity: 0.8; margin-bottom: var(--spacing-md); font-size: 0.9rem; }
+        .blog-post-subtitle { font-size: 1.1rem; color: var(--text); opacity: 0.75; margin-bottom: var(--spacing-xl); line-height: 1.7; font-style: italic; }
+        .blog-post h2 { font-size: 1.5rem; margin-top: var(--spacing-xl); margin-bottom: var(--spacing-md); }
+        .blog-post h3 { font-size: 1.2rem; margin-top: var(--spacing-lg); margin-bottom: var(--spacing-sm); }
+        .blog-post p { opacity: 0.9; line-height: 1.9; margin-bottom: var(--spacing-md); }
+        .blog-post ul, .blog-post ol { padding-left: var(--spacing-lg); margin-bottom: var(--spacing-md); }
+        .blog-post li { opacity: 0.9; line-height: 1.8; margin-bottom: var(--spacing-sm); }
+        .blog-post code { background: rgba(0,255,255,0.1); color: var(--secondary); padding: 2px 6px; border-radius: 4px; font-size: 0.9rem; }
+        .blog-post pre { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: var(--spacing-lg); overflow-x: auto; margin-bottom: var(--spacing-md); font-size: 0.85rem; line-height: 1.6; }
+        .blog-post pre code { background: none; padding: 0; }
+        .blog-post-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: var(--spacing-xl); }
+        .blog-post-tag { background: rgba(0,255,255,0.1); border: 1px solid var(--secondary); color: var(--secondary); padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; }
+        .blog-hero-img { width: 100%; border-radius: var(--radius); margin-bottom: var(--spacing-xl); border: 1px solid var(--border); }
+        .blog-fig { width: 100%; border-radius: var(--radius); margin: var(--spacing-lg) 0 var(--spacing-sm) 0; border: 1px solid var(--border); }
+        .fig-caption { font-size: 0.85rem; color: var(--text); opacity: 0.6; text-align: center; margin-bottom: var(--spacing-xl); font-style: italic; }
+        .blog-table { width: 100%; border-collapse: collapse; margin-bottom: var(--spacing-lg); font-size: 0.9rem; }
+        .blog-table th, .blog-table td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border); }
+        .blog-table th { color: var(--secondary); font-weight: 600; }
+        .blog-table td { opacity: 0.85; }
+        .blog-nav { display: flex; justify-content: space-between; margin-top: var(--spacing-2xl); padding-top: var(--spacing-xl); border-top: 1px solid var(--border); }
+        .blog-nav a { color: var(--secondary); text-decoration: none; font-weight: 600; }
+        .author-box { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: var(--spacing-xl); margin-top: var(--spacing-2xl); }
+        .author-box h3 { margin-bottom: var(--spacing-sm); }
+        .author-box p { opacity: 0.85; margin-bottom: var(--spacing-sm); }
+        .author-box a { color: var(--secondary); text-decoration: none; font-weight: 600; }
+        .blog-note { background: rgba(0,255,255,0.05); border-left: 3px solid var(--secondary); padding: var(--spacing-md) var(--spacing-lg); border-radius: 0 var(--radius) var(--radius) 0; margin-bottom: var(--spacing-lg); font-size: 0.9rem; opacity: 0.85; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Imran Rafique</div>
+            <ul class="nav-menu">
+                <li><a href="/" class="nav-link">Home</a></li>
+                <li><a href="/about" class="nav-link">About</a></li>
+                <li><a href="/services" class="nav-link">Services</a></li>
+                <li><a href="/projects" class="nav-link">Projects & Experience</a></li>
+                <li><a href="/skills" class="nav-link">Skills & Certification</a></li>
+                <li><a href="/blog" class="nav-link active">Blog</a></li>
+                <li><a href="/contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <article class="blog-post">
+        <h1>Why My Car Damage Detection Model Only Hits 72% Accuracy</h1>
+        <p class="blog-post-subtitle">And what the confusion matrix taught me that the accuracy score didn't</p>
+        <p class="blog-post-meta">By Imran Rafique · June 2026 · 10 min read</p>
+        <div class="blog-post-tags">
+            <span class="blog-post-tag">Computer Vision</span>
+            <span class="blog-post-tag">EfficientNet</span>
+            <span class="blog-post-tag">Transfer Learning</span>
+            <span class="blog-post-tag">PyTorch</span>
+            <span class="blog-post-tag">AWS Lambda</span>
+            <span class="blog-post-tag">MLOps</span>
+        </div>
+
+        <img src="/images/ai-based-car-damage-detection-system.jpg" alt="AI Car Damage Detection System" class="blog-hero-img" loading="lazy">
+
+        <p>Most project write-ups lead with the win. I want to lead with the number that I almost didn't publish: my car damage classifier's best validation accuracy is 72.2%, on a genuinely hard, three-way distinction. That's not a number I'd put on a billboard — but it's a number I can fully explain, and that turned out to matter more than the number itself.</p>
+
+        <p>The task: given a photo of a damaged car, classify the severity of the damage as minor, moderate, or severe. It's a real use case — insurance claim triage, marketplace listings, repair-shop intake — and it's the kind of problem that looks deceptively simple until you actually try to draw a hard line between "minor" and "moderate" damage on a dented door panel.</p>
+
+        <p>This post is about what the accuracy number hides, what the confusion matrix reveals instead, and why the fix that actually worked wasn't a bigger model — it was a more constrained one.</p>
+
+        <h2>The Setup</h2>
+
+        <p>I built this on EfficientNet-B0, pretrained on ImageNet, with a custom classification head: dropout, a 256-unit dense layer with ReLU, more dropout, then a final linear layer over three classes. Training followed a two-phase strategy — first freezing the entire EfficientNet feature extractor and training only the new head for 30 epochs, then unfreezing just the last three feature blocks and fine-tuning at a lower learning rate for up to 20 more epochs, with early stopping (patience of 10) watching validation accuracy.</p>
+
+        <p>The dataset was drawn from 1,613 training images and 478 validation images, using only three of the four available classes — minor, moderate, and severe damage — excluding the "no damage" class from this iteration, since grading damage severity is the harder and more interesting problem. To handle class imbalance, training used a weighted random sampler that oversamples less frequent classes so every batch sees a roughly even mix, plus a training-time augmentation pipeline (random crops, flips, rotation, color jitter, and small affine shifts).</p>
+
+        <table class="blog-table">
+            <thead>
+                <tr><th>Class</th><th>Training Images</th><th>Validation Images</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Minor Damage</td><td>452</td><td>82</td></tr>
+                <tr><td>Moderate Damage</td><td>463</td><td>75</td></tr>
+                <tr><td>Severe Damage</td><td>468</td><td>91</td></tr>
+            </tbody>
+        </table>
+
+        <h2>The Honest Number</h2>
+
+        <p>Here's a training curve from one of my earlier runs on this same architecture, which I'm including precisely because it failed instructively. Training accuracy climbs steadily to around 78%. Validation accuracy does something very different — it plateaus almost immediately around 35%, and barely moves for the rest of training, even past the point where fine-tuning begins.</p>
+
+        <img src="/blog/Car Demaged Blog/01-Training-History.png" alt="Training History — Overfitting curve showing train vs validation accuracy gap" class="blog-fig" loading="lazy">
+        <p class="fig-caption">Figure 1 — A training run on an earlier configuration, showing the classic overfitting signature: the gap between train and validation curves widens steadily.</p>
+
+        <p>This is a textbook overfitting curve, and I want to be upfront about it rather than crop it out of the post. A gap this wide, this early, with validation loss climbing rather than falling after fine-tuning starts, means the model is memorizing the training set faster than it's learning anything that generalizes — unsurprising with roughly 1,400 training images and a network with millions of parameters.</p>
+
+        <p>The fixes that closed most of that gap in later runs were narrower, not bigger: freeze everything except the last few feature blocks during fine-tuning instead of unfreezing the whole network, add a weighted sampler so the model can't shortcut its way to a good loss by favoring the majority class, add early stopping so training halts at the best validation checkpoint instead of running to a fixed epoch count, and add real augmentation so the model can't simply memorize a few hundred exact images per class. That combination is what produced the 72.2% best validation accuracy and the confusion matrix below — a meaningfully smaller train/validation gap than the run shown in Figure 1.</p>
+
+        <h2>What the Confusion Matrix Told Me That Accuracy Didn't</h2>
+
+        <p>A single accuracy number flattens everything into one digit, and in this case that digit undersells what the model actually learned. The confusion matrix tells a much more specific, and more useful, story.</p>
+
+        <img src="/blog/Car Demaged Blog/02-Confusion-Matrix.png" alt="Confusion Matrix on validation set — Minor, Moderate, Severe damage classes" class="blog-fig" loading="lazy">
+        <p class="fig-caption">Figure 2 — Confusion matrix on the validation set (Minor, Moderate, Severe damage)</p>
+
+        <p>Look at where the errors actually land. Minor damage gets confused with Moderate damage 17 times, and almost never with Severe (just 2 times). Severe gets confused with Moderate 11 times, and almost never with Minor (just 1 time). The model's mistakes are concentrated almost entirely between neighboring classes — it essentially never confuses the two extremes.</p>
+
+        <p>That pattern matters, because it isn't random noise. It's the same kind of disagreement a human would have looking at the same photos. A dented door panel that's borderline between "minor" and "moderate" is a genuinely ambiguous case, not a model failure — and the sample images make that obvious at a glance.</p>
+
+        <img src="/blog/Car Demaged Blog/03-Sample-Images-Each-Class.png" alt="Sample images from each damage class — Minor, Moderate, Severe, No Damage" class="blog-fig" loading="lazy">
+        <p class="fig-caption">Figure 3 — Sample images from each of the original four classes. Several "Minor" and "Moderate" examples are genuinely close calls even to a human eye.</p>
+
+        <h2>Why This Matters More Than the Accuracy Score</h2>
+
+        <p>Treating damage severity as unrelated categories — the way a standard softmax classifier does — throws away the one piece of structure that actually makes this problem tractable: the classes are ordered. "Severe" is not just "different" from "Minor," it's further along the same scale. A categorical cross-entropy loss penalizes a Minor-predicted-as-Severe mistake exactly as much as a Minor-predicted-as-Moderate mistake, even though the second is a far more reasonable error to make. The rebuilt model almost never makes the first kind of mistake — which tells me it implicitly learned the ordering anyway, just without being told it exists or being rewarded for respecting it.</p>
+
+        <p>The next highest-leverage change I haven't made yet wouldn't be a bigger backbone or more aggressive augmentation — it would be reframing this as an ordinal regression problem outright, where the loss function itself penalizes distant misclassifications more than adjacent ones. That one framing change would directly target the exact failure pattern still visible in the confusion matrix above.</p>
+
+        <h2>Other Changes I'd Still Make</h2>
+
+        <ol>
+            <li><strong>More data, especially for the smaller classes.</strong> At roughly 450–470 images per damage class, the weighted sampler helps balance what the model sees per batch, but it can't manufacture visual variety that simply isn't in the dataset.</li>
+            <li><strong>Push the ordinal-regression framing through</strong>, rather than relying on the model to discover the ordering implicitly through cross-entropy alone.</li>
+            <li><strong>A confidence threshold with human review</strong> for borderline predictions, rather than forcing a hard decision on every image — for an insurance or claims use case, an honest "uncertain, escalate to a human" is far more valuable than a confident wrong answer.</li>
+        </ol>
+
+        <h2>The Deployment Side</h2>
+
+        <p>Separately from the modeling story, the deployment was its own useful lesson. The currently live model is packaged in a Docker container and deployed on AWS Lambda behind API Gateway, rather than a continuously running server — a sensible choice for a low-traffic inference endpoint where paying for an always-on EC2 instance doesn't make sense.</p>
+
+        <p>The interesting constraint was Lambda's request/response model: API Gateway has trouble with binary payloads, so the frontend sends the uploaded image as a base64-encoded string inside a JSON body instead of a raw file upload. The Lambda function loads the TensorFlow model lazily on the first request rather than at container startup, which keeps cold starts from blocking on model loading — though the very first request after a period of inactivity still takes 30–45 seconds while a fresh container spins up and loads the model weights into memory. Once a container is warm, subsequent requests return in 2–3 seconds.</p>
+
+        <table class="blog-table">
+            <thead>
+                <tr><th>Component</th><th>Role</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>AWS Lambda</td><td>Runs the containerized inference function, 3008MB memory, 120s timeout</td></tr>
+                <tr><td>Amazon ECR</td><td>Stores the Docker container image</td></tr>
+                <tr><td>API Gateway</td><td>Public HTTP endpoint, routes requests to Lambda</td></tr>
+                <tr><td>TensorFlow / PyTorch (CPU)</td><td>Lazy-loaded model for inference</td></tr>
+                <tr><td>Base64 JSON</td><td>Image transport format, avoiding API Gateway binary encoding issues</td></tr>
+            </tbody>
+        </table>
+
+        <h2>What I'd Tell Someone Starting a Similar Project</h2>
+
+        <ol>
+            <li><strong>Look at the confusion matrix before you judge a model by its accuracy score.</strong> A 72% accuracy that's wrong in a structured, explainable way is more useful — and more fixable — than an 85% accuracy you can't explain.</li>
+            <li><strong>If your classes have a natural order, treat them as ordered.</strong> Standard categorical classification throws that signal away for free, and the confusion matrix will quietly show you the cost.</li>
+            <li><strong>A training/validation gap that widens steadily across epochs is a dataset-size and freezing problem</strong> before it's an architecture problem. Partial unfreezing, early stopping, and a balanced sampler closed most of that gap here without changing the backbone at all.</li>
+            <li><strong>Ambiguous ground truth is real.</strong> Some of these images would get different labels from different human annotators — a model can't beat a ceiling that the labels themselves don't clear.</li>
+            <li><strong>Be honest about what's actually deployed versus what's just been trained.</strong> It's tempting to write up the better run as if it were live — the more useful post is the one that says which is which.</li>
+        </ol>
+
+        <h2>Try It Yourself</h2>
+
+        <p>The live demo, full training code, the confusion matrix and training curves shown above, and the AWS Lambda deployment guide are all on GitHub — including the parts that didn't go perfectly, because I think that's the more useful version of this project to share.</p>
+
+        <p>
+            <a href="https://a3m6jbr82l.execute-api.us-east-1.amazonaws.com/" target="_blank" style="color: var(--secondary); font-weight: 600;">🔴 Try the Live Demo</a>
+            &nbsp;|&nbsp;
+            <a href="https://github.com/ImranRafique847/AI-Demaged-Car-Classifications" target="_blank" style="color: var(--secondary); font-weight: 600;">View Source on GitHub</a>
+        </p>
+
+        <div class="author-box">
+            <h3>About the Author</h3>
+            <p>I'm <strong>Imran Rafique</strong>, an AI/ML Engineer based in Lahore, Pakistan. I build end-to-end AI systems that solve real-world business problems — from intelligent chatbots and autonomous agents to scalable cloud deployments on AWS and GCP.</p>
+            <p>I'm also an AWS Community Builder (AI/ML Track), actively contributing RAG-based applications and agentic workflows using Amazon Bedrock.</p>
+            <p><strong>Services I offer:</strong></p>
+            <ul style="padding-left: 1.5rem; margin-bottom: 1rem;">
+                <li>AI Chatbot & Virtual Assistant Development</li>
+                <li>Custom AI Agent Development</li>
+                <li>Generative AI & LLM Integration</li>
+                <li>RAG-Powered Knowledge Systems</li>
+                <li>AI-Powered Business Automation</li>
+                <li>Machine Learning & Predictive Analytics</li>
+                <li>Computer Vision Solutions</li>
+                <li>Cloud AI Deployment & MLOps (AWS & GCP)</li>
+            </ul>
+            <p>Have a project in mind? <a href="/contact">Let's talk →</a></p>
+        </div>
+
+        <div class="blog-nav">
+            <a href="/blog">← Back to Blog</a>
+        </div>
+    </article>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Imran Rafique. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/imran-rafique-data/?locale=en_US" target="_blank" class="social-link">LinkedIn</a>
+                <a href="https://github.com/ImranRafique847" target="_blank" class="social-link">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>
