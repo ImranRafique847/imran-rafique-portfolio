@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deploy ML Model on AWS Lambda with Docker & ECR — Imran Rafique</title>
+    <meta name="description" content="Step-by-step guide to deploying a machine learning model on AWS Lambda using Docker containers and Amazon ECR — from local model to serverless production.">
+    <meta name="keywords" content="AWS Lambda, Docker, ECR, ML Deployment, Machine Learning, Serverless, Container, FastAPI, Imran Rafique">
+    <meta name="author" content="Imran Rafique">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://imran-rafique.dev/blog/deploy-ml-model-aws-lambda-docker-ecr">
+    <meta property="og:title" content="Deploy ML Model on AWS Lambda with Docker & ECR">
+    <meta property="og:description" content="Step-by-step guide to deploying a machine learning model on AWS Lambda using Docker containers and Amazon ECR.">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="https://imran-rafique.dev/images/cloud-ai-deployment-mlops.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Deploy ML Model on AWS Lambda with Docker & ECR">
+    <meta name="twitter:description" content="Step-by-step guide to deploying a machine learning model on AWS Lambda using Docker containers and Amazon ECR.">
+    <meta name="twitter:image" content="https://imran-rafique.dev/images/cloud-ai-deployment-mlops.png">
+    <meta name="msvalidate.01" content="1087FD9E704001B718C346110AB7E219">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "Deploy ML Model on AWS Lambda with Docker & ECR",
+      "url": "https://imran-rafique.dev/blog/deploy-ml-model-aws-lambda-docker-ecr",
+      "image": "https://imran-rafique.dev/images/cloud-ai-deployment-mlops.png",
+      "description": "Step-by-step guide to deploying a machine learning model on AWS Lambda using Docker containers and Amazon ECR — from local model to serverless production.",
+      "author": {
+        "@type": "Person",
+        "name": "Imran Rafique",
+        "url": "https://imran-rafique.dev"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Imran Rafique",
+        "url": "https://imran-rafique.dev"
+      },
+      "datePublished": "2026-09-07"
+    }
+    </script>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GC3K8NGKQ8"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-GC3K8NGKQ8');
+    </script>
+    <style>
+        .coming-soon-section {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-2xl) var(--spacing-lg);
+        }
+        .coming-soon-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: var(--spacing-2xl);
+            max-width: 700px;
+            width: 100%;
+            text-align: center;
+        }
+        .coming-soon-card h1 { font-size: 1.8rem; margin-bottom: var(--spacing-md); }
+        .coming-soon-card p { opacity: 0.8; margin-bottom: var(--spacing-lg); }
+        .coming-soon-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--secondary), #00cccc);
+            color: var(--text-dark);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-lg);
+        }
+        .blog-tags { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: var(--spacing-lg); }
+        .blog-tag { background: rgba(0,255,255,0.1); color: var(--secondary); padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Imran Rafique</div>
+            <ul class="nav-menu">
+                <li><a href="/" class="nav-link">Home</a></li>
+                <li><a href="/about" class="nav-link">About</a></li>
+                <li><a href="/services" class="nav-link">Services</a></li>
+                <li><a href="/projects" class="nav-link">Projects & Experience</a></li>
+                <li><a href="/skills" class="nav-link">Skills & Certification</a></li>
+                <li><a href="/blog" class="nav-link active">Blog</a></li>
+                <li><a href="/contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <section class="coming-soon-section">
+        <div class="coming-soon-card fade-in">
+            <span class="coming-soon-badge">Coming Soon</span>
+            <h1>Deploy ML Model on AWS Lambda with Docker & ECR</h1>
+            <div class="blog-tags">
+                <span class="blog-tag">AWS Lambda</span>
+                <span class="blog-tag">Docker</span>
+                <span class="blog-tag">ECR</span>
+                <span class="blog-tag">ML Deployment</span>
+                <span class="blog-tag">Serverless</span>
+            </div>
+            <p>This article is currently being written. It will be a step-by-step guide to deploying a machine learning model on AWS Lambda using Docker containers and Amazon ECR — from local model to serverless production.</p>
+            <p>Check back soon, or explore the other articles below.</p>
+            <div style="display:flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="/blog" class="btn btn-secondary">← Back to Blog</a>
+                <a href="/contact" class="btn btn-primary">Get Notified</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Imran Rafique. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/imran-rafique-data/?locale=en_US" target="_blank" class="social-link" rel="noopener">LinkedIn</a>
+                <a href="https://github.com/ImranRafique847" target="_blank" class="social-link" rel="noopener">GitHub</a>
+            </div>
+        </div>
+    </footer>
+    <script src="/js/main.js"></script>
+</body>
+</html>
