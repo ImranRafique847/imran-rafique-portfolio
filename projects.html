@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects — Imran Rafique | AI Shopping Assistant, Car Damage Detection</title>
-    <meta name="description" content="AI/ML projects by Imran Rafique — Live deployed AI Shopping Assistant, Car Damage Detection, Personal AI Agent, RAG Chatbots, and more on AWS.">
+    <meta name="description" content="Live AI/ML projects by Imran Rafique — AI Shopping Assistant with Corrective RAG on AWS, Car Damage Detection on Lambda, Personal AI Agent, RAG chatbots, and more. All source code on GitHub.">
     <meta name="keywords" content="AI Projects, AI Shopping Assistant, Car Damage Detection, Personal AI Agent, RAG Chatbot, AWS Lambda, FAISS, Imran Rafique">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://imran-rafique.dev/projects">
@@ -26,27 +26,122 @@
       "@type": "CollectionPage",
       "name": "AI/ML Projects & Experience — Imran Rafique",
       "url": "https://imran-rafique.dev/projects",
-      "description": "Showcase of AI/ML projects by Imran Rafique including AI Shopping Assistant, Car Damage Detection, RAG pipelines, and cloud deployments.",
-      "mainEntity": {
-        "@type": "ItemList",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "AI-Based Shopping Assistant (CRAG + AWS)"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Car Damage Detection System (EfficientNet + AWS Lambda)"
-          },
-          {
-            "@type": "ListItem",
-            "position": 3,
-            "name": "Personal AI Agent & Portfolio Assistant"
+      "description": "Live AI/ML projects by Imran Rafique including an AI Shopping Assistant with Corrective RAG on AWS, Car Damage Detection on Lambda, Personal AI Agent, and RAG chatbots.",
+      "author": { "@type": "Person", "name": "Imran Rafique", "url": "https://imran-rafique.dev" }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "AI/ML Projects by Imran Rafique",
+      "url": "https://imran-rafique.dev/projects",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "SoftwareApplication",
+            "name": "AI-Based Shopping Assistant (Corrective RAG on AWS)",
+            "url": "https://d3uu35mv5l6o1c.cloudfront.net/",
+            "applicationCategory": "AIApplication",
+            "description": "Intelligent eBay fashion shopping assistant powered by Corrective RAG (CRAG) on AWS. Searches 18,992 real products using natural language — rewrites queries, performs FAISS semantic search, filters by price and condition, and generates honest grounded responses. Supports voice and text input.",
+            "author": { "@type": "Person", "name": "Imran Rafique", "url": "https://imran-rafique.dev" },
+            "operatingSystem": "Web",
+            "softwareRequirements": "AWS Bedrock, FAISS, FastAPI, Docker, Elastic Beanstalk",
+            "codeRepository": "https://github.com/ImranRafique847/AI-Based-Shopping-Assistent",
+            "keywords": "Corrective RAG, CRAG, FAISS, AWS Bedrock, Titan Embeddings, Nova Micro, FastAPI, Docker, Elastic Beanstalk, AI Shopping"
           }
-        ]
-      }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "SoftwareApplication",
+            "name": "AI Car Damage Classification (EfficientNet + AWS Lambda)",
+            "url": "https://a3m6jbr82l.execute-api.us-east-1.amazonaws.com/",
+            "applicationCategory": "AIApplication",
+            "description": "Deep learning system that classifies car damage severity (minor, moderate, severe) from photos using EfficientNet-B0 transfer learning with two-phase training. Deployed on AWS Lambda via Docker container behind API Gateway.",
+            "author": { "@type": "Person", "name": "Imran Rafique", "url": "https://imran-rafique.dev" },
+            "operatingSystem": "Web",
+            "softwareRequirements": "TensorFlow, EfficientNet, AWS Lambda, Docker, ECR, API Gateway",
+            "codeRepository": "https://github.com/ImranRafique847/AI-Demaged-Car-Classifications",
+            "keywords": "Car Damage Detection, EfficientNet, Transfer Learning, AWS Lambda, Docker, Computer Vision, Image Classification"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "item": {
+            "@type": "SoftwareApplication",
+            "name": "AI Agent for Data Visualization",
+            "url": "https://d2p6xnxx1nvuei.cloudfront.net/",
+            "applicationCategory": "AIApplication",
+            "description": "AI-powered data analysis agent using Claude via AWS Bedrock that converts natural language queries into automated charts and insights. Upload any CSV dataset and ask questions — the agent generates visualisations automatically.",
+            "author": { "@type": "Person", "name": "Imran Rafique", "url": "https://imran-rafique.dev" },
+            "operatingSystem": "Web",
+            "softwareRequirements": "AWS Bedrock, Claude, Streamlit, Pandas, Matplotlib",
+            "codeRepository": "https://github.com/ImranRafique847/AI-Agent-for-Data-Visualization-",
+            "keywords": "Data Visualization, AI Agent, AWS Bedrock, Claude, Natural Language, Streamlit"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "item": {
+            "@type": "SoftwareApplication",
+            "name": "Personal AI Agent — MCP Server",
+            "applicationCategory": "AIApplication",
+            "description": "Conversational AI assistant that controls Gmail, Google Drive, and Google Calendar through natural language commands. Built with Model Context Protocol (MCP), Claude Haiku via AWS Bedrock, FAISS vector memory, and multi-agent architecture using LangGraph.",
+            "author": { "@type": "Person", "name": "Imran Rafique", "url": "https://imran-rafique.dev" },
+            "operatingSystem": "Web",
+            "softwareRequirements": "MCP, AWS Bedrock, Claude, FastAPI, FAISS, LangGraph, Google APIs",
+            "codeRepository": "https://github.com/ImranRafique847/Personal-AI-Agent",
+            "keywords": "Personal AI Agent, MCP, Model Context Protocol, AWS Bedrock, LangGraph, Multi-Agent"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "item": {
+            "@type": "SoftwareApplication",
+            "name": "Health Chatbot",
+            "url": "https://6c9gnud1jh.execute-api.us-east-1.amazonaws.com/",
+            "applicationCategory": "AIApplication",
+            "description": "AI-powered health chatbot providing intelligent health-related conversational responses using NLP and an AWS-deployed backend.",
+            "author": { "@type": "Person", "name": "Imran Rafique", "url": "https://imran-rafique.dev" },
+            "operatingSystem": "Web",
+            "codeRepository": "https://github.com/ImranRafique847/Health-Chatbot",
+            "keywords": "Health Chatbot, NLP, AI Chatbot, AWS"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "item": {
+            "@type": "SoftwareApplication",
+            "name": "Research Paper Analyzer Chatbot",
+            "url": "https://8kwo5gwaf2.execute-api.us-east-1.amazonaws.com",
+            "applicationCategory": "AIApplication",
+            "description": "RAG-based chatbot that analyzes research papers and provides intelligent Q&A over academic documents using LangChain and FAISS vector search.",
+            "author": { "@type": "Person", "name": "Imran Rafique", "url": "https://imran-rafique.dev" },
+            "operatingSystem": "Web",
+            "softwareRequirements": "LangChain, FAISS, Streamlit, RAG",
+            "codeRepository": "https://github.com/ImranRafique847/Research-Paper-Analyzer-Chatbot",
+            "keywords": "RAG, Research Paper, LangChain, FAISS, Chatbot, Document Q&A"
+          }
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://imran-rafique.dev/" },
+        { "@type": "ListItem", "position": 2, "name": "Projects & Experience", "item": "https://imran-rafique.dev/projects" }
+      ]
     }
     </script>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">

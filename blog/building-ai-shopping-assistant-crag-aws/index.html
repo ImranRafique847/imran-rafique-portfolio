@@ -38,7 +38,117 @@
         "name": "Imran Rafique",
         "url": "https://imran-rafique.dev"
       },
-      "datePublished": "2026-06-27"
+      "datePublished": "2026-06-27",
+      "dateModified": "2026-09-07",
+      "wordCount": "2800",
+      "keywords": "Corrective RAG, CRAG, FAISS, AWS Bedrock, Amazon Nova Micro, Titan Embeddings, AI Shopping Assistant, FastAPI, Docker, Elastic Beanstalk"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to Build an AI Shopping Assistant with Corrective RAG on AWS",
+      "description": "A step-by-step guide to building a deployed, talk-or-type AI shopping assistant using Corrective RAG, FAISS vector search, Amazon Bedrock, and AWS Elastic Beanstalk.",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Intent Detection",
+          "text": "Classify the user's message as a greeting or a real product search query. Route small talk to a conversational reply immediately; route product queries into the full RAG pipeline."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Query Rewriting",
+          "text": "Pass the user's raw message through Amazon Nova Micro to fix typos, expand abbreviations, and extract structured attributes — gender, category, price ceiling, condition. Resolve follow-up questions against conversation history."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "FAISS Vector Search",
+          "text": "Convert the rewritten query into a 1024-dimensional embedding using Amazon Titan Embeddings V2. Run cosine similarity search against 18,992 pre-embedded eBay products using a FAISS flat index loaded from S3."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Post-Retrieval Filtering",
+          "text": "Apply hard filters on top of vector search results: product category, price ceiling or range, condition (new vs used), and deduplication to remove near-duplicate listings."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 5,
+          "name": "Relevance Check and Honest Generation",
+          "text": "Evaluate filtered results for relevance before generation. If results fail the check, rewrite the query and search again. Once results pass, use Amazon Nova Micro to generate a 2–3 sentence honest response referencing only retrieved products with real prices."
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Corrective RAG (CRAG)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Corrective RAG (CRAG) is a retrieval-augmented generation technique that adds a relevance check between retrieval and generation. Before the language model generates an answer, the system evaluates whether the retrieved documents are actually relevant to the query. If they are not, the query is rewritten and retrieval runs again — preventing the model from generating confident but incorrect answers based on bad retrieval."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is CRAG different from standard RAG?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Standard RAG retrieves documents and passes them directly to the language model regardless of quality. CRAG adds a corrective step: it checks whether retrieved results are relevant before generation. If retrieval was poor, CRAG rewrites the query and retries — standard RAG would generate a fluent but incorrect answer instead."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why use FAISS instead of a managed vector database?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For datasets under roughly 100,000 documents, a flat in-memory FAISS index loaded from S3 is simpler, cheaper, and fast enough. Managed vector databases add operational overhead and cost that is not justified at this scale. FAISS was the right choice for 18,992 products in this project."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What AWS services does the AI Shopping Assistant use?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The AI Shopping Assistant uses: AWS Elastic Beanstalk (hosting the Docker container), Amazon ECR (container image registry), Amazon S3 (FAISS index and metadata storage), Amazon Bedrock with Titan Embeddings V2 (1024-dim vector embeddings) and Nova Micro (query rewriting, intent detection, response generation), EC2 c7i-flex.large (one-time embedding batch job), IAM (scoped roles, no hardcoded credentials), and CloudWatch (logs and monitoring)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does it cost to run this AI shopping assistant on AWS?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The total monthly running cost is approximately $11: Elastic Beanstalk t3.micro ~$8, S3 storage ~$0.01, ECR storage ~$0.01, and Amazon Bedrock for 10,000 queries ~$3. The one-time embedding batch job on EC2 cost roughly $0.50."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can the AI shopping assistant understand voice input?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The assistant has a microphone button in the chat interface that uses the browser's built-in Web Speech API for voice recognition. Spoken queries are transcribed and processed exactly like typed messages through the full CRAG pipeline."
+          }
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://imran-rafique.dev/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://imran-rafique.dev/blog" },
+        { "@type": "ListItem", "position": 3, "name": "How I Built an AI Shopping Assistant with Corrective RAG on AWS", "item": "https://imran-rafique.dev/blog/building-ai-shopping-assistant-crag-aws" }
+      ]
     }
     </script>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -81,6 +191,16 @@
         .author-box p { opacity: 0.85; margin-bottom: var(--spacing-sm); }
         .author-box a { color: var(--secondary); text-decoration: none; font-weight: 600; }
         .blog-note { background: rgba(0,255,255,0.05); border-left: 3px solid var(--secondary); padding: var(--spacing-md) var(--spacing-lg); border-radius: 0 var(--radius) var(--radius) 0; margin-bottom: var(--spacing-lg); font-size: 0.9rem; opacity: 0.85; }
+        .faq-section { margin-top: var(--spacing-2xl); }
+        .faq-section h2 { font-size: 1.5rem; margin-bottom: var(--spacing-lg); }
+        .faq-list { display: flex; flex-direction: column; gap: var(--spacing-md); }
+        .faq-item { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+        .faq-question { width: 100%; background: none; border: none; color: var(--text); font-size: 1rem; font-weight: 600; text-align: left; padding: var(--spacing-lg); cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+        .faq-question:hover { color: var(--secondary); }
+        .faq-icon { color: var(--secondary); font-size: 1.2rem; flex-shrink: 0; transition: transform 0.3s ease; }
+        .faq-answer { padding: 0 var(--spacing-lg) var(--spacing-lg); opacity: 0.85; line-height: 1.8; display: none; }
+        .faq-item.open .faq-answer { display: block; }
+        .faq-item.open .faq-icon { transform: rotate(45deg); }
     </style>
 </head>
 <body>
@@ -268,6 +388,36 @@
 
         <p><a href="https://d3uu35mv5l6o1c.cloudfront.net/" target="_blank" style="color: var(--secondary); font-weight: 600;">🔴 Try the Live Demo</a> &nbsp;|&nbsp; <a href="https://github.com/ImranRafique847/AI-Based-Shopping-Assistent" target="_blank" style="color: var(--secondary); font-weight: 600;">View Source on GitHub</a></p>
 
+        <section class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question">What is Corrective RAG (CRAG)? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer">Corrective RAG (CRAG) adds a relevance check between retrieval and generation. Before the language model generates an answer, the system evaluates whether the retrieved documents are actually relevant. If not, the query is rewritten and retrieval runs again — preventing confident but incorrect answers based on bad retrieval.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">How is CRAG different from standard RAG? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer">Standard RAG retrieves documents and passes them directly to the language model regardless of quality. CRAG adds a corrective step: it checks whether retrieved results are relevant before generation. If retrieval was poor, CRAG rewrites the query and retries — standard RAG would generate a fluent but incorrect answer instead.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Why use FAISS instead of a managed vector database? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer">For datasets under roughly 100,000 documents, a flat in-memory FAISS index loaded from S3 is simpler, cheaper, and fast enough. Managed vector databases add operational overhead and cost not justified at this scale. FAISS was the right choice for 18,992 products in this project.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">What AWS services does this project use? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer">Elastic Beanstalk (hosting the Docker container), Amazon ECR (container registry), S3 (FAISS index storage), Amazon Bedrock with Titan Embeddings V2 and Nova Micro (embeddings, query rewriting, generation), EC2 c7i-flex.large (one-time batch embedding job), IAM (scoped roles), and CloudWatch (logs and monitoring).</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">How much does it cost to run this on AWS? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer">Approximately $11/month total: Elastic Beanstalk t3.micro ~$8, S3 ~$0.01, ECR ~$0.01, Amazon Bedrock for 10,000 queries ~$3. The one-time embedding batch job on EC2 cost ~$0.50.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Does the assistant support voice input? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer">Yes. A microphone button in the chat interface uses the browser's built-in Web Speech API. Spoken queries are transcribed and processed exactly like typed messages through the full CRAG pipeline.</div>
+                </div>
+            </div>
+        </section>
+
         <div class="author-box">
             <h3>About the Author</h3>
             <p>I'm <strong>Imran Rafique</strong>, an AI/ML Engineer based in Lahore, Pakistan. I build end-to-end AI systems that solve real-world business problems — from intelligent chatbots and autonomous agents to scalable cloud deployments on AWS and GCP.</p>
@@ -302,5 +452,15 @@
     </footer>
 
     <script src="/js/main.js"></script>
+    <script>
+        document.querySelectorAll('.faq-question').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.closest('.faq-item');
+                const isOpen = item.classList.contains('open');
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+                if (!isOpen) item.classList.add('open');
+            });
+        });
+    </script>
 </body>
 </html>
