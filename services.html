@@ -190,6 +190,30 @@
             "@type": "Answer",
             "text": "An AI voice agent receptionist is a custom 24/7 automated telephone system that answers incoming business calls, speaks naturally with low latency, books appointments into live calendars (Calendly, Google Calendar), qualifies leads by collecting caller details, forwards urgent calls to a human agent, and sends post-call summaries to email, Google Sheets, or a CRM. It is built with Vapi.ai or Retell AI, GPT-4o, Deepgram speech-to-text, ElevenLabs text-to-speech, Twilio SIP trunking, and FastAPI webhooks. Ideal for dental clinics, HVAC contractors, law firms, and real estate agencies."
           }
+        },
+        {
+          "@type": "Question",
+          "name": "I need a freelance AI developer — can Imran Rafique help?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Imran Rafique is available for freelance and contract AI development projects including chatbots, RAG knowledge bases, AI voice agents, custom AI agents, and cloud deployments on AWS or GCP. Contact him at iamimranrafique@gmail.com or via imran-rafique.dev/contact for a scope and timeline within 24 hours."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you build an AI receptionist that answers phone calls?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The AI Voice Agent Receptionist service builds a fully automated phone answering system using Vapi.ai or Retell AI with GPT-4o, Deepgram speech-to-text, and ElevenLabs voice synthesis. It handles inbound calls 24/7, books appointments, qualifies leads, and sends post-call summaries — without human involvement. Ideal for clinics, contractors, law firms, and agencies."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you integrate AI into my existing business software?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Imran builds custom integrations between AI systems and existing business tools — Google Sheets, CRMs, Calendly, Notion, Slack, and REST APIs — using n8n, Make, or custom FastAPI webhooks, so the AI fits into your current workflow without replacing it."
+          }
         }
       ]
     }
@@ -227,14 +251,14 @@
         .step { text-align: center; }
         .step-number { font-size: 2.5rem; font-weight: 700; color: var(--secondary); margin-bottom: var(--spacing-md); font-family: var(--font-heading); }
         .step p { opacity: 0.8; }
-        .faq-section { padding: var(--spacing-2xl) var(--spacing-lg); }
-        .faq-section h2 { text-align: center; margin-bottom: var(--spacing-xl); }
-        .faq-list { max-width: 820px; margin: 0 auto; display: flex; flex-direction: column; gap: var(--spacing-md); }
-        .faq-item { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
-        .faq-question { width: 100%; background: none; border: none; color: var(--text); font-size: 1rem; font-weight: 600; text-align: left; padding: var(--spacing-lg); cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+        .faq-section { padding: var(--spacing-xl) var(--spacing-lg); }
+        .faq-section h2 { text-align: center; margin-bottom: var(--spacing-lg); font-size: 1.3rem; }
+        .faq-list { max-width: 820px; margin: 0 auto; display: flex; flex-direction: column; gap: 6px; }
+        .faq-item { background: var(--card-bg); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+        .faq-question { width: 100%; background: none; border: none; color: var(--text); font-size: 0.88rem; font-weight: 600; text-align: left; padding: 0.7rem 1rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
         .faq-question:hover { color: var(--secondary); }
-        .faq-icon { color: var(--secondary); font-size: 1.2rem; flex-shrink: 0; transition: transform 0.3s ease; }
-        .faq-answer { padding: 0 var(--spacing-lg) var(--spacing-lg); opacity: 0.85; line-height: 1.8; display: none; }
+        .faq-icon { color: var(--secondary); font-size: 1rem; flex-shrink: 0; transition: transform 0.3s ease; }
+        .faq-answer { padding: 0 1rem 0.75rem; opacity: 0.82; line-height: 1.6; font-size: 0.83rem; display: none; }
         .faq-item.open .faq-answer { display: block; }
         .faq-item.open .faq-icon { transform: rotate(45deg); }
     </style>
@@ -448,6 +472,18 @@
                 <div class="faq-item">
                     <button class="faq-question">What is an AI voice agent receptionist? <span class="faq-icon">+</span></button>
                     <div class="faq-answer">An AI voice agent receptionist is a custom 24/7 automated telephone system that answers your business calls, speaks naturally with low latency, books appointments directly into your calendar (Calendly, Google Calendar), qualifies leads by collecting caller details, forwards urgent calls to a human, and sends post-call summaries to email, Google Sheets, or your CRM. It is built with Vapi.ai or Retell AI, GPT-4o, Deepgram speech-to-text, and ElevenLabs text-to-speech — ideal for dental clinics, HVAC contractors, law firms, and real estate agencies.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">I need a freelance AI developer — can Imran Rafique help? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer">Yes. Imran is available for freelance and contract AI development projects. Whether you need a chatbot, RAG knowledge base, AI voice agent, custom AI agent, or a full cloud deployment on AWS or GCP — <a href="/contact" style="color:var(--secondary);">get in touch</a> and he'll scope the work within 24 hours.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Can you build an AI receptionist that answers phone calls? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer">Yes. The AI Voice Agent Receptionist service builds a fully automated phone answering system using Vapi.ai or Retell AI with GPT-4o, Deepgram speech-to-text, and ElevenLabs voice synthesis. It handles inbound calls 24/7, books appointments, qualifies leads, and sends summaries — all without human involvement. Ideal for clinics, contractors, law firms, and agencies.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Can you integrate AI into my existing business software? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer">Yes. Imran builds custom integrations between AI systems and existing tools — Google Sheets, CRMs, Calendly, Notion, Slack, REST APIs, and more. Using n8n, Make, or custom FastAPI webhooks, the AI fits into your current workflow without replacing it.</div>
                 </div>
             </div>
         </div>
