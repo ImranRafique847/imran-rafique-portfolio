@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found — Imran Rafique</title>
+    <meta name="description" content="The page you're looking for doesn't exist. Return to Imran Rafique's AI/ML portfolio.">
+    <meta name="robots" content="noindex, follow">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .error-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-2xl) var(--spacing-lg);
+            background: linear-gradient(135deg, rgba(142,68,173,0.08) 0%, rgba(0,255,255,0.04) 100%);
+        }
+        .error-card {
+            text-align: center;
+            max-width: 560px;
+            width: 100%;
+        }
+        .error-code {
+            font-size: 8rem;
+            font-weight: 700;
+            font-family: var(--font-heading);
+            background: linear-gradient(135deg, #fff 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: var(--spacing-md);
+            animation: textGlow 3s ease-in-out infinite;
+        }
+        .error-title {
+            font-size: 1.6rem;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text);
+        }
+        .error-desc {
+            opacity: 0.75;
+            margin-bottom: var(--spacing-xl);
+            line-height: 1.7;
+        }
+        .error-links {
+            display: flex;
+            gap: var(--spacing-sm);
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: var(--spacing-xl);
+        }
+        .error-nav {
+            display: flex;
+            gap: var(--spacing-lg);
+            justify-content: center;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+        }
+        .error-nav a {
+            color: var(--secondary);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+        .error-nav a:hover { opacity: 1; }
+        @media (max-width: 480px) {
+            .error-code { font-size: 5rem; }
+            .error-title { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" aria-label="Main navigation">
+        <div class="nav-container">
+            <div class="logo">Imran Rafique</div>
+            <ul class="nav-menu" id="nav-menu" role="list">
+                <li><a href="/" class="nav-link">Home</a></li>
+                <li><a href="/about" class="nav-link">About</a></li>
+                <li><a href="/services" class="nav-link">Services</a></li>
+                <li><a href="/projects" class="nav-link">Projects & Experience</a></li>
+                <li><a href="/skills" class="nav-link">Skills & Certification</a></li>
+                <li><a href="/blog" class="nav-link">Blog</a></li>
+                <li><a href="/contact" class="nav-link">Contact</a></li>
+            </ul>
+            <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <main class="error-section">
+        <div class="error-card">
+            <div class="error-code" aria-label="Error 404">404</div>
+            <h1 class="error-title">Page Not Found</h1>
+            <p class="error-desc">The page you're looking for doesn't exist or has been moved. Here are some useful links to get you back on track.</p>
+            <div class="error-links">
+                <a href="/" class="btn btn-primary">Go Home</a>
+                <a href="/services" class="btn btn-secondary">View Services</a>
+            </div>
+            <nav class="error-nav" aria-label="Helpful links">
+                <a href="/projects">Projects</a>
+                <a href="/blog">Blog</a>
+                <a href="/about">About</a>
+                <a href="/contact">Contact</a>
+            </nav>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Imran Rafique. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/imran-rafique-data/?locale=en_US" target="_blank" class="social-link" rel="noopener noreferrer" aria-label="Imran Rafique on LinkedIn">LinkedIn</a>
+                <a href="https://github.com/ImranRafique847" target="_blank" class="social-link" rel="noopener noreferrer" aria-label="Imran Rafique on GitHub">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>

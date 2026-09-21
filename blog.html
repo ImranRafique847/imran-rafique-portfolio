@@ -60,6 +60,8 @@
       ]
     }
     </script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -96,10 +98,10 @@
     </script>
 </head>
 <body>
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Main navigation">
         <div class="nav-container">
             <div class="logo">Imran Rafique</div>
-            <ul class="nav-menu">
+            <ul class="nav-menu" id="nav-menu" role="list">
                 <li><a href="/" class="nav-link">Home</a></li>
                 <li><a href="/about" class="nav-link">About</a></li>
                 <li><a href="/services" class="nav-link">Services</a></li>
@@ -108,7 +110,7 @@
                 <li><a href="/blog" class="nav-link active">Blog</a></li>
                 <li><a href="/contact" class="nav-link">Contact</a></li>
             </ul>
-            <div class="hamburger"><span></span><span></span><span></span></div>
+            <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu"><span></span><span></span><span></span></button>
         </div>
     </nav>
 
@@ -123,7 +125,7 @@
         <div class="container">
             <div class="blog-grid">
                 <div class="blog-card fade-in">
-                    <img src="/images/ai-based-shopping-new.png" alt="AI Shopping Assistant" class="blog-card-img" loading="lazy">
+                    <img src="/images/ai-based-shopping-new.png" alt="AI Shopping Assistant" class="blog-card-img" loading="lazy" width="1999" height="1167">
                     <div class="blog-card-content">
                         <h3><a href="/blog/building-ai-shopping-assistant-crag-aws">How I Built an AI Shopping Assistant with CRAG on AWS</a></h3>
                         <div class="blog-tags">
@@ -141,7 +143,7 @@
                 </div>
 
                 <div class="blog-card fade-in">
-                    <img src="/images/personal-ai-agent.webp" alt="Personal AI Agent" class="blog-card-img" loading="lazy">
+                    <img src="/images/personal-ai-agent.webp" alt="Personal AI Agent" class="blog-card-img" loading="lazy" width="1920" height="1920">
                     <div class="blog-card-content">
                         <h3><a href="/blog/personal-ai-agent-mcp-gmail-drive">Building a Personal AI Agent with MCP — Gmail, Drive & Calendar</a></h3>
                         <div class="blog-tags">
@@ -159,7 +161,7 @@
                 </div>
 
                 <div class="blog-card fade-in">
-                    <img src="/images/ai-based-car-damage-detection-system.jpg" alt="Car Damage Detection" class="blog-card-img" loading="lazy">
+                    <img src="/images/ai-based-car-damage-detection-system.jpg" alt="Car Damage Detection" class="blog-card-img" loading="lazy" width="290" height="174">
                     <div class="blog-card-content">
                         <h3><a href="/blog/car-damage-detection-efficientnet-aws-lambda">Why My Car Damage Detection Model Only Hits 72% Accuracy</a></h3>
                         <div class="blog-tags">
@@ -177,7 +179,7 @@
                 </div>
 
                 <div class="blog-card fade-in">
-                    <img src="/images/rag-based-chatbot.jpg" alt="RAG Chatbot" class="blog-card-img" loading="lazy">
+                    <img src="/images/rag-based-chatbot.jpg" alt="RAG Chatbot" class="blog-card-img" loading="lazy" width="800" height="800">
                     <div class="blog-card-content">
                         <h3><a href="/blog/rag-chatbot-document-qa-faiss-langchain">Building a RAG Chatbot for Document Q&A with FAISS & LangChain</a></h3>
                         <div class="blog-tags">
@@ -195,7 +197,7 @@
                 </div>
 
                 <div class="blog-card fade-in">
-                    <img src="/images/deployment.png" alt="ML Model Deployment" class="blog-card-img" loading="lazy">
+                    <img src="/images/deployment.png" alt="ML Model Deployment" class="blog-card-img" loading="lazy" width="1000" height="640">
                     <div class="blog-card-content">
                         <h3><a href="/blog/deploy-ml-model-aws-lambda-docker-ecr">How to Deploy Any ML Model on AWS Lambda with Docker & ECR</a></h3>
                         <div class="blog-tags">
@@ -213,7 +215,7 @@
                 </div>
 
                 <div class="blog-card fade-in">
-                    <img src="/images/rag-powered-knowledge-systems.webp" alt="Semantic Search vs Keyword Search" class="blog-card-img" loading="lazy">
+                    <img src="/images/rag-powered-knowledge-systems.webp" alt="Semantic Search vs Keyword Search" class="blog-card-img" loading="lazy" width="1536" height="1024">
                     <div class="blog-card-content">
                         <h3><a href="/blog/semantic-search-vs-keyword-search-faiss-bm25">Semantic Search vs Keyword Search — When to Use FAISS vs BM25</a></h3>
                         <div class="blog-tags">
@@ -245,8 +247,8 @@
         <div class="container">
             <p>&copy; 2026 Imran Rafique. All rights reserved.</p>
             <div class="social-links">
-                <a href="https://www.linkedin.com/in/imran-rafique-data/?locale=en_US" target="_blank" class="social-link">LinkedIn</a>
-                <a href="https://github.com/ImranRafique847" target="_blank" class="social-link">GitHub</a>
+                <a href="https://www.linkedin.com/in/imran-rafique-data/?locale=en_US" target="_blank" class="social-link" rel="noopener noreferrer" aria-label="Imran Rafique on LinkedIn">LinkedIn</a>
+                <a href="https://github.com/ImranRafique847" target="_blank" class="social-link" rel="noopener noreferrer" aria-label="Imran Rafique on GitHub">GitHub</a>
             </div>
         </div>
     </footer>

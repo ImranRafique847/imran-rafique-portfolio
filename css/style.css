@@ -49,8 +49,8 @@ h1, h2, h3, h4 { font-family: var(--font-heading); }
 .nav-link:hover, .nav-link.active { color: var(--secondary); }
 
 /* Hamburger */
-.hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; padding: 4px; }
-.hamburger span { width: 25px; height: 3px; background: var(--secondary); border-radius: 2px; transition: var(--transition); transform-origin: center; }
+.hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; padding: 4px; background: none; border: none; }
+.hamburger span { width: 25px; height: 3px; background: var(--secondary); border-radius: 2px; transition: var(--transition); transform-origin: center; display: block; }
 .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
 .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
 .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }

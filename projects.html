@@ -144,6 +144,8 @@
       ]
     }
     </script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -200,10 +202,10 @@
     </script>
 </head>
 <body>
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Main navigation">
         <div class="nav-container">
             <div class="logo">Imran Rafique</div>
-            <ul class="nav-menu">
+            <ul class="nav-menu" id="nav-menu" role="list">
                 <li><a href="/" class="nav-link">Home</a></li>
                 <li><a href="/about" class="nav-link">About</a></li>
                 <li><a href="/services" class="nav-link">Services</a></li>
@@ -211,7 +213,7 @@
                 <li><a href="/skills" class="nav-link">Skills & Certification</a></li>
                 <li><a href="/blog" class="nav-link">Blog</a></li><li><a href="/contact" class="nav-link">Contact</a></li>
             </ul>
-            <div class="hamburger"><span></span><span></span><span></span></div>
+            <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu"><span></span><span></span><span></span></button>
         </div>
     </nav>
 
@@ -241,7 +243,7 @@
             <div class="projects-grid">
                 <!-- AI Shopping Assistant - LIVE -->
                 <div class="project-card fade-in" data-category="ai">
-                    <div class="project-image"><img loading="lazy" src="/images/ai-based-shopping-assistance.webp" alt="AI Shopping Assistant"></div>
+                    <div class="project-image"><img loading="lazy" src="/images/ai-based-shopping-assistance.webp" alt="AI Shopping Assistant" width="1926" height="1076"></div>
                     <div class="project-info">
                         <h3>AI-Based Shopping Assistant</h3>
                         <p>Intelligent eBay fashion shopping assistant powered by Corrective RAG (CRAG) on AWS. Users search 18,992 real products using natural language — the AI rewrites queries, performs FAISS semantic search, filters by price/condition, and generates honest responses with product cards.</p>
@@ -257,7 +259,7 @@
 
                 <!-- Car Damage Detection - LIVE -->
                 <div class="project-card fade-in" data-category="ml">
-                    <div class="project-image"><img loading="lazy" src="/images/ai-based-car-damage-detection-system.jpg" alt="Car Damage Detection"></div>
+                    <div class="project-image"><img loading="lazy" src="/images/ai-based-car-damage-detection-system.jpg" alt="Car Damage Detection" width="290" height="174"></div>
                     <div class="project-info">
                         <h3>AI Car Damage Classification</h3>
                         <p>End-to-end deep learning system classifying car damage severity (minor, moderate, severe, no damage) using EfficientNetB3 transfer learning with 2-phase training. Deployed live on AWS Lambda via Docker container with API Gateway.</p>
@@ -273,7 +275,7 @@
 
                 <!-- AI Agent for Data Visualization -->
                 <div class="project-card fade-in" data-category="ai">
-                    <div class="project-image"><img loading="lazy" src="/images/ai-agent-for-data-visualization.webp" alt="AI Data Visualization Agent"></div>
+                    <div class="project-image"><img loading="lazy" src="/images/ai-agent-for-data-visualization.webp" alt="AI Data Visualization Agent" width="752" height="564"></div>
                     <div class="project-info">
                         <h3>AI Agent for Data Visualization</h3>
                         <p>AI-powered data analysis agent using Claude via AWS Bedrock that converts natural language queries into automated visualizations. Upload any dataset and ask questions — the agent generates charts and insights automatically.</p>
@@ -289,7 +291,7 @@
 
                 <!-- Personal AI Agent -->
                 <div class="project-card fade-in" data-category="ai">
-                    <div class="project-image"><img loading="lazy" src="/images/personal-ai-agent.webp" alt="Personal AI Agent"></div>
+                    <div class="project-image"><img loading="lazy" src="/images/personal-ai-agent.webp" alt="Personal AI Agent" width="1920" height="1920"></div>
                     <div class="project-info">
                         <h3>Personal AI Agent — MCP Server</h3>
                         <p>Conversational AI assistant that controls Gmail, Google Drive, and Google Calendar through natural language. Built with Model Context Protocol (MCP), Claude Haiku via AWS Bedrock, FAISS vector memory, and multi-agent architecture.</p>
@@ -304,7 +306,7 @@
 
                 <!-- Flight Booking Agent -->
                 <div class="project-card fade-in" data-category="nlp">
-                    <div class="project-image"><img loading="lazy" src="/images/flight-booking-conversational-agent.webp" alt="Flight Booking Agent"></div>
+                    <div class="project-image"><img loading="lazy" src="/images/flight-booking-conversational-agent.webp" alt="Flight Booking Agent" width="599" height="869"></div>
                     <div class="project-info">
                         <h3>Flight Booking Conversational Agent</h3>
                         <p>Google Cloud Dialogflow CX conversational agent for flight booking. Handles intent recognition, entity extraction (cities, dates, passenger name), confirmation flows, and conditional routing for smooth multi-turn conversations.</p>
@@ -319,7 +321,7 @@
 
                 <!-- Health Chatbot -->
                 <div class="project-card fade-in" data-category="nlp">
-                    <div class="project-image"><img loading="lazy" src="/images/health-chatbot.webp" alt="Health Chatbot"></div>
+                    <div class="project-image"><img loading="lazy" src="/images/health-chatbot.webp" alt="Health Chatbot" width="1600" height="1200"></div>
                     <div class="project-info">
                         <h3>Health Chatbot</h3>
                         <p>Python-based health chatbot application providing intelligent health-related conversational responses using NLP techniques and AI-powered backend processing.</p>
@@ -335,7 +337,7 @@
 
                 <!-- Research Paper Analyzer -->
                 <div class="project-card fade-in" data-category="nlp">
-                    <div class="project-image"><img loading="lazy" src="/images/research-paper-analyzer-chatbot.webp" alt="Research Paper Analyzer"></div>
+                    <div class="project-image"><img loading="lazy" src="/images/research-paper-analyzer-chatbot.webp" alt="Research Paper Analyzer" width="2048" height="1278"></div>
                     <div class="project-info">
                         <h3>Research Paper Analyzer Chatbot</h3>
                         <p>RAG-based chatbot that analyzes research papers and provides intelligent Q&A over academic documents. Built with a RAG pipeline for document-based question answering.</p>
@@ -351,7 +353,7 @@
 
                 <!-- Sales Dashboard -->
                 <div class="project-card fade-in" data-category="data">
-                    <div class="project-image"><img loading="lazy" src="/images/sales-dashboard.avif" alt="Sales Dashboard"></div>
+                    <div class="project-image"><img loading="lazy" src="/images/sales-dashboard.avif" alt="Sales Dashboard" width="740" height="493"></div>
                     <div class="project-info">
                         <h3>Sales Dashboard</h3>
                         <p>Interactive sales analytics dashboard built with Power BI on SuperStore sales data, featuring visual reports, trend analysis, and business intelligence insights.</p>
@@ -366,7 +368,7 @@
 
                 <!-- Car Price Prediction -->
                 <div class="project-card fade-in" data-category="ml">
-                    <div class="project-image"><img loading="lazy" src="/images/car-price-prediction.avif" alt="Car Price Prediction"></div>
+                    <div class="project-image"><img loading="lazy" src="/images/car-price-prediction.avif" alt="Car Price Prediction" width="803" height="452"></div>
                     <div class="project-info">
                         <h3>Car Price Prediction</h3>
                         <p>Machine learning regression model predicting car prices using vehicle features. Includes Jupyter Notebook for EDA and model training, plus a Streamlit web app for real-time predictions.</p>
@@ -430,8 +432,8 @@
         <div class="container">
             <p>&copy; 2026 Imran Rafique. All rights reserved.</p>
             <div class="social-links">
-                <a href="https://www.linkedin.com/in/imran-rafique-data/?locale=en_US" target="_blank" class="social-link">LinkedIn</a>
-                <a href="https://github.com/ImranRafique847" target="_blank" class="social-link">GitHub</a>
+                <a href="https://www.linkedin.com/in/imran-rafique-data/?locale=en_US" target="_blank" class="social-link" rel="noopener noreferrer" aria-label="Imran Rafique on LinkedIn">LinkedIn</a>
+                <a href="https://github.com/ImranRafique847" target="_blank" class="social-link" rel="noopener noreferrer" aria-label="Imran Rafique on GitHub">GitHub</a>
             </div>
         </div>
     </footer>

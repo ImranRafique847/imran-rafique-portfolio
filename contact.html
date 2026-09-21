@@ -98,6 +98,8 @@
       ]
     }
     </script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -152,10 +154,10 @@
     </script>
 </head>
 <body>
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Main navigation">
         <div class="nav-container">
             <div class="logo">Imran Rafique</div>
-            <ul class="nav-menu">
+            <ul class="nav-menu" id="nav-menu" role="list">
                 <li><a href="/" class="nav-link">Home</a></li>
                 <li><a href="/about" class="nav-link">About</a></li>
                 <li><a href="/services" class="nav-link">Services</a></li>
@@ -163,7 +165,7 @@
                 <li><a href="/skills" class="nav-link">Skills & Certification</a></li>
                 <li><a href="/contact" class="nav-link active">Contact</a></li>
             </ul>
-            <div class="hamburger"><span></span><span></span><span></span></div>
+            <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu"><span></span><span></span><span></span></button>
         </div>
     </nav>
 
@@ -227,6 +229,8 @@
                     <div class="response-time" style="margin-top: var(--spacing-xl);">
                         <h3>Response Time</h3>
                         <p>I typically respond within <span class="cyan-accent">24–48 hours</span>.</p>
+                        <p style="margin-top:0.75rem;font-size:0.9rem;opacity:0.8;">🕐 Based in Lahore, Pakistan — <strong style="color:var(--secondary);">PKT (UTC+5)</strong><br>
+                        Available for calls during <strong style="color:var(--secondary);">US EST mornings</strong> (evenings PKT) and fully async via email. Same-day responses guaranteed for US business hours messages.</p>
                     </div>
                 </div>
             </div>
@@ -251,6 +255,7 @@
                     <h3>⏰ Timeline</h3>
                     <p>Open to projects with flexible timelines. Typically available to start within 2–4 weeks.</p>
                     <p>Can handle both short-term and long-term engagements.</p>
+                    <p style="margin-top:0.75rem;font-size:0.88rem;opacity:0.85;">🇺🇸 <strong>US clients:</strong> Fully remote, async-first. Available for video calls during US EST mornings (UTC-5). Payments accepted via PayPal, Wise, and international bank transfer.</p>
                 </div>
                 <div class="availability-card fade-in">
                     <h3>💼 Project Types</h3>
@@ -301,8 +306,8 @@
         <div class="container">
             <p>&copy; 2026 Imran Rafique. All rights reserved.</p>
             <div class="social-links">
-                <a href="https://www.linkedin.com/in/imran-rafique-data/?locale=en_US" target="_blank" class="social-link">LinkedIn</a>
-                <a href="https://github.com/ImranRafique847" target="_blank" class="social-link">GitHub</a>
+                <a href="https://www.linkedin.com/in/imran-rafique-data/?locale=en_US" target="_blank" class="social-link" rel="noopener noreferrer" aria-label="Imran Rafique on LinkedIn">LinkedIn</a>
+                <a href="https://github.com/ImranRafique847" target="_blank" class="social-link" rel="noopener noreferrer" aria-label="Imran Rafique on GitHub">GitHub</a>
             </div>
         </div>
     </footer>

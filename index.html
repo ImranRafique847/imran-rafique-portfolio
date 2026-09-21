@@ -259,10 +259,10 @@
     </style>
 </head>
 <body>
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Main navigation">
         <div class="nav-container">
             <div class="logo">Imran Rafique</div>
-            <ul class="nav-menu">
+            <ul class="nav-menu" id="nav-menu" role="list">
                 <li><a href="/" class="nav-link active">Home</a></li>
                 <li><a href="/about" class="nav-link">About</a></li>
                 <li><a href="/services" class="nav-link">Services</a></li>
@@ -270,7 +270,7 @@
                 <li><a href="/skills" class="nav-link">Skills & Certification</a></li>
                 <li><a href="/blog" class="nav-link">Blog</a></li><li><a href="/contact" class="nav-link">Contact</a></li>
             </ul>
-            <div class="hamburger"><span></span><span></span><span></span></div>
+            <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu"><span></span><span></span><span></span></button>
         </div>
     </nav>
 
@@ -287,7 +287,7 @@
                         <path d="M 20 70 Q 50 85 80 70" stroke="rgba(0,255,255,0.3)" stroke-width="15" fill="none" stroke-linecap="round"/>
                     </svg>
                 </div>
-                <img loading="lazy" src="images/gemini-generated-image-profile.png" alt="Imran Rafique" class="hero-image" onerror="this.style.display='none'">
+                <img loading="eager" fetchpriority="high" width="280" height="280" src="images/gemini-generated-image-profile.png" alt="Imran Rafique — AI/ML Engineer" class="hero-image" onerror="this.style.display='none'">
             </div>
             <div class="hero-text">
                 <h1 class="hero-title">Imran Rafique</h1>
@@ -308,32 +308,32 @@
             <h2>Featured Areas</h2>
             <div class="featured-grid">
                 <div class="featured-card fade-in">
-                    <img loading="lazy" src="images/agentic-ai-2.webp" alt="Agentic AI" class="card-icon-img">
+                    <img loading="lazy" width="400" height="180" src="images/agentic-ai-2.webp" alt="Agentic AI & Machine Learning" class="card-icon-img">
                     <h3>Agentic AI & Machine Learning</h3>
                     <p>Building autonomous AI agents with LangGraph, CrewAI & AutoGen — plus regression, classification, clustering, and deep learning with TensorFlow & PyTorch</p>
                 </div>
                 <div class="featured-card fade-in">
-                    <img loading="lazy" src="images/gen-ai-llm.avif" alt="Generative AI & LLMs" class="card-icon-img">
+                    <img loading="lazy" width="400" height="180" src="images/gen-ai-llm.avif" alt="Generative AI & LLMs" class="card-icon-img">
                     <h3>Generative AI & LLMs</h3>
                     <p>LLM integration, prompt engineering, fine-tuning, and agentic workflows with LangChain & LangGraph</p>
                 </div>
                 <div class="featured-card fade-in">
-                    <img loading="lazy" src="images/rag-based-chatbot.jpg" alt="RAG-Based Chatbots" class="card-icon-img">
+                    <img loading="lazy" width="400" height="180" src="images/rag-based-chatbot.jpg" alt="RAG-Based Chatbots" class="card-icon-img">
                     <h3>RAG-Based Chatbots</h3>
                     <p>Retrieval-Augmented Generation pipelines with hybrid search (FAISS + BM25) and vector databases</p>
                 </div>
                 <div class="featured-card fade-in">
-                    <img loading="lazy" src="images/aws-vs-ms-vs-gcp.jpg" alt="AWS & GCP Deployment" class="card-icon-img">
+                    <img loading="lazy" width="400" height="180" src="images/aws-vs-ms-vs-gcp.jpg" alt="AWS & GCP Deployment" class="card-icon-img">
                     <h3>AWS & GCP Deployment</h3>
                     <p>Cloud AI solutions using Amazon Bedrock, Vertex AI, and scalable FastAPI backend services</p>
                 </div>
                 <div class="featured-card fade-in">
-                    <img loading="lazy" src="images/deployment.png" alt="Model Deployment & Kubernetes" class="card-icon-img">
+                    <img loading="lazy" width="400" height="180" src="images/deployment.png" alt="Model Deployment & Kubernetes" class="card-icon-img">
                     <h3>Model Deployment & Kubernetes</h3>
                     <p>Containerized ML deployments with Docker, REST APIs, and production-ready MLOps pipelines</p>
                 </div>
                 <div class="featured-card fade-in">
-                    <img loading="lazy" src="images/ai-based-business-solutions.jpg" alt="AI Based Business Solutions" class="card-icon-img">
+                    <img loading="lazy" width="400" height="180" src="images/ai-based-business-solutions.jpg" alt="AI Based Business Solutions" class="card-icon-img">
                     <h3>AI Based Business Solutions</h3>
                     <p>End-to-end intelligent systems — from data pipelines to multi-agent orchestration for real-world impact</p>
                 </div>
@@ -406,8 +406,8 @@
             </nav>
             <p>&copy; 2026 Imran Rafique. All rights reserved.</p>
             <div class="social-links">
-                <a href="https://www.linkedin.com/in/imran-rafique-data/?locale=en_US" target="_blank" class="social-link" rel="noopener">LinkedIn</a>
-                <a href="https://github.com/ImranRafique847" target="_blank" class="social-link" rel="noopener">GitHub</a>
+                <a href="https://www.linkedin.com/in/imran-rafique-data/?locale=en_US" target="_blank" class="social-link" rel="noopener noreferrer" aria-label="Imran Rafique on LinkedIn">LinkedIn</a>
+                <a href="https://github.com/ImranRafique847" target="_blank" class="social-link" rel="noopener noreferrer" aria-label="Imran Rafique on GitHub">GitHub</a>
             </div>
         </div>
     </footer>

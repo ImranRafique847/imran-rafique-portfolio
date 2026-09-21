@@ -228,6 +228,8 @@
       ]
     }
     </script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -272,10 +274,10 @@
     </script>
 </head>
 <body>
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Main navigation">
         <div class="nav-container">
             <div class="logo">Imran Rafique</div>
-            <ul class="nav-menu">
+            <ul class="nav-menu" id="nav-menu" role="list">
                 <li><a href="/" class="nav-link">Home</a></li>
                 <li><a href="/about" class="nav-link">About</a></li>
                 <li><a href="/services" class="nav-link active">Services</a></li>
@@ -283,7 +285,7 @@
                 <li><a href="/skills" class="nav-link">Skills & Certification</a></li>
                 <li><a href="/blog" class="nav-link">Blog</a></li><li><a href="/contact" class="nav-link">Contact</a></li>
             </ul>
-            <div class="hamburger"><span></span><span></span><span></span></div>
+            <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu"><span></span><span></span><span></span></button>
         </div>
     </nav>
 
@@ -298,7 +300,7 @@
         <div class="container">
             <div class="services-grid">
                 <div class="service-card fade-in">
-                    <img loading="lazy" src="/images/ai-chatbot-virtual-assistant-development.png" alt="AI Chatbot & Virtual Assistant Development" class="service-card-img">
+                    <img loading="lazy" src="/images/ai-chatbot-virtual-assistant-development.png" alt="AI Chatbot & Virtual Assistant Development" class="service-card-img" width="1536" height="800">
                     <h3>AI Chatbot & Virtual Assistant Development</h3>
                     <p>Smart chatbots that understand your business data and provide instant, accurate responses to your customers 24/7.</p>
                     <ul class="service-features">
@@ -309,7 +311,7 @@
                     </ul>
                 </div>
                 <div class="service-card fade-in">
-                    <img loading="lazy" src="/images/custom-ai-agent-development.webp" alt="Custom AI Agent Development" class="service-card-img">
+                    <img loading="lazy" src="/images/custom-ai-agent-development.webp" alt="Custom AI Agent Development" class="service-card-img" width="1500" height="1091">
                     <h3>Custom AI Agent Development</h3>
                     <p>Autonomous AI agents that handle complex tasks, make decisions, and execute multi-step workflows without human intervention.</p>
                     <ul class="service-features">
@@ -320,7 +322,7 @@
                     </ul>
                 </div>
                 <div class="service-card fade-in">
-                    <img loading="lazy" src="/images/generative-ai-llm-integration.jpg" alt="Generative AI & LLM Integration" class="service-card-img">
+                    <img loading="lazy" src="/images/generative-ai-llm-integration.jpg" alt="Generative AI & LLM Integration" class="service-card-img" width="1200" height="516">
                     <h3>Generative AI & LLM Integration</h3>
                     <p>Integrate the power of large language models into your existing applications for content generation, summarization, and intelligent automation.</p>
                     <ul class="service-features">
@@ -331,7 +333,7 @@
                     </ul>
                 </div>
                 <div class="service-card fade-in">
-                    <img loading="lazy" src="/images/rag-powered-knowledge-systems.webp" alt="RAG-Powered Knowledge Systems" class="service-card-img">
+                    <img loading="lazy" src="/images/rag-powered-knowledge-systems.webp" alt="RAG-Powered Knowledge Systems" class="service-card-img" width="1536" height="1024">
                     <h3>RAG-Powered Knowledge Systems</h3>
                     <p>Turn your documents, PDFs, and data into searchable AI-powered knowledge bases with accurate, context-aware answers.</p>
                     <ul class="service-features">
@@ -340,9 +342,10 @@
                         <li>Document processing pipelines</li>
                         <li>Enterprise knowledge bases</li>
                     </ul>
+                    <a href="/blog/building-ai-shopping-assistant-crag-aws" style="display:inline-block;margin-top:0.75rem;color:var(--secondary);font-size:0.82rem;font-weight:600;text-decoration:none;" aria-label="Read case study: How I built an AI Shopping Assistant with Corrective RAG">📖 See it in action →</a>
                 </div>
                 <div class="service-card fade-in">
-                    <img loading="lazy" src="/images/ai-powered-business-automation.webp" alt="AI-Powered Business Automation" class="service-card-img">
+                    <img loading="lazy" src="/images/ai-powered-business-automation.webp" alt="AI-Powered Business Automation" class="service-card-img" width="1200" height="523">
                     <h3>AI-Powered Business Automation</h3>
                     <p>Automate repetitive business processes with AI — from data entry and reporting to decision-making and workflow management.</p>
                     <ul class="service-features">
@@ -353,7 +356,7 @@
                     </ul>
                 </div>
                 <div class="service-card fade-in">
-                    <img loading="lazy" src="/images/machine-learning-predictive-analytics.webp" alt="Machine Learning & Predictive Analytics" class="service-card-img">
+                    <img loading="lazy" src="/images/machine-learning-predictive-analytics.webp" alt="Machine Learning & Predictive Analytics" class="service-card-img" width="1536" height="864">
                     <h3>Machine Learning & Predictive Analytics</h3>
                     <p>Data-driven predictions and insights that help you make smarter business decisions and forecast future trends.</p>
                     <ul class="service-features">
@@ -364,7 +367,7 @@
                     </ul>
                 </div>
                 <div class="service-card fade-in">
-                    <img loading="lazy" src="/images/computer-vision-solutions.png" alt="Computer Vision Solutions" class="service-card-img">
+                    <img loading="lazy" src="/images/computer-vision-solutions.png" alt="Computer Vision Solutions" class="service-card-img" width="1000" height="564">
                     <h3>Computer Vision Solutions</h3>
                     <p>Image and video analysis systems that can detect, classify, and understand visual data for your business needs.</p>
                     <ul class="service-features">
@@ -373,9 +376,10 @@
                         <li>Real-time prediction APIs</li>
                         <li>Custom CNN architectures</li>
                     </ul>
+                    <a href="/blog/car-damage-detection-efficientnet-aws-lambda" style="display:inline-block;margin-top:0.75rem;color:var(--secondary);font-size:0.82rem;font-weight:600;text-decoration:none;" aria-label="Read case study: Car Damage Detection with EfficientNet">📖 See it in action →</a>
                 </div>
                 <div class="service-card fade-in">
-                    <img loading="lazy" src="/images/cloud-ai-deployment-mlops.png" alt="Cloud AI Deployment & MLOps" class="service-card-img">
+                    <img loading="lazy" src="/images/cloud-ai-deployment-mlops.png" alt="Cloud AI Deployment & MLOps" class="service-card-img" width="744" height="497">
                     <h3>Cloud AI Deployment & MLOps</h3>
                     <p>Deploy your AI models to production on AWS or GCP with scalable infrastructure, monitoring, and continuous delivery.</p>
                     <ul class="service-features">
@@ -386,7 +390,7 @@
                     </ul>
                 </div>
                 <div class="service-card fade-in">
-                    <img loading="lazy" src="/images/ai-data-visualization-insights.png" alt="AI Data Visualization & Insights" class="service-card-img">
+                    <img loading="lazy" src="/images/ai-data-visualization-insights.png" alt="AI Data Visualization & Insights" class="service-card-img" width="1200" height="800">
                     <h3>AI Data Visualization & Insights</h3>
                     <p>Transform raw data into interactive dashboards and visual insights using AI-powered natural language queries.</p>
                     <ul class="service-features">
@@ -397,7 +401,7 @@
                     </ul>
                 </div>
                 <div class="service-card fade-in">
-                    <img loading="lazy" src="/images/ai-powered-business-automation.webp" alt="AI Voice Agent Receptionist" class="service-card-img">
+                    <img loading="lazy" src="/images/ai-powered-business-automation.webp" alt="AI Voice Agent Receptionist" class="service-card-img" width="1200" height="523">
                     <h3>AI Voice Agent Receptionist</h3>
                     <p>A custom 24/7 automated telephone receptionist that answers incoming calls, speaks like a real human with low latency, books appointments into live calendars, and handles customer FAQs — without ever going to voicemail.</p>
                     <ul class="service-features">
@@ -493,8 +497,8 @@
         <div class="container">
             <p>&copy; 2026 Imran Rafique. All rights reserved.</p>
             <div class="social-links">
-                <a href="https://www.linkedin.com/in/imran-rafique-data/?locale=en_US" target="_blank" class="social-link">LinkedIn</a>
-                <a href="https://github.com/ImranRafique847" target="_blank" class="social-link">GitHub</a>
+                <a href="https://www.linkedin.com/in/imran-rafique-data/?locale=en_US" target="_blank" class="social-link" rel="noopener noreferrer" aria-label="Imran Rafique on LinkedIn">LinkedIn</a>
+                <a href="https://github.com/ImranRafique847" target="_blank" class="social-link" rel="noopener noreferrer" aria-label="Imran Rafique on GitHub">GitHub</a>
             </div>
         </div>
     </footer>

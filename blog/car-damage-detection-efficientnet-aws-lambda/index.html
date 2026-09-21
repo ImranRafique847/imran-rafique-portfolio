@@ -151,6 +151,8 @@
       ]
     }
     </script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -206,10 +208,10 @@
     </style>
 </head>
 <body>
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Main navigation">
         <div class="nav-container">
             <div class="logo">Imran Rafique</div>
-            <ul class="nav-menu">
+            <ul class="nav-menu" id="nav-menu" role="list">
                 <li><a href="/" class="nav-link">Home</a></li>
                 <li><a href="/about" class="nav-link">About</a></li>
                 <li><a href="/services" class="nav-link">Services</a></li>
@@ -218,7 +220,7 @@
                 <li><a href="/blog" class="nav-link active">Blog</a></li>
                 <li><a href="/contact" class="nav-link">Contact</a></li>
             </ul>
-            <div class="hamburger"><span></span><span></span><span></span></div>
+            <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu"><span></span><span></span><span></span></button>
         </div>
     </nav>
 
@@ -235,7 +237,7 @@
             <span class="blog-post-tag">MLOps</span>
         </div>
 
-        <img src="/images/ai-based-car-damage-detection-system.jpg" alt="AI Car Damage Detection System" class="blog-hero-img" loading="lazy">
+        <img src="/images/ai-based-car-damage-detection-system.jpg" alt="AI Car Damage Detection System" class="blog-hero-img" loading="lazy" width="290" height="174">
 
         <p>Most project write-ups lead with the win. I want to lead with the number that I almost didn't publish: my car damage classifier's best validation accuracy is 72.2%, on a genuinely hard, three-way distinction. That's not a number I'd put on a billboard — but it's a number I can fully explain, and that turned out to matter more than the number itself.</p>
 
@@ -264,7 +266,7 @@
 
         <p>Here's a training curve from one of my earlier runs on this same architecture, which I'm including precisely because it failed instructively. Training accuracy climbs steadily to around 78%. Validation accuracy does something very different — it plateaus almost immediately around 35%, and barely moves for the rest of training, even past the point where fine-tuning begins.</p>
 
-        <img src="/blog/Car Demaged Blog/01-Training-History.png" alt="Training History — Overfitting curve showing train vs validation accuracy gap" class="blog-fig" loading="lazy">
+        <img src="/blog/Car Demaged Blog/01-Training-History.png" alt="Training History — Overfitting curve showing train vs validation accuracy gap" class="blog-fig" loading="lazy" width="1400" height="500">
         <p class="fig-caption">Figure 1 — A training run on an earlier configuration, showing the classic overfitting signature: the gap between train and validation curves widens steadily.</p>
 
         <p>This is a textbook overfitting curve, and I want to be upfront about it rather than crop it out of the post. A gap this wide, this early, with validation loss climbing rather than falling after fine-tuning starts, means the model is memorizing the training set faster than it's learning anything that generalizes — unsurprising with roughly 1,400 training images and a network with millions of parameters.</p>
@@ -275,14 +277,14 @@
 
         <p>A single accuracy number flattens everything into one digit, and in this case that digit undersells what the model actually learned. The confusion matrix tells a much more specific, and more useful, story.</p>
 
-        <img src="/blog/Car Demaged Blog/02-Confusion-Matrix.png" alt="Confusion Matrix on validation set — Minor, Moderate, Severe damage classes" class="blog-fig" loading="lazy">
+        <img src="/blog/Car Demaged Blog/02-Confusion-Matrix.png" alt="Confusion Matrix on validation set — Minor, Moderate, Severe damage classes" class="blog-fig" loading="lazy" width="700" height="500">
         <p class="fig-caption">Figure 2 — Confusion matrix on the validation set (Minor, Moderate, Severe damage)</p>
 
         <p>Look at where the errors actually land. Minor damage gets confused with Moderate damage 17 times, and almost never with Severe (just 2 times). Severe gets confused with Moderate 11 times, and almost never with Minor (just 1 time). The model's mistakes are concentrated almost entirely between neighboring classes — it essentially never confuses the two extremes.</p>
 
         <p>That pattern matters, because it isn't random noise. It's the same kind of disagreement a human would have looking at the same photos. A dented door panel that's borderline between "minor" and "moderate" is a genuinely ambiguous case, not a model failure — and the sample images make that obvious at a glance.</p>
 
-        <img src="/blog/Car Demaged Blog/03-Sample-Images-Each-Class.png" alt="Sample images from each damage class — Minor, Moderate, Severe, No Damage" class="blog-fig" loading="lazy">
+        <img src="/blog/Car Demaged Blog/03-Sample-Images-Each-Class.png" alt="Sample images from each damage class — Minor, Moderate, Severe, No Damage" class="blog-fig" loading="lazy" width="1400" height="1400">
         <p class="fig-caption">Figure 3 — Sample images from each of the original four classes. Several "Minor" and "Moderate" examples are genuinely close calls even to a human eye.</p>
 
         <h2>Why This Matters More Than the Accuracy Score</h2>
@@ -331,6 +333,8 @@
         <h2>Try It Yourself</h2>
 
         <p>The live demo, full training code, the confusion matrix and training curves shown above, and the AWS Lambda deployment guide are all on GitHub — including the parts that didn't go perfectly, because I think that's the more useful version of this project to share.</p>
+
+        <p>If you need a computer vision system, image classifier, or AWS Lambda deployment built for your business — <a href="/services" style="color:var(--secondary);font-weight:600;">see my Computer Vision & Cloud services →</a></p>
 
         <p>
             <a href="https://a3m6jbr82l.execute-api.us-east-1.amazonaws.com/" target="_blank" style="color: var(--secondary); font-weight: 600;">🔴 Try the Live Demo</a>
@@ -383,7 +387,7 @@
                 <li>Computer Vision Solutions</li>
                 <li>Cloud AI Deployment & MLOps (AWS & GCP)</li>
             </ul>
-            <p>Have a project in mind? <a href="/contact">Let's talk →</a></p>
+            <p>Have a project in mind? <a href="/contact">Let's talk →</a> &nbsp;|&nbsp; <a href="/services" style="color:var(--secondary);font-weight:600;">View all AI services →</a></p>
         </div>
 
         <div class="blog-nav">

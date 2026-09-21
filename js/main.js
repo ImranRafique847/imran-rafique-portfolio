@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     initNav();
     initObserver();
     initButtonGlow();
+    initFaqAccordions();
 });
 
 function initNav() {
@@ -9,10 +10,19 @@ function initNav() {
     const navMenu = document.querySelector('.nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
 
-    if (hamburger) {
+    if (hamburger && navMenu) {
         hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('open');
-            navMenu.classList.toggle('active');
+            const isOpen = hamburger.classList.toggle('open');
+            navMenu.classList.toggle('active', isOpen);
+            hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+
+        // Keyboard support — Enter and Space
+        hamburger.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                hamburger.click();
+            }
         });
     }
 
@@ -20,17 +30,20 @@ function initNav() {
         link.addEventListener('click', () => {
             hamburger?.classList.remove('open');
             navMenu?.classList.remove('active');
+            hamburger?.setAttribute('aria-expanded', 'false');
         });
     });
 
-    // Auto-set active link
-    const current = window.location.pathname.split('/').pop() || 'index.html';
+    // Active link detection for clean URLs
+    const path = window.location.pathname;
     navLinks.forEach(link => {
         const href = link.getAttribute('href');
-        if (href === current || (current === '' && href === 'index.html')) {
+        if (
+            href === path ||
+            (path === '/' && href === '/') ||
+            (path.endsWith(href) && href !== '/')
+        ) {
             link.classList.add('active');
-        } else {
-            link.classList.remove('active');
         }
     });
 }
@@ -58,12 +71,46 @@ function initButtonGlow() {
     });
 }
 
+function initFaqAccordions() {
+    document.querySelectorAll('.faq-question').forEach(btn => {
+        // Set initial aria-expanded state
+        btn.setAttribute('aria-expanded', 'false');
+
+        const answerId = 'faq-answer-' + Math.random().toString(36).substr(2, 9);
+        const answer = btn.nextElementSibling;
+        if (answer) {
+            answer.setAttribute('id', answerId);
+            btn.setAttribute('aria-controls', answerId);
+        }
+
+        btn.addEventListener('click', () => {
+            const item = btn.closest('.faq-item');
+            const isOpen = item.classList.contains('open');
+
+            // Close all
+            document.querySelectorAll('.faq-item').forEach(i => {
+                i.classList.remove('open');
+                const q = i.querySelector('.faq-question');
+                if (q) q.setAttribute('aria-expanded', 'false');
+            });
+
+            // Open clicked if it was closed
+            if (!isOpen) {
+                item.classList.add('open');
+                btn.setAttribute('aria-expanded', 'true');
+            }
+        });
+    });
+}
+
 // Toast utility — call from any page
 function showToast(message, type = 'success') {
     let toast = document.querySelector('.toast');
     if (!toast) {
         toast = document.createElement('div');
         toast.className = 'toast';
+        toast.setAttribute('role', 'status');
+        toast.setAttribute('aria-live', 'polite');
         document.body.appendChild(toast);
     }
     toast.textContent = message;

@@ -151,6 +151,8 @@
       ]
     }
     </script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -204,10 +206,10 @@
     </style>
 </head>
 <body>
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Main navigation">
         <div class="nav-container">
             <div class="logo">Imran Rafique</div>
-            <ul class="nav-menu">
+            <ul class="nav-menu" id="nav-menu" role="list">
                 <li><a href="/" class="nav-link">Home</a></li>
                 <li><a href="/about" class="nav-link">About</a></li>
                 <li><a href="/services" class="nav-link">Services</a></li>
@@ -216,7 +218,7 @@
                 <li><a href="/blog" class="nav-link active">Blog</a></li>
                 <li><a href="/contact" class="nav-link">Contact</a></li>
             </ul>
-            <div class="hamburger"><span></span><span></span><span></span></div>
+            <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu"><span></span><span></span><span></span></button>
         </div>
     </nav>
 
@@ -234,7 +236,7 @@
             <span class="blog-post-tag">Elastic Beanstalk</span>
         </div>
 
-        <img src="/images/ai-based-shopping-new.png" alt="AI Shopping Assistant Interface" class="blog-hero-img" loading="lazy">
+        <img src="/images/ai-based-shopping-new.png" alt="AI Shopping Assistant Interface" class="blog-hero-img" loading="lazy" width="1999" height="1167">
 
         <p>Most online shopping search bars are dumb in a very specific way: type "cheap red dress" and you get either zero results or five hundred, sorted by something that has nothing to do with what you actually meant. I wanted to fix that — not with a bigger search bar, but with an AI layer that actually understands what you're asking for, remembers what you said two messages ago, and never lies to you about a price.</p>
 
@@ -292,7 +294,7 @@
 
         <p>This is the actual "corrective" part of CRAG. The filtered results are evaluated for relevance before generation happens. If they don't hold up, the pipeline loops back to query rewriting and tries again with a refined version of the query. Once results pass that check, Amazon Nova Micro generates a short, honest response — two to three sentences — that only references what was actually retrieved, with real prices pulled straight from the dataset. No filling in gaps with plausible-sounding fiction.</p>
 
-        <img src="/images/ai-based-shopping-assistance-blog-1.png" alt="Corrective RAG Pipeline Diagram" class="blog-hero-img" loading="lazy">
+        <img src="/images/ai-based-shopping-assistance-blog-1.png" alt="Corrective RAG Pipeline Diagram" class="blog-hero-img" loading="lazy" width="1490" height="1025">
 
         <h2>The Full AWS Architecture</h2>
 
@@ -318,7 +320,7 @@
 
         <p>On the live system, a user's browser talks to a public Beanstalk endpoint, which routes into the running container. The container assumes an IAM role scoped specifically to S3 and Bedrock access — no hardcoded AWS keys anywhere in the codebase. Logs and metrics flow into CloudWatch, which is what you'd actually want if you were running this for real users rather than just a portfolio demo.</p>
 
-        <img src="/images/ai-based-shopping-assistance-blog-2.png" alt="Full AWS Architecture Diagram" class="blog-hero-img" loading="lazy">
+        <img src="/images/ai-based-shopping-assistance-blog-2.png" alt="Full AWS Architecture Diagram" class="blog-hero-img" loading="lazy" width="1724" height="2232">
 
         <h2>AWS Services at a Glance</h2>
 
@@ -386,6 +388,8 @@
 
         <p>The live demo, the full architecture diagram, the complete source code, and step-by-step deployment instructions are all on my GitHub — every tool, technique, and configuration step used in this project is documented there, end to end.</p>
 
+        <p>If you're looking to build something similar — a RAG-powered knowledge system, an AI chatbot on your own data, or a full cloud deployment on AWS — <a href="/services" style="color:var(--secondary);font-weight:600;">see the services I offer →</a></p>
+
         <p><a href="https://d3uu35mv5l6o1c.cloudfront.net/" target="_blank" style="color: var(--secondary); font-weight: 600;">🔴 Try the Live Demo</a> &nbsp;|&nbsp; <a href="https://github.com/ImranRafique847/AI-Based-Shopping-Assistent" target="_blank" style="color: var(--secondary); font-weight: 600;">View Source on GitHub</a></p>
 
         <section class="faq-section">
@@ -433,7 +437,7 @@
                 <li>Computer Vision Solutions</li>
                 <li>Cloud AI Deployment & MLOps (AWS & GCP)</li>
             </ul>
-            <p>Have a project in mind? <a href="/contact">Let's talk →</a></p>
+            <p>Have a project in mind? <a href="/contact">Let's talk →</a> &nbsp;|&nbsp; <a href="/services" style="color:var(--secondary);font-weight:600;">View all AI services →</a></p>
         </div>
 
         <div class="blog-nav">
