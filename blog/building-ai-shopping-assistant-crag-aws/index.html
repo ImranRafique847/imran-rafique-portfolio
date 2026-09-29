@@ -444,20 +444,33 @@
             <a href="/blog">← Back to Blog</a>
         </div>
 
-        <div id="disqus_thread" style="margin-top: var(--spacing-2xl);"></div>
-        <script>
-            var disqus_config = function () {
-                this.page.url = 'https://imran-rafique.dev/blog/building-ai-shopping-assistant-crag-aws';
-                this.page.identifier = 'blog-crag-shopping-assistant';
-            };
-            (function() {
-                var d = document, s = d.createElement('script');
-                s.src = 'https://imran-rafique-dev.disqus.com/embed.js';
-                s.setAttribute('data-timestamp', +new Date());
-                (d.head || d.body).appendChild(s);
-            })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <!-- Engagement: Like + Comments -->
+        <div class="engagement" data-post-id="crag-shopping-assistant">
+            <div class="like-row">
+                <button class="like-btn" id="likeBtn" aria-label="Like this article">
+                    <span class="like-heart">♥</span>
+                    <span class="like-count" id="likeCount">0</span>
+                </button>
+                <span class="like-label">Found this helpful? Give it a like</span>
+            </div>
+
+            <div class="comments-block">
+                <h2 class="comments-title">Comments (<span id="commentCount">0</span>)</h2>
+
+                <form class="comment-form" id="commentForm">
+                    <div class="cf-row">
+                        <input type="text" id="cName" placeholder="Your name" required maxlength="60" aria-label="Your name">
+                        <input type="email" id="cEmail" placeholder="Your email (not shown publicly)" required maxlength="120" aria-label="Your email">
+                    </div>
+                    <textarea id="cMessage" placeholder="Share your thoughts…" rows="4" required maxlength="1500" aria-label="Your comment"></textarea>
+                    <button type="submit" class="btn btn-primary" id="cSubmit">Post Comment</button>
+                </form>
+
+                <div class="comments-list" id="commentsList">
+                    <p class="comments-empty" id="commentsEmpty">Be the first to comment.</p>
+                </div>
+            </div>
+        </div>
     </article>
 
     <footer class="footer">
@@ -471,6 +484,9 @@
     </footer>
 
     <script src="/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>emailjs.init('z37KOWE1xyov7W_Sp');</script>
+    <script src="/js/blog-engagement.js"></script>
     <script>
         document.querySelectorAll('.faq-question').forEach(btn => {
             btn.addEventListener('click', () => {
