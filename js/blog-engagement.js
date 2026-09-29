@@ -1,4 +1,4 @@
-// Blog engagement: likes + comments backed by Supabase
+// Blog engagement: likes + comments + Google auth backed by Supabase
 (function () {
     const SUPABASE_URL = 'https://pmkogleiuckixyhgacni.supabase.co';
     const SUPABASE_KEY = 'sb_publishable_SMPHQpt7Rts_yBe2mxLp-w_Nw5uidMm';
@@ -7,33 +7,35 @@
     if (!engagement) return;
 
     const postId = engagement.getAttribute('data-post-id');
+
+    // REST headers (used for likes + reading/writing comments)
     const headers = {
         'apikey': SUPABASE_KEY,
         'Authorization': 'Bearer ' + SUPABASE_KEY,
         'Content-Type': 'application/json'
     };
 
+    // Supabase client (used only for Google auth)
+    let sb = null;
+    if (window.supabase && window.supabase.createClient) {
+        sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    }
+
     // ---------- LIKES ----------
     const likeBtn = document.getElementById('likeBtn');
     const likeCount = document.getElementById('likeCount');
     const likedKey = 'liked_' + postId;
-
-    function markLikedState() {
-        if (localStorage.getItem(likedKey)) {
-            likeBtn.classList.add('liked');
-        }
-    }
 
     async function loadLikes() {
         try {
             const res = await fetch(`${SUPABASE_URL}/rest/v1/likes?post_id=eq.${postId}&select=count`, { headers });
             const data = await res.json();
             if (data && data.length) likeCount.textContent = data[0].count;
-        } catch (e) { /* silent */ }
+        } catch (e) {}
     }
 
     async function toggleLike() {
-        if (localStorage.getItem(likedKey)) return; // one like per browser
+        if (localStorage.getItem(likedKey)) return;
         const current = parseInt(likeCount.textContent, 10) || 0;
         const next = current + 1;
         likeCount.textContent = next;
@@ -45,13 +47,75 @@
                 headers: Object.assign({ 'Prefer': 'return=minimal' }, headers),
                 body: JSON.stringify({ count: next })
             });
-        } catch (e) { /* silent */ }
+        } catch (e) {}
     }
 
     if (likeBtn) {
-        markLikedState();
+        if (localStorage.getItem(likedKey)) likeBtn.classList.add('liked');
         loadLikes();
         likeBtn.addEventListener('click', toggleLike);
+    }
+
+    // ---------- GOOGLE AUTH ----------
+    const googleBtn = document.getElementById('googleSignIn');
+    const authBar = document.getElementById('authBar');
+    const signedInAs = document.getElementById('signedInAs');
+    const guestFields = document.getElementById('guestFields');
+    const nameInput = document.getElementById('cName');
+    const emailInput = document.getElementById('cEmail');
+
+    let currentUser = null;
+
+    async function checkSession() {
+        if (!sb) return;
+        try {
+            const { data } = await sb.auth.getSession();
+            if (data && data.session && data.session.user) {
+                setSignedIn(data.session.user);
+            }
+        } catch (e) {}
+    }
+
+    function setSignedIn(user) {
+        currentUser = user;
+        const displayName = user.user_metadata.full_name || user.user_metadata.name || user.email;
+        const email = user.email;
+        if (authBar) authBar.style.display = 'none';
+        if (guestFields) guestFields.style.display = 'none';
+        if (signedInAs) {
+            signedInAs.style.display = 'flex';
+            signedInAs.innerHTML =
+                '<span>Commenting as <strong>' + escapeHtml(displayName) + '</strong> (' + escapeHtml(email) + ')</span>' +
+                '<button type="button" id="signOutBtn" class="signout-link">Sign out</button>';
+            const signOut = document.getElementById('signOutBtn');
+            if (signOut) signOut.addEventListener('click', doSignOut);
+        }
+        // Prefill hidden guest inputs so submit works uniformly
+        if (nameInput) nameInput.value = displayName;
+        if (emailInput) emailInput.value = email;
+    }
+
+    async function doSignOut() {
+        if (sb) await sb.auth.signOut();
+        currentUser = null;
+        if (authBar) authBar.style.display = 'flex';
+        if (guestFields) guestFields.style.display = 'grid';
+        if (signedInAs) { signedInAs.style.display = 'none'; signedInAs.innerHTML = ''; }
+        if (nameInput) nameInput.value = '';
+        if (emailInput) emailInput.value = '';
+    }
+
+    if (googleBtn && sb) {
+        googleBtn.addEventListener('click', async () => {
+            await sb.auth.signInWithOAuth({
+                provider: 'google',
+                options: { redirectTo: window.location.href }
+            });
+        });
+        checkSession();
+    } else if (googleBtn && !sb) {
+        // Supabase library failed to load — hide Google option, keep guest form
+        if (authBar) authBar.style.display = 'none';
     }
 
     // ---------- COMMENTS ----------
@@ -63,7 +127,7 @@
 
     function escapeHtml(str) {
         const div = document.createElement('div');
-        div.textContent = str;
+        div.textContent = str == null ? '' : str;
         return div.innerHTML;
     }
 
@@ -90,25 +154,25 @@
         try {
             const res = await fetch(`${SUPABASE_URL}/rest/v1/comments?post_id=eq.${postId}&select=name,message,created_at&order=created_at.desc`, { headers });
             const data = await res.json();
+            list.querySelectorAll('.comment-item').forEach(el => el.remove());
             if (data && data.length) {
                 if (empty) empty.style.display = 'none';
                 countEl.textContent = data.length;
-                list.querySelectorAll('.comment-item').forEach(el => el.remove());
                 data.forEach(c => list.appendChild(renderComment(c)));
             } else {
                 countEl.textContent = '0';
+                if (empty) empty.style.display = 'block';
             }
-        } catch (e) { /* silent */ }
+        } catch (e) {}
     }
 
     async function submitComment(e) {
         e.preventDefault();
-        const name = document.getElementById('cName');
-        const email = document.getElementById('cEmail');
         const message = document.getElementById('cMessage');
 
         let valid = true;
-        [name, email, message].forEach(f => {
+        const fieldsToCheck = currentUser ? [message] : [nameInput, emailInput, message];
+        fieldsToCheck.forEach(f => {
             if (!f.value.trim()) { f.classList.add('error'); valid = false; }
             else { f.classList.remove('error'); }
         });
@@ -117,31 +181,32 @@
         submitBtn.textContent = 'Posting…';
         submitBtn.disabled = true;
 
+        const payload = {
+            post_id: postId,
+            name: nameInput.value.trim(),
+            email: emailInput.value.trim(),
+            message: message.value.trim()
+        };
+
         try {
             const res = await fetch(`${SUPABASE_URL}/rest/v1/comments`, {
                 method: 'POST',
                 headers: Object.assign({ 'Prefer': 'return=minimal' }, headers),
-                body: JSON.stringify({
-                    post_id: postId,
-                    name: name.value.trim(),
-                    email: email.value.trim(),
-                    message: message.value.trim()
-                })
+                body: JSON.stringify(payload)
             });
 
             if (res.ok) {
-                // Notify owner via EmailJS if available
                 if (window.emailjs) {
                     try {
                         emailjs.send('service_h3z1qjh', 'template_3d82uq7', {
-                            name: name.value.trim(),
-                            email: email.value.trim(),
+                            name: payload.name,
+                            email: payload.email,
                             subject: 'New blog comment on ' + postId,
-                            message: message.value.trim()
+                            message: payload.message
                         });
-                    } catch (err) { /* silent */ }
+                    } catch (err) {}
                 }
-                form.reset();
+                message.value = '';
                 submitBtn.textContent = 'Post Comment';
                 submitBtn.disabled = false;
                 loadComments();
