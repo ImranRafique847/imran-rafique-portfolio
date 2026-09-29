@@ -136,29 +136,73 @@
         return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
     }
 
+    function voteState(commentId) {
+        return localStorage.getItem('vote_' + postId + '_' + commentId); // 'like' | 'dislike' | null
+    }
+
     function renderComment(c) {
         const initial = (c.name || '?').trim().charAt(0).toUpperCase();
         const div = document.createElement('div');
         div.className = 'comment-item';
+        const myVote = voteState(c.id);
         div.innerHTML =
             '<div class="comment-head">' +
                 '<div class="comment-avatar">' + escapeHtml(initial) + '</div>' +
                 '<span class="comment-author">' + escapeHtml(c.name) + '</span>' +
                 '<span class="comment-date">' + formatDate(c.created_at) + '</span>' +
             '</div>' +
-            '<div class="comment-body">' + escapeHtml(c.message) + '</div>';
+            '<div class="comment-body">' + escapeHtml(c.message) + '</div>' +
+            '<div class="comment-actions">' +
+                '<button class="cvote clike' + (myVote === 'like' ? ' active' : '') + '" data-id="' + c.id + '" data-type="like" aria-label="Like comment">' +
+                    '<span>👍</span> <span class="cvote-count">' + (c.likes || 0) + '</span>' +
+                '</button>' +
+                '<button class="cvote cdislike' + (myVote === 'dislike' ? ' active' : '') + '" data-id="' + c.id + '" data-type="dislike" aria-label="Dislike comment">' +
+                    '<span>👎</span> <span class="cvote-count">' + (c.dislikes || 0) + '</span>' +
+                '</button>' +
+            '</div>';
         return div;
+    }
+
+    async function voteComment(commentId, type, btn) {
+        const key = 'vote_' + postId + '_' + commentId;
+        const existing = localStorage.getItem(key);
+        if (existing) return; // one vote per browser per comment
+
+        const countSpan = btn.querySelector('.cvote-count');
+        const current = parseInt(countSpan.textContent, 10) || 0;
+        const next = current + 1;
+        countSpan.textContent = next;
+        btn.classList.add('active');
+        localStorage.setItem(key, type);
+
+        const column = type === 'like' ? 'likes' : 'dislikes';
+        try {
+            await fetch(`${SUPABASE_URL}/rest/v1/comments?id=eq.${commentId}`, {
+                method: 'PATCH',
+                headers: Object.assign({ 'Prefer': 'return=minimal' }, headers),
+                body: JSON.stringify({ [column]: next })
+            });
+        } catch (e) {}
+    }
+
+    function bindVoteButtons() {
+        list.querySelectorAll('.cvote').forEach(btn => {
+            btn.addEventListener('click', () => {
+                voteComment(btn.getAttribute('data-id'), btn.getAttribute('data-type'), btn);
+            });
+        });
     }
 
     async function loadComments() {
         try {
-            const res = await fetch(`${SUPABASE_URL}/rest/v1/comments?post_id=eq.${postId}&select=name,message,created_at&order=created_at.desc`, { headers });
+            const res = await fetch(`${SUPABASE_URL}/rest/v1/comments?post_id=eq.${postId}&select=id,name,message,created_at,likes,dislikes&order=created_at.desc`, { headers });
             const data = await res.json();
             list.querySelectorAll('.comment-item').forEach(el => el.remove());
             if (data && data.length) {
                 if (empty) empty.style.display = 'none';
                 countEl.textContent = data.length;
                 data.forEach(c => list.appendChild(renderComment(c)));
+                bindVoteButtons();
             } else {
                 countEl.textContent = '0';
                 if (empty) empty.style.display = 'block';

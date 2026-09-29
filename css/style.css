@@ -199,3 +199,17 @@ h3 { color: var(--secondary); margin-top: 0; margin-bottom: var(--spacing-sm); }
 .signed-in-as { display: flex; align-items: center; gap: var(--spacing-md); margin-bottom: var(--spacing-lg); flex-wrap: wrap; font-size: 0.9rem; opacity: 0.9; background: rgba(0,255,255,0.06); border: 1px solid var(--border); border-radius: 8px; padding: 0.6rem 1rem; }
 .signed-in-as strong { color: var(--secondary); }
 .signout-link { background: none; border: none; color: var(--secondary); cursor: pointer; font-size: 0.85rem; font-weight: 600; text-decoration: underline; font-family: var(--font-family); }
+
+/* ── Comment like/dislike ── */
+.comment-actions { display: flex; gap: 0.75rem; margin-top: 0.75rem; }
+.cvote {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: var(--background); border: 1px solid var(--border); color: var(--text);
+    padding: 0.3rem 0.7rem; border-radius: 20px; cursor: pointer;
+    font-size: 0.8rem; font-family: var(--font-family); transition: var(--transition);
+}
+.cvote:hover { border-color: var(--secondary); }
+.cvote .cvote-count { opacity: 0.75; }
+.cvote.clike.active { border-color: #00ff88; color: #00ff88; }
+.cvote.cdislike.active { border-color: #ff4466; color: #ff4466; }
+.cvote.active { cursor: default; }
